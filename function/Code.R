@@ -189,7 +189,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       sacc<- as.data.frame(do.call( rbind, strsplit( EsaccStrings, '\t' ) ))
       sacc$V1<- get_num(sacc$V1)
       
-      # V4 start x ... V6 end x 
       
       #get after display
       sacc<- subset(sacc, V1>= temp$Dis_start_t)
