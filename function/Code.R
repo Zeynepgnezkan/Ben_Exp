@@ -102,7 +102,8 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
                         Dis_off_t = NA, boundary = NA, DC_start_t = NA, DC_end_t = NA,
                         boundary_t = NA ,Display_time = NA, Display_lat = NA,
                         sacc_start_t = NA, sacc_end_t = NA, sacc_dur = NA, sacc_start_x = NA,
-                        sacc_end_x = NA, sacc_ampl = NA, blink = NA, blink_dur = NA)
+                        sacc_end_x = NA, sacc_ampl = NA, blink = NA, blink_dur = NA,
+                        fix_start_t = NA, fix_end_t = NA, fix_dur = NA)
                         
                         
                         
@@ -236,6 +237,24 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         temp$blink_dur<- as.numeric(blinkEString$V2) - blinkEString$V1
         
       }
+      
+      #fixations
+      EFixFlags<- which(grepl('EFIX', trialF))
+      EFixStrings<- trialF[EFixFlags]
+      
+      all_fix <-as.data.frame(do.call( rbind, strsplit( EFixStrings, '\t' ) ))
+      all_fix$V1 <- get_num(all_fix$V1)
+      
+      #fixations after display on and boundary
+      all_fix <- subset(all_fix, V1 > as.numeric(temp$Dis_on_t))
+      all_fix <- subset(all_fix, as.numeric(all_fix$V4) > as.numeric(temp$boundary))
+      
+      #first fix after boundary
+      temp$fix_start_t <- as.numeric(all_fix$V1[1])
+      temp$fix_end_t <- as.numeric(all_fix$V2[1])
+      temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
+      
+      
       
       
       data<- rbind(data, temp)
