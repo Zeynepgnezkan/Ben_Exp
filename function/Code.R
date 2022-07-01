@@ -7,9 +7,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
   
   get_num<- function(string){as.numeric(unlist(gsub("[^0-9]", "", unlist(string)), ""))}
   
-  get_x<- function(string, where=2){as.numeric(unlist(strsplit(string, "\t"))[1:2])[where]}
-  
-  
   # get a list of .asc files from a user-provided directory
   get_files<- function(dir= "", file_ext= ".asc"){
     
@@ -161,7 +158,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       # Display latency
       
-      sacc<- subset(sacc, V1 <= temp$DC_start_t)
       
       x <- which(grepl(temp$Dis_on_t,trialF))
       y <- which(grepl(temp$DC_start_t,trialF))
@@ -196,13 +192,13 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       sacc<- subset(sacc, V1>= temp$Dis_on_t)
       
       #get online the one cross boundary
-      sacc <- subset(sacc, as.numeric(sacc$V6) > temp$boundary)
+      sacc <- subset(sacc, as.numeric(sacc$V6) > as.numeric(temp$boundary))
       
       #boundary cross saccade infos
       
       temp$sacc_start_t <- as.numeric(sacc$V1[1])
       temp$sacc_end_t <- as.numeric(sacc$V2[1])
-      temp$sacc_dur <- sacc_end_t - sacc_start_t
+      temp$sacc_dur <- temp$sacc_end_t - temp$sacc_start_t
       temp$sacc_start_x <- as.numeric(sacc$V4[1])
       temp$sacc_end_x <- as.numeric(sacc$V6[1])
       temp$sacc_ampl<- abs(temp$sacc_end_x - temp$sacc_start_x)*DPP
