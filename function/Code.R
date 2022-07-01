@@ -103,7 +103,9 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp<- data.frame(sub=NA, item=NA, cond=NA, trial_start = NA, trial_end = NA,
                         target_word_n = NA,target_word = NA, target_changed = NA,Dis_on_t = NA,
                         Dis_off_t = NA, boundary = NA, DC_start_t = NA, DC_end_t = NA,
-                        boundary_t = NA ,Display_time = NA, Display_lat = NA)
+                        boundary_t = NA ,Display_time = NA, Display_lat = NA,
+                        sacc_start_t = NA, sacc_end_t = NA, sacc_dur = NA, sacc_start_x = NA,
+                        sacc_end_x = NA, sacc_ampl = NA, blink = NA, blink_dur = NA)
                         
                         
                         
@@ -191,12 +193,53 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       
       #get after display
-      sacc<- subset(sacc, V1>= temp$Dis_start_t)
+      sacc<- subset(sacc, V1>= temp$Dis_on_t)
       
       #get online the one cross boundary
-     
+      sacc <- subset(sacc, as.numeric(sacc$V6) > temp$boundary)
       
-  
+      #boundary cross saccade infos
+      
+      temp$sacc_start_t <- as.numeric(sacc$V1[1])
+      temp$sacc_end_t <- as.numeric(sacc$V2[1])
+      temp$sacc_dur <- sacc_end_t - sacc_start_t
+      temp$sacc_start_x <- as.numeric(sacc$V4[1])
+      temp$sacc_end_x <- as.numeric(sacc$V6[1])
+      temp$sacc_ampl<- abs(temp$sacc_end_x - temp$sacc_start_x)*DPP
+      
+      
+      #Blink
+      # Between start and end of the first saccade crosses the boundary
+      
+      x <- which(grepl(temp$sacc_start_t,trialF))
+      y <- which(grepl(temp$sacc_end_t,trialF))
+      
+      trialShort<- trialF[x[1]:y[1]]
+      samples <- trialShort
+      samples <- samples[!grepl("EFIX", samples)]
+      samples <- samples[!grepl("SFIX", samples)]
+      samples <- samples[!grepl("ESACC", samples)]
+      samples <- samples[!grepl("SSACC", samples)]
+      samples <- samples[!grepl("MSG", samples)]
+      samples <- samples[!grepl("SBLINK", samples)]
+      samples <-  as.data.frame(do.call( rbind, strsplit( samples, '\t' ) ))
+      samples$V4<- as.numeric(samples$V4)
+      
+      blinkzero <- which(samples$V4==0)
+      
+      if (length(blinkzero) == 0){
+        temp$blink <- 'NO'
+      }else{
+        temp$blink <- 'YES'
+      }
+      
+      if(temp$blink == 'YES'){
+        blinkEFlag <- which(grepl('EBLINK',trialShort))
+        blinkEString <- as.data.frame(do.call( rbind, strsplit( trialShort[blinkEFlag], '\t' ) ))
+        blinkEString$V1 <- get_num(blinkEString$V1)
+        temp$blink_dur<- as.numeric(blinkEString$V2) - blinkEString$V1
+        
+      }
       
       
       data<- rbind(data, temp)
