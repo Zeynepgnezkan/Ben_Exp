@@ -106,7 +106,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
                         fix_start_t = NA, fix_end_t = NA, fix_dur = NA, question = NA,corrAns = NA,
                         key_resp = NA, RT_q = NA, accuracy = NA)
                         
-                        
+    
                
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
