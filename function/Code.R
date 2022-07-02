@@ -143,6 +143,23 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       DC_boundary <- as.data.frame(do.call( rbind, strsplit(DC_boundary, ' ' )))
       temp$boundary <- DC_boundary$V4
       
+      #boundary time
+      x <- which(grepl(temp$Dis_on_t,trialF))
+      y <- which(grepl(temp$Dis_off_t,trialF))
+      
+      trialShort<- trialF[x[1]:y[1]]
+      samples <- trialShort
+      samples <- samples[!grepl("EFIX", samples)]
+      samples <- samples[!grepl("SFIX", samples)]
+      samples <- samples[!grepl("ESACC", samples)]
+      samples <- samples[!grepl("SSACC", samples)]
+      samples <- samples[!grepl("MSG", samples)]
+      samples <- samples[!grepl("EBLINK", samples)]
+      samples <-  as.data.frame(do.call( rbind, strsplit( samples, '\t' ) ))
+      samples$V2<- as.numeric(samples$V2)
+      samples <- subset(samples, V2 > as.numeric(temp$boundary))
+      
+      temp$boundary_t <- as.numeric(samples$V1[1])
       
       if(temp$cond == 'ben'){
       target_word_chg <- trialF[which(grepl('var changed ', trialF))]
@@ -161,22 +178,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       # Display latency
       
       
-      x <- which(grepl(temp$Dis_on_t,trialF))
-      y <- which(grepl(temp$DC_start_t,trialF))
-      
-      trialShort<- trialF[x[1]:y[1]]
-      samples <- trialShort
-      samples <- samples[!grepl("EFIX", samples)]
-      samples <- samples[!grepl("SFIX", samples)]
-      samples <- samples[!grepl("ESACC", samples)]
-      samples <- samples[!grepl("SSACC", samples)]
-      samples <- samples[!grepl("MSG", samples)]
-      samples <- samples[!grepl("EBLINK", samples)]
-      samples <-  as.data.frame(do.call( rbind, strsplit( samples, '\t' ) ))
-      samples$V2<- as.numeric(samples$V2)
-      samples <- subset(samples, V2 > as.numeric(temp$boundary))
-      
-      temp$boundary_t <- as.numeric(samples$V1[1])
       
       temp$Display_lat <- temp$DC_start_t - temp$boundary_t
       
