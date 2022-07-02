@@ -103,7 +103,8 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
                         boundary_t = NA ,Display_time = NA, Display_lat = NA,
                         sacc_start_t = NA, sacc_end_t = NA, sacc_dur = NA, sacc_start_x = NA,
                         sacc_end_x = NA, sacc_ampl = NA, blink = NA, blink_dur = NA,
-                        fix_start_t = NA, fix_end_t = NA, fix_dur = NA)
+                        fix_start_t = NA, fix_end_t = NA, fix_dur = NA, question = NA,corrAns = NA,
+                        key_resp = NA, RT_q = NA, accuracy = NA)
                         
                         
                         
@@ -231,6 +232,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         temp$blink <- 'YES'
       }
       
+      #blink duration
       if(temp$blink == 'YES'){
         blinkEFlag <- which(grepl('EBLINK',trialShort))
         blinkEString <- as.data.frame(do.call( rbind, strsplit( trialShort[blinkEFlag], '\t' ) ))
@@ -264,6 +266,58 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       
       #fixations <- rbind(fixations, fixation)
+      
+      #Questions
+      Question <- trialF[which(grepl('var question ', trialF))]
+      Question <- as.data.frame(do.call( rbind, strsplit(Question, ' ' )))
+      if(Question$V4 != 'NA'){
+        temp$question <- 'Yes'
+      }else{
+        temp$question <- 'No'
+      }
+      
+      if(temp$question == 'Yes'){
+        
+        #correct answer
+        corrAns_q <- trialF[which(grepl('var response ', trialF))]
+        corrAns_q <- as.data.frame(do.call( rbind, strsplit(corrAns_q, ' ' )))
+        temp$corrAns <- corrAns_q$V4
+        
+        #key response                          
+        Q_resp_key <- trialF[which(grepl('var response_keyboard_response ', trialF))]
+        Q_resp_key <- as.data.frame(do.call( rbind, strsplit(Q_resp_key, ' ' )))
+        temp$key_resp <- Q_resp_key$V4
+        
+        #RT
+        RT_ques <- trialF[which(grepl('var response_time ', trialF))]
+        RT_ques <- as.data.frame(do.call( rbind, strsplit(RT_ques, ' ' )))
+        temp$RT_q <- round(as.numeric(RT_ques$V4),3)
+        
+        #accuracy
+        if(temp$corrAns == 'right'){
+          if(temp$key_resp == 'right'){
+            temp$accuracy <- 1
+          }else{
+            temp$accuracy <- 0
+          }
+        }else{
+          if(temp$corrAns == 'left'){
+            if(temp$key_resp == 'left'){
+            temp$accuracy <- 1
+          }else{
+            temp$accuracy <- 0
+          }
+        }
+      }  
+          
+        
+        
+        
+      }#end of question if
+      
+      
+      
+      
       data<- rbind(data, temp)
     }
   
