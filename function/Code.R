@@ -54,7 +54,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
   
 
   data<- NULL
-  
+  #fixations <- NULL
   ## PROCESS ##
   
   for(i in 1:length(dataASC)){ # for each subject..
@@ -170,6 +170,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       samples <- samples[!grepl("ESACC", samples)]
       samples <- samples[!grepl("SSACC", samples)]
       samples <- samples[!grepl("MSG", samples)]
+      samples <- samples[!grepl("EBLINK", samples)]
       samples <-  as.data.frame(do.call( rbind, strsplit( samples, '\t' ) ))
       samples$V2<- as.numeric(samples$V2)
       samples <- subset(samples, V2 > as.numeric(temp$boundary))
@@ -247,19 +248,27 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       #fixations after display on and boundary
       all_fix <- subset(all_fix, V1 > as.numeric(temp$Dis_on_t))
-      all_fix <- subset(all_fix, as.numeric(all_fix$V4) > as.numeric(temp$boundary))
+      all_fix1 <- subset(all_fix, as.numeric(all_fix$V4) > as.numeric(temp$boundary))
       
       #first fix after boundary
-      temp$fix_start_t <- as.numeric(all_fix$V1[1])
-      temp$fix_end_t <- as.numeric(all_fix$V2[1])
+      temp$fix_start_t <- as.numeric(all_fix1$V1[1])
+      temp$fix_end_t <- as.numeric(all_fix1$V2[1])
       temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
       
+      #fixation <- data.frame(sub=temp$sub, trialnumber = j, fix_s_t = NA,fix_e_t = NA, fix_d = NA)
+      #for( f in 1:nrow(all_fix)){
+      #  fix_s_t <- as.numeric(all_fix$V1[f])
+      #  fix_e_t <- as.numeric(all_fix$V2[f])
+      #  fix_d <- fix_e_t - fix_s_t
+      #}
       
       
-      
+      #fixations <- rbind(fixations, fixation)
       data<- rbind(data, temp)
     }
   
   }
+ 
   return(data)
+  
 }
