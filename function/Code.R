@@ -107,13 +107,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
                         key_resp = NA, RT_q = NA, accuracy = NA)
                         
                         
-                        
-                        #target_xPos=NA, trial_start= NA, trial_end= NA,
-                        #target_on_t=NA, SSACC_t= NA, ESACC_t= NA,
-                        #SRT= NA, sacc_dur= NA, SSACC_x= NA, ESACC_x= NA, sacc_ampl= NA,
-                        #peak_vel=NA, avg_vel= NA, accuracy= NA, blink = NA, blink_dur = NA, corrsacc = NA,
-                        #corrsacc_lat = NA, corrsacc_amp = NA, corrsacc_dur = NA)
-                        
+               
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
       trialF<- dataF[db$trial_start_t:db$trial_end_t]
@@ -143,26 +137,9 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       DC_boundary <- as.data.frame(do.call( rbind, strsplit(DC_boundary, ' ' )))
       temp$boundary <- DC_boundary$V4
       
-      
-      if(temp$cond == 'ben'){
-      target_word_chg <- trialF[which(grepl('var changed ', trialF))]
-      target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
-      temp$target_changed <- target_word_chg$V4
-      
-      # Display change infos 
-          
-      temp$DC_start_t <- get_num(trialF[which(grepl('DC started', trialF))])
-      
-      DC_end_t <- trialF[which(grepl('DC completed', trialF))]
-      DC_end_t <- as.data.frame(do.call( rbind, strsplit(DC_end_t, ' ' )))
-      temp$Display_time <- DC_end_t$V5
-      temp$DC_end_t <- get_num(DC_end_t$V1)
-      
-      # Display latency
-      
-      
+      #boundary time
       x <- which(grepl(temp$Dis_on_t,trialF))
-      y <- which(grepl(temp$DC_start_t,trialF))
+      y <- which(grepl(temp$Dis_off_t,trialF))
       
       trialShort<- trialF[x[1]:y[1]]
       samples <- trialShort
@@ -177,6 +154,24 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       samples <- subset(samples, V2 > as.numeric(temp$boundary))
       
       temp$boundary_t <- as.numeric(samples$V1[1])
+      
+      if(temp$cond == 'ben'){
+      target_word_chg <- trialF[which(grepl('var changed ', trialF))]
+      target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
+      temp$target_changed <- target_word_chg$V4
+      
+      # Display change infos 
+          
+      temp$DC_start_t <- get_num(trialF[which(grepl('DC started', trialF))])
+      
+      DC_end_t <- trialF[which(grepl('DC completed', trialF))]
+      DC_end_t <- as.data.frame(do.call( rbind, strsplit(DC_end_t, ' ' )))
+      temp$Display_time <- round(as.numeric(DC_end_t$V5),3)
+      temp$DC_end_t <- get_num(DC_end_t$V1)
+      
+      # Display latency
+      
+      
       
       temp$Display_lat <- temp$DC_start_t - temp$boundary_t
       
