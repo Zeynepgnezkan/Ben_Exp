@@ -1,4 +1,4 @@
-"","sub","item","cond","SSAC_t","ESAC_t","sacc_dur","Xpos","Ypos","pupil","number"
+"","sub","item","cond","SFIX_t","EFIX_t","fix_dur","Xpos","Ypos","pupil","number"
 "1",99,15,"identical",17005342,"17005577","236","  955.0","  533.5","   1695",1
 "2",99,15,"identical",17005644,"17005738","95","  316.0","  527.5","   1604",2
 "3",99,15,"identical",17005772,"17006154","383","  176.3","  555.2","   1463",3
