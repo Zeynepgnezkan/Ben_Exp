@@ -1,7 +1,7 @@
 
 #only for fixations
 
-fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/Ben_Experiment/test", maxtrial=1450, ResX=1920, DPP= 0.0247){
+fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/Ben_Experiment/test"){
   options(scipen=999)
   
   #steal some fun from my Professor,
@@ -55,7 +55,7 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
   
   
   data<- NULL
-  #fixations <- NULL
+  
   ## PROCESS ##
   
   for(i in 1:length(dataASC)){ # for each subject..
