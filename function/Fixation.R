@@ -96,8 +96,8 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
     ntrials<- nrow(trial_db)
     cat(sprintf("Processing trial: "));
     for(j in 1:ntrials){
-      temp<- data.frame(sub=NA, item=NA, cond=NA,SFIX_t = NA,EFIX_t = NA, fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA,
-                        number = NA)
+      temp<- data.frame(sub=NA, item=NA, cond=NA,number = NA, SFIX_t = NA,EFIX_t = NA,
+                        fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA)
       
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
@@ -125,7 +125,6 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
       temp$Xpos <- all_fix$V4[n]
       temp$Ypos <- all_fix$V5[n]
       temp$pupil <- all_fix$V6[n]
-    
     
       
     

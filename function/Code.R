@@ -102,7 +102,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
                         Dis_off_t = NA, boundary = NA, DC_start_t = NA, DC_end_t = NA,
                         boundary_t = NA ,Display_time = NA, Display_lat = NA,
                         sacc_start_t = NA, sacc_end_t = NA, sacc_dur = NA, sacc_start_x = NA,
-                        sacc_end_x = NA, sacc_ampl = NA, blink = NA, blink_dur = NA,
+                        sacc_end_x = NA, sacc_ampl = NA,peak_vel = NA, avg_vel = NA, blink = NA, blink_dur = NA,
                         fix_start_t = NA, fix_end_t = NA, fix_dur = NA, question = NA,corrAns = NA,
                         key_resp = NA, RT_q = NA, accuracy = NA)
                         
@@ -203,7 +203,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       
       #Blink
-      # Between start and end of the first saccade crosses the boundary
+      # Between start of trial and end of the first saccade crosses the boundary
       
       x <- which(grepl(temp$sacc_start_t,trialF))
       y <- which(grepl(temp$sacc_end_t,trialF))
@@ -310,8 +310,24 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         
       }#end of question if
       
+      ## Velocity 
+      sacc_st<- which(grepl(temp$sacc_start_t, trialF))
+      sacc_st<- sacc_st[1] # -2 so that we can capture one sample before start (avoiding flags)
+      sacc_end<- which(grepl(temp$sacc_end_t, trialF))[1] # 1 because 2nd is flag stamp
+      sacc_samples<- trialF[sacc_st:sacc_end]
       
+      # remove flags from samples data:
+      sacc_samples<- sacc_samples[!grepl("EFIX", sacc_samples)]
+      sacc_samples<- sacc_samples[!grepl("ESACC", sacc_samples)]
+      sacc_samples<- sacc_samples[!grepl("SSACC", sacc_samples)]
+      sacc_samples<- sacc_samples[!grepl("MSG", sacc_samples)]
+      sacc_samples <-  as.data.frame(do.call( rbind, strsplit( sacc_samples, '\t' ) )) # V2 is xpos
       
+      x= as.numeric(as.character(sacc_samples$V2)) # x pos vector
+      vel <- rep(0, length(x))
+      vel[2:(length(x)-1)] <- abs(1000/2*(x[3:(length(x))] - x[1:(length(x)-2)])/(1/DPP))
+      temp$peak_vel<- max(abs(vel))
+      temp$avg_vel<- mean(abs(vel))
       
       data<- rbind(data, temp)
     }
