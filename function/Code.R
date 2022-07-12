@@ -153,6 +153,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       samples <- samples[!grepl("SSACC", samples)]
       samples <- samples[!grepl("MSG", samples)]
       samples <- samples[!grepl("EBLINK", samples)]
+      samples <- samples[!grepl("SBLINK", samples)]
       samples <-  as.data.frame(do.call( rbind, strsplit( samples, '\t' ) ))
       samples$V2<- as.numeric(samples$V2)
       samples <- subset(samples, V2 > as.numeric(temp$boundary))
@@ -190,10 +191,10 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       sacc$V1<- get_num(sacc$V1)
       
       
-      #get between display on anf off
+      #get between display on and off
       sacc<- subset(sacc, V1>= temp$Dis_on_t)
       sacc<- subset(sacc, V1<= temp$Dis_off_t)
-      #get only the one cross boundary
+      #get only the ones cross boundary
       sacc_cross <- subset(sacc, as.numeric(sacc$V6) > as.numeric(temp$boundary))
       
       #boundary cross saccade infos
@@ -207,7 +208,8 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       
       #Blink
-      # Between start of trial and end of the first saccade crosses the boundary
+      # Between start of trial and end of the first saccade crosses the boundary 
+      #### maybe we can change it as start end time of first saccade who crosses boundary
       
       x <- which(grepl(temp$sacc_start_t,trialF))
       y <- which(grepl(temp$sacc_end_t,trialF))
@@ -358,14 +360,14 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       
       # duration, latency and amplitude of corrective saccades
-     # if(temp$cond == 'ben' && temp$corr_sacc== 'Yes'){
+     #if(temp$cond == 'ben' && temp$corr_sacc== 'Yes'){
         
        # last_e_time= NULL
         
        # for(i in 1:nrow(sacc)){
           
-          # check if current saccade is corrective:
-          #if(as.numeric(sacc$V6[i])< as.numeric(temp$boundary) && as.numeric(sacc$V2) > as.numeric(temp$sacc_end_t){
+            #check if current saccade is corrective:
+         # if(as.numeric(sacc$V6[i])< as.numeric(temp$boundary) && as.numeric(sacc$V2) > as.numeric(temp$sacc_end_t){
             
             # corr_sacc dur
            # temp$corrsacc_dur<- as.numeric(sacc$V2[i]) - as.numeric(sacc$V1[i])
@@ -403,41 +405,42 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         TrialS <- TrialS[!grepl("SBLINK", TrialS)]
         TrialS <- TrialS[!grepl("MSG", TrialS)]
         TrialS <- TrialS[!grepl("SSAC", TrialS)]
+        TrialS <- TrialS[!grepl("EBLINK", TrialS)]
         TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) )) 
-        blinkcheck <- which(TrialS$V4 == 0)
+        blinkcheck <- which(as.numeric(TrialS$V4) == 0)
         #sacc2
-        begin2 <- which(grepl(sacc$V1[h+1],trialF))
-        end2 <- which(grepl(sacc$V2[h+1],trialF))
-        if(length(begin2 != 0)){
-          TrialS2 <- trialF[begin2[1]:end2[1]]
-          TrialS2 <- TrialS2[!grepl("SBLINK", TrialS2)]
-          TrialS2 <- TrialS2[!grepl("MSG", TrialS2)]
-          TrialS2 <- TrialS2[!grepl("SSAC", TrialS2)]
-          TrialS2 <-  as.data.frame(do.call( rbind, strsplit( TrialS2, '\t' ) )) 
-          blinkcheck2 <- which(TrialS2$V4 == 0)
+        #begin2 <- which(grepl(sacc$V1[h+1],trialF))
+        #end2 <- which(grepl(sacc$V2[h+1],trialF))
+        #if(length(begin2) != 0){
+        #  TrialS2 <- trialF[begin2[1]:end2[1]]
+        #  TrialS2 <- TrialS2[!grepl("SBLINK", TrialS2)]
+        #  TrialS2 <- TrialS2[!grepl("MSG", TrialS2)]
+        #  TrialS2 <- TrialS2[!grepl("SSAC", TrialS2)]
+        #  TrialS2 <-  as.data.frame(do.call( rbind, strsplit( TrialS2, '\t' ) )) 
+        #  blinkcheck2 <- which(TrialS2$V4 == 0)
         
    
         library(dplyr)
         
         for(g in 1:nrow(TrialS)){
           if(as.numeric(sacc$V6[h]) > as.numeric(sacc$V4[h])){
-            if(length(blinkcheck) != 0 && length(blinkcheck2) != 0){
-              if(as.numeric(TrialS2$V2[g]) < as.numeric(TrialS$V2[g])){
+            if((length(blinkcheck) == 0) && (!is.na(TrialS$V2[g+1]))){
+              if(as.numeric(TrialS$V2[g+1]) < as.numeric(TrialS$V2[g])){
                 temp$jhook <- 'Yes'
                 break;
               }
             }
            }else{
              if(as.numeric(sacc$V6[h]) < as.numeric(sacc$V4[h])){
-               if(length(blinkcheck) != 0 && length(blinkcheck2) != 0){
-                 if(  as.numeric(TrialS2$V2[g]) > as.numeric(TrialS$V2[g])  ){
+               if((length(blinkcheck) == 0 ) && (!is.na(TrialS$V2[g+1]))){
+                 if(  as.numeric(TrialS$V2[g+1]) > as.numeric(TrialS$V2[g])  ){
                    temp$jhook <- 'Yes'
                    break;
                  }
                }
              }
            }
-        }
+        
      
         }#end for trials
       }#sacc for end
