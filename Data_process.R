@@ -3,9 +3,9 @@ rm(list= ls())
 source("function/Code.R")
 source("function/Fixation.R")
 
-raw_data = preproc(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/Ben_Experiment/test")
+raw_data = preproc(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/test")
 
-raw_data2 = fixations(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/Ben_Experiment/test")
+raw_data2 = fixations(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/test")
 
 save(raw_data, file= "data/raw_data.Rda")
 
@@ -43,6 +43,7 @@ fix_bar <- ggplot(MSD) +
   xlab("Condition")+
   ylim(0, 350)+
   ggtitle("Bars represent standard errors")
+fix_bar
 
 MSD$sacc_dur_SE <- sqrt(MSD$sacc_dur_SD)
 
@@ -53,7 +54,7 @@ sacc_bar <- ggplot(MSD) +
   ylab("Mean Saccade Duration")+
   xlab("Condition")+
   ggtitle("Bars represent standard errors")
-
+sacc_bar
 
 MSD$peak_vel_SE <- sqrt(MSD$peak_vel_SD)
 
@@ -64,7 +65,7 @@ velo_bar <- ggplot(MSD) +
   ylab("Mean Saccade Velocity")+
   xlab("Condition")+
   ggtitle("Bars represent standard errors")
-
+velo_bar
 
 MSD$sacc_ampl_SE <- sqrt(MSD$sacc_ampl_SD)
 
@@ -75,7 +76,7 @@ ampl_bar <- ggplot(MSD) +
   ylab("Mean Saccade Amplitude")+
   xlab("Condition")+
   ggtitle("Bars represent standard errors")
-
+ampl_bar
 
 
 

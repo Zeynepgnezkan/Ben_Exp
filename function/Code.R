@@ -1,6 +1,6 @@
 
 
-preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/Ben_Experiment/test", maxtrial=1450, ResX=1920, DPP= 0.0247){
+preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/test", maxtrial=1450, ResX=1920, DPP= 0.0247){
   options(scipen=999)
   
   #steal some fun from my Professor,
@@ -83,7 +83,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
    
 
     
-    trial_db<- data.frame(cond, itemN, start, end, ID, trial_start_t,trial_end_t)
+    trial_db<- data.frame(cond, itemN , start, end, ID, trial_start_t,trial_end_t)
 
     trial_db$filename<- dataASC[i]
     
@@ -92,19 +92,22 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
     curr_file_split<- unlist(strsplit(curr_file, '_'))
     curr_file_split<- curr_file_split[2]
     trial_db$subject<- get_num(curr_file_split)
+    trial_db$seq <- 1:nrow(trial_db)
     
     
     ntrials<- nrow(trial_db)
     cat(sprintf("Processing trial: "));
     for(j in 1:ntrials){
-      temp<- data.frame(sub=NA, item=NA, cond=NA, trial_start = NA, trial_end = NA,
+      temp<- data.frame(sub=NA, item=NA, cond=NA, seq = NA, trial_start = NA, trial_end = NA,
                         target_word_n = NA,target_word = NA, target_changed = NA,Dis_on_t = NA,
                         Dis_off_t = NA, boundary = NA, DC_start_t = NA, DC_end_t = NA,
                         boundary_t = NA ,Display_time = NA, Display_lat = NA,
                         sacc_start_t = NA, sacc_end_t = NA, sacc_dur = NA, sacc_start_x = NA,
                         sacc_end_x = NA, sacc_ampl = NA,peak_vel = NA, avg_vel = NA, blink = NA, blink_dur = NA,
                         fix_start_t = NA, fix_end_t = NA, fix_dur = NA, question = NA,corrAns = NA,
-                        key_resp = NA, RT_q = NA, accuracy = NA)
+                        key_resp = NA, RT_q = NA, accuracy = NA,corr_sacc = NA, jhook = NA)
+                        
+                        #corrsacc_dur = NA, corrsacc_ampl = NA, corrsacc_lat = NA)
                         
     
                
@@ -113,10 +116,11 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       trialF<- dataF[db$trial_start_t:db$trial_end_t]
       trialInfo<- dataF[db$ID:db$start]
       
-      # generic info about trial:
+      # generic info about trial
       temp$sub<- db$subject
       temp$item<- trial_db$itemN[j]
       temp$cond<- trial_db$cond[j]
+      temp$seq<- trial_db$seq[j]
       temp$trial_start<- get_num(trialF[1])
       temp$trial_end<- get_num(trialF[length(trialF)])
       
@@ -186,19 +190,19 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       sacc$V1<- get_num(sacc$V1)
       
       
-      #get after display
+      #get between display on anf off
       sacc<- subset(sacc, V1>= temp$Dis_on_t)
-      
-      #get online the one cross boundary
-      sacc <- subset(sacc, as.numeric(sacc$V6) > as.numeric(temp$boundary))
+      sacc<- subset(sacc, V1<= temp$Dis_off_t)
+      #get only the one cross boundary
+      sacc_cross <- subset(sacc, as.numeric(sacc$V6) > as.numeric(temp$boundary))
       
       #boundary cross saccade infos
       
-      temp$sacc_start_t <- as.numeric(sacc$V1[1])
-      temp$sacc_end_t <- as.numeric(sacc$V2[1])
+      temp$sacc_start_t <- as.numeric(sacc_cross$V1[1])
+      temp$sacc_end_t <- as.numeric(sacc_cross$V2[1])
       temp$sacc_dur <- temp$sacc_end_t - temp$sacc_start_t
-      temp$sacc_start_x <- as.numeric(sacc$V4[1])
-      temp$sacc_end_x <- as.numeric(sacc$V6[1])
+      temp$sacc_start_x <- as.numeric(sacc_cross$V4[1])
+      temp$sacc_end_x <- as.numeric(sacc_cross$V6[1])
       temp$sacc_ampl<- abs(temp$sacc_end_x - temp$sacc_start_x)*DPP
       
       
@@ -329,7 +333,120 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp$peak_vel<- max(abs(vel))
       temp$avg_vel<- mean(abs(vel))
       
+      #Corrective Sacc 
+      begin <- which(grepl(temp$sacc_end_t,trialF))
+      end <- which(grepl(temp$Dis_off_t,trialF))
+      TrialS <- trialF[begin[1]:end[1]]
+      TrialS <- TrialS[!grepl("EFIX", TrialS)]
+      TrialS <- TrialS[!grepl("SFIX", TrialS)]
+      TrialS <- TrialS[!grepl("ESACC", TrialS)]
+      TrialS <- TrialS[!grepl("SSACC", TrialS)]
+      TrialS <- TrialS[!grepl("MSG", TrialS)]
+      TrialS <- TrialS[!grepl("END", TrialS)]
+      
+      TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) )) 
+      
+      if(temp$cond == 'ben'){
+        corrsacc <- which(TrialS$V2 < as.numeric(temp$boundary))
+        if(length(corrsacc) != 0){
+          subX <- subset(sacc_cross, as.numeric(sacc_cross$V2) > temp$sacc_end_t)
+          subY <- subset(TrialS, as.numeric(TrialS$V2) < as.numeric(temp$boundary))
+          subX <- subset(sacc_cross, as.numeric(sacc_cross$V6) < as.numeric(temp$boundary))
+          temp$corr_sacc <- 'Yes'
+        }
+      }
+      
+      
+      # duration, latency and amplitude of corrective saccades
+     # if(temp$cond == 'ben' && temp$corr_sacc== 'Yes'){
+        
+       # last_e_time= NULL
+        
+       # for(i in 1:nrow(sacc)){
+          
+          # check if current saccade is corrective:
+          #if(as.numeric(sacc$V6[i])< as.numeric(temp$boundary) && as.numeric(sacc$V2) > as.numeric(temp$sacc_end_t){
+            
+            # corr_sacc dur
+           # temp$corrsacc_dur<- as.numeric(sacc$V2[i]) - as.numeric(sacc$V1[i])
+            
+            # corr_sacc ampl
+           # temp$corrsacc_amp <- abs(as.numeric(sacc$V4[i]) - as.numeric(sacc$V6[i]))*DPP
+            
+            # corr_sacc lat
+           # if(i==1){ # 1st saccade after main one
+           #   temp$corrsacc_lat= as.numeric(sacc_all$V1[i]) - temp$sacc_end_t
+           # }else{
+           #   temp$corrsacc_lat= as.numeric(sacc_all$V1[i]) - last_e_time
+           # }
+            
+           # break; # break loop after we find corrective saccade
+            
+            
+         # } # end of if loop checking if it is corrective
+          
+        #  last_e_time= as.numeric(sacc$V2[i])
+          
+       # } # end of i loop iterating across saccades
+        
+     # }
+    
+      
+      
+      ## J Hook
+      
+      for(h in 1:nrow(sacc)){
+        #sacc1
+        begin <- which(grepl(sacc$V1[h],trialF))
+        end <- which(grepl(sacc$V2[h],trialF))
+        TrialS <- trialF[begin[1]:end[1]]
+        TrialS <- TrialS[!grepl("SBLINK", TrialS)]
+        TrialS <- TrialS[!grepl("MSG", TrialS)]
+        TrialS <- TrialS[!grepl("SSAC", TrialS)]
+        TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) )) 
+        blinkcheck <- which(TrialS$V4 == 0)
+        #sacc2
+        begin2 <- which(grepl(sacc$V1[h+1],trialF))
+        end2 <- which(grepl(sacc$V2[h+1],trialF))
+        if(length(begin2 != 0)){
+          TrialS2 <- trialF[begin2[1]:end2[1]]
+          TrialS2 <- TrialS2[!grepl("SBLINK", TrialS2)]
+          TrialS2 <- TrialS2[!grepl("MSG", TrialS2)]
+          TrialS2 <- TrialS2[!grepl("SSAC", TrialS2)]
+          TrialS2 <-  as.data.frame(do.call( rbind, strsplit( TrialS2, '\t' ) )) 
+          blinkcheck2 <- which(TrialS2$V4 == 0)
+        
+   
+        library(dplyr)
+        
+        for(g in 1:nrow(TrialS)){
+          if(as.numeric(sacc$V6[h]) > as.numeric(sacc$V4[h])){
+            if(length(blinkcheck) != 0 && length(blinkcheck2) != 0){
+              if(as.numeric(TrialS2$V2[g]) < as.numeric(TrialS$V2[g])){
+                temp$jhook <- 'Yes'
+                break;
+              }
+            }
+           }else{
+             if(as.numeric(sacc$V6[h]) < as.numeric(sacc$V4[h])){
+               if(length(blinkcheck) != 0 && length(blinkcheck2) != 0){
+                 if(  as.numeric(TrialS2$V2[g]) > as.numeric(TrialS$V2[g])  ){
+                   temp$jhook <- 'Yes'
+                   break;
+                 }
+               }
+             }
+           }
+        }
+     
+        }#end for trials
+      }#sacc for end
+        
+      
+      
       data<- rbind(data, temp)
+      
+      
     }
   
   }
