@@ -209,7 +209,9 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       #Blink
       # Between start of trial and end of the first saccade crosses the boundary 
-      #### maybe we can change it as start end time of first saccade who crosses boundary
+      
+      #### maybe we can change it as end of the previous fixation time before boundary cross 
+      ##and end time of first saccade who crosses boundary ####
       
       x <- which(grepl(temp$sacc_start_t,trialF))
       y <- which(grepl(temp$sacc_end_t,trialF))
@@ -258,16 +260,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp$fix_end_t <- as.numeric(all_fix1$V2[1])
       temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
       
-      #fixation <- data.frame(sub=temp$sub, trialnumber = j, fix_s_t = NA,fix_e_t = NA, fix_d = NA)
-      #for( f in 1:nrow(all_fix)){
-      #  fix_s_t <- as.numeric(all_fix$V1[f])
-      #  fix_e_t <- as.numeric(all_fix$V2[f])
-      #  fix_d <- fix_e_t - fix_s_t
-      #}
-      
-      
-      #fixations <- rbind(fixations, fixation)
-      
       #Questions
       Question <- trialF[which(grepl('var question ', trialF))]
       Question <- as.data.frame(do.call( rbind, strsplit(Question, ' ' )))
@@ -310,16 +302,14 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
           }
         }
       }  
-          
-        
-        
+
         
       }#end of question if
       
       ## Velocity 
       sacc_st<- which(grepl(temp$sacc_start_t, trialF))
-      sacc_st<- sacc_st[1] # -2 so that we can capture one sample before start (avoiding flags)
-      sacc_end<- which(grepl(temp$sacc_end_t, trialF))[1] # 1 because 2nd is flag stamp
+      sacc_st<- sacc_st[1] 
+      sacc_end<- which(grepl(temp$sacc_end_t, trialF))[1]
       sacc_samples<- trialF[sacc_st:sacc_end]
       
       # remove flags from samples data:
@@ -372,17 +362,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         TrialS <- TrialS[!grepl("EBLINK", TrialS)]
         TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) )) 
         blinkcheck <- which(as.numeric(TrialS$V4) == 0)
-        #sacc2
-        #begin2 <- which(grepl(sacc$V1[h+1],trialF))
-        #end2 <- which(grepl(sacc$V2[h+1],trialF))
-        #if(length(begin2) != 0){
-        #  TrialS2 <- trialF[begin2[1]:end2[1]]
-        #  TrialS2 <- TrialS2[!grepl("SBLINK", TrialS2)]
-        #  TrialS2 <- TrialS2[!grepl("MSG", TrialS2)]
-        #  TrialS2 <- TrialS2[!grepl("SSAC", TrialS2)]
-        #  TrialS2 <-  as.data.frame(do.call( rbind, strsplit( TrialS2, '\t' ) )) 
-        #  blinkcheck2 <- which(TrialS2$V4 == 0)
-        
    
         library(dplyr)
         
@@ -404,8 +383,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
                }
              }
            }
-        
-     
         }#end for trials
       }#sacc for end
         
