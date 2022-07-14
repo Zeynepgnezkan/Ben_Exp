@@ -210,9 +210,9 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       #Blink
       # Between start of trial and end of the first saccade crosses the boundary 
 
-      #### maybe we can change it as end of the previous fixation time before boundary cross 
-      ##and end time of first saccade who crosses boundary 
-
+      
+      #### maybe we can change it as end of the previous fixation before crossing boundary and
+      #### end time of first saccade who crosses boundary
       
       x <- which(grepl(temp$sacc_start_t,trialF))
       y <- which(grepl(temp$sacc_end_t,trialF))
@@ -260,6 +260,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp$fix_start_t <- as.numeric(all_fix1$V1[1])
       temp$fix_end_t <- as.numeric(all_fix1$V2[1])
       temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
+
       
       #Questions
       Question <- trialF[which(grepl('var question ', trialF))]
@@ -348,7 +349,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
           temp$corr_sacc <- 'Yes'
         }
       }
-      
 
       ## J Hook
       
@@ -369,7 +369,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         blinkcheck <- which(as.numeric(TrialS$V4) == 0)
         boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
         
-
         library(dplyr)
         
      for(g in 1:nrow(TrialS)){
