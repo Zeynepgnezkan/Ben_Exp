@@ -350,41 +350,74 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         }
       }
 
-      ## J Hook
+      ## J Hook ##
       
-     
-
+     #  for(h in 1:nrow(sacc)){
+     #    #sacc1
+     #    begin <- which(grepl(sacc$V1[h],trialF))
+     #    end <- which(grepl(sacc$V2[h],trialF))
+     #    TrialS <- trialF[begin[1]:end[1]]
+     #    TrialS <- TrialS[!grepl("SBLINK", TrialS)]
+     #    TrialS <- TrialS[!grepl("MSG", TrialS)]
+     #    TrialS <- TrialS[!grepl("SSAC", TrialS)]
+     #    TrialS <- TrialS[!grepl("ESAC", TrialS)]
+     #    TrialS <- TrialS[!grepl("EBLINK", TrialS)]
+     #    TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
+     #    blinkcheck <- which(as.numeric(TrialS$V4) == 0)
+     #    boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
+     #    
+     #    library(dplyr)
+     #    
+     # for(g in 1:nrow(TrialS)){
+     #  if(as.numeric(sacc$V6[h]) > as.numeric(sacc$V4[h])){
+     #   if((length(blinkcheck) == 0) && (!is.na(TrialS$V2[g+1])) && (length(boundarycheck) != 0)){
+     #     TrialS2 <- subset(TrialS, as.numeric(TrialS$V2) > as.numeric(temp$boundary))
+     #     if((as.numeric(TrialS2$V2[g]) > as.numeric(TrialS2$V2[g+1])) && (!is.na(TrialS2$V2[g+1]))){
+     #       temp$jhook <- 'Yes'
+     #       break;
+     #   }
+     # }
+     #  }
+     #   
+     # 
+     #     }#end for trials
+     #    }#sacc for end
+     # 
       
-      for(h in 1:nrow(sacc)){
-        #sacc1
-        begin <- which(grepl(sacc$V1[h],trialF))
-        end <- which(grepl(sacc$V2[h],trialF))
-        TrialS <- trialF[begin[1]:end[1]]
-        TrialS <- TrialS[!grepl("SBLINK", TrialS)]
-        TrialS <- TrialS[!grepl("MSG", TrialS)]
-        TrialS <- TrialS[!grepl("SSAC", TrialS)]
-        TrialS <- TrialS[!grepl("ESAC", TrialS)]
-        TrialS <- TrialS[!grepl("EBLINK", TrialS)]
-        TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
-        blinkcheck <- which(as.numeric(TrialS$V4) == 0)
-        boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-        
-        library(dplyr)
-        
-     for(g in 1:nrow(TrialS)){
-      if(as.numeric(sacc$V6[h]) > as.numeric(sacc$V4[h])){
-       if((length(blinkcheck) == 0) && (!is.na(TrialS$V2[g+1])) && (length(boundarycheck) != 0)){
-         TrialS2 <- subset(TrialS, as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-         if(as.numeric(TrialS2$V2[g+1]) < as.numeric(TrialS2$V2[g])){
-           temp$jhook <- 'Yes'
-           break;
-       }
-     }
-    }
-
-         }#end for trials
-        }#sacc for end
-
+      #get the first sacc cross boundary
+      
+         begin <- which(grepl(sacc_cross$V1[1],trialF))
+         end <- which(grepl(sacc_cross$V2[1],trialF))
+         TrialS <- trialF[begin[1]:end[1]]
+         TrialS <- TrialS[!grepl("SBLINK", TrialS)]
+         TrialS <- TrialS[!grepl("MSG", TrialS)]
+         TrialS <- TrialS[!grepl("SSAC", TrialS)]
+         TrialS <- TrialS[!grepl("ESAC", TrialS)]
+         TrialS <- TrialS[!grepl("EBLINK", TrialS)]
+         TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
+         blinkcheck <- which(as.numeric(TrialS$V4) == 0)
+         boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
+         
+      for(g in 1:nrow(TrialS)){
+        if((as.numeric(sacc_cross$V6[1]) > as.numeric(sacc_cross$V4[1])) && 
+           temp$cond == 'ben' &&
+           (length(blinkcheck) == 0) &&
+           (!is.na(TrialS$V2[g+1])) &&
+           (length(boundarycheck) != 0)){
+          
+          TrialS2 <- subset(TrialS, as.numeric(TrialS$V2) > as.numeric(temp$boundary))
+          
+          if((as.numeric(TrialS2$V2[g]) > as.numeric(TrialS2$V2[g+1])) && (!is.na(TrialS2$V2[g+1]))){
+            temp$jhook <- 'Yes'
+            break;
+          
+        }
+      }
+    }#end for trials
+      
+      
+      
+      
       
       data<- rbind(data, temp)
       
