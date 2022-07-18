@@ -101,7 +101,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp<- data.frame(sub=NA, item=NA, cond=NA, seq = NA, trial_start = NA, trial_end = NA,
                         target_word_n = NA,target_word = NA, target_changed = NA,Dis_on_t = NA,
                         Dis_off_t = NA, boundary = NA, DC_start_t = NA, DC_end_t = NA,
-                        boundary_t = NA ,Display_time = NA, Display_lat = NA,
+                        boundary_t = NA, boundarycond = NA, Display_time = NA, Display_lat = NA,
                         sacc_start_t = NA, sacc_end_t = NA, sacc_dur = NA, sacc_start_x = NA,
                         sacc_end_x = NA, sacc_ampl = NA,peak_vel = NA, avg_vel = NA, blink = NA, blink_dur = NA,
                         fix_start_t = NA, fix_end_t = NA, fix_dur = NA, question = NA,corrAns = NA,
@@ -207,6 +207,15 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp$sacc_ampl<- abs(temp$sacc_end_x - temp$sacc_start_x)*DPP
       
       
+      ### Between fix or sacc
+      
+      if(temp$cond == 'ben'){
+        if(temp$sacc_start_t > temp$DC_end_t){
+          temp$boundarycond <- 'fix'
+        }else{
+          temp$boundarycond <- 'sacc'
+        }
+      }
       #Blink
       # Between start of trial and end of the first saccade crosses the boundary 
 
@@ -415,7 +424,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       }
     }#end for trials
       
-      
+
       
       
       
