@@ -114,6 +114,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
       trialF<- dataF[db$trial_start_t:db$trial_end_t]
+      trial_sacc <- dataF[db$start:db$end]
       trialInfo<- dataF[db$ID:db$start]
       
       # generic info about trial
@@ -164,6 +165,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       target_word_chg <- trialF[which(grepl('var changed ', trialF))]
       target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
       temp$target_changed <- target_word_chg$V4
+      }
       
       # Display change infos 
           
@@ -180,30 +182,28 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       temp$Display_lat <- temp$DC_start_t - temp$boundary_t
       
-      } #end of if ben
-    
+   
       # Extract all saccade events from trial file:
       # all E flags:
-      EsaccFlags<- which(grepl('ESACC', trialF))
-      EsaccStrings<- trialF[EsaccFlags]
+      EsaccFlags<- which(grepl('ESACC', trial_sacc))
+      EsaccStrings<- trial_sacc[EsaccFlags]
       
       sacc<- as.data.frame(do.call( rbind, strsplit( EsaccStrings, '\t' ) ))
       sacc$V1<- get_num(sacc$V1)
       
       
-      #get between display on and off
-      sacc<- subset(sacc, V1>= temp$Dis_on_t)
-      sacc<- subset(sacc, V1<= temp$Dis_off_t)
-      #get only the ones cross boundary
-      sacc_cross <- subset(sacc, as.numeric(sacc$V6) > as.numeric(temp$boundary))
+      #get only the ones cross boundary # PROBLEM
+      
+      before_cross <- subset(sacc, as.numeric(sacc$V2) < as.numeric(temp$DC_start_t))
+      after_cross <- subset(sacc, as.numeric(sacc$V2) > as.numeric(temp$DC_start_t))
       
       #boundary cross saccade infos
       
-      temp$sacc_start_t <- as.numeric(sacc_cross$V1[1])
-      temp$sacc_end_t <- as.numeric(sacc_cross$V2[1])
+      temp$sacc_start_t <- as.numeric(after_cross$V1[1])
+      temp$sacc_end_t <- as.numeric(after_cross$V2[1])
       temp$sacc_dur <- temp$sacc_end_t - temp$sacc_start_t
-      temp$sacc_start_x <- as.numeric(sacc_cross$V4[1])
-      temp$sacc_end_x <- as.numeric(sacc_cross$V6[1])
+      temp$sacc_start_x <- as.numeric(after_cross$V4[1])
+      temp$sacc_end_x <- as.numeric(after_cross$V6[1])
       temp$sacc_ampl<- abs(temp$sacc_end_x - temp$sacc_start_x)*DPP
       
       
@@ -216,12 +216,10 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
           temp$boundarycond <- 'sacc'
         }
       }
-      #Blink
-      # Between start of trial and end of the first saccade crosses the boundary 
-
       
-      #### maybe we can change it as end of the previous fixation before crossing boundary and
-      #### end time of first saccade who crosses boundary
+      #Blink
+      
+      # Between start of trial and end of the first saccade crosses the boundary 
       
       x <- which(grepl(temp$sacc_start_t,trialF))
       y <- which(grepl(temp$sacc_end_t,trialF))
@@ -271,7 +269,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
 
       
-      #Questions
+      #Questions ## CHECK AGAIN
       Question <- trialF[which(grepl('var question ', trialF))]
       Question <- as.data.frame(do.call( rbind, strsplit(Question, ' ' )))
       if(Question$V4 != 'NA'){
@@ -352,53 +350,20 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       if(temp$cond == 'ben'){
         corrsacc <- which(TrialS$V2 < as.numeric(temp$boundary))
         if(length(corrsacc) != 0){
-          subX <- subset(sacc_cross, as.numeric(sacc_cross$V2) > temp$sacc_end_t)
+          subX <- subset(after_cross, as.numeric(after_cross$V2) > temp$sacc_end_t)
           subY <- subset(TrialS, as.numeric(TrialS$V2) < as.numeric(temp$boundary))
-          subX <- subset(sacc_cross, as.numeric(sacc_cross$V6) < as.numeric(temp$boundary))
+          subX <- subset(after_cross, as.numeric(after_cross$V6) < as.numeric(temp$boundary))
           temp$corr_sacc <- 'Yes'
         }
       }
 
       ## J Hook ##
       
-     #  for(h in 1:nrow(sacc)){
-     #    #sacc1
-     #    begin <- which(grepl(sacc$V1[h],trialF))
-     #    end <- which(grepl(sacc$V2[h],trialF))
-     #    TrialS <- trialF[begin[1]:end[1]]
-     #    TrialS <- TrialS[!grepl("SBLINK", TrialS)]
-     #    TrialS <- TrialS[!grepl("MSG", TrialS)]
-     #    TrialS <- TrialS[!grepl("SSAC", TrialS)]
-     #    TrialS <- TrialS[!grepl("ESAC", TrialS)]
-     #    TrialS <- TrialS[!grepl("EBLINK", TrialS)]
-     #    TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
-     #    blinkcheck <- which(as.numeric(TrialS$V4) == 0)
-     #    boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-     #    
-     #    library(dplyr)
-     #    
-     # for(g in 1:nrow(TrialS)){
-     #  if(as.numeric(sacc$V6[h]) > as.numeric(sacc$V4[h])){
-     #   if((length(blinkcheck) == 0) && (!is.na(TrialS$V2[g+1])) && (length(boundarycheck) != 0)){
-     #     TrialS2 <- subset(TrialS, as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-     #     if((as.numeric(TrialS2$V2[g]) > as.numeric(TrialS2$V2[g+1])) && (!is.na(TrialS2$V2[g+1]))){
-     #       temp$jhook <- 'Yes'
-     #       break;
-     #   }
-     # }
-     #  }
-     #   
-     # 
-     #     }#end for trials
-     #    }#sacc for end
-     # 
-      
-      #get the first sacc cross boundary
-      
-      if(temp$cond == 'ben'){ #display happens
-        if(temp$boundarycond == 'sacc'){ #display happen in saccade
-          begin <- which(grepl(sacc_cross$V1[1],trialF)) #sacc_cross[1] = first one who has bigger end x coordinatre from the boundary
-          end <- which(grepl(sacc_cross$V2[1],trialF))
+      if((temp$cond == 'ben') && (temp$boundarycond == 'sacc')){
+        if(as.numeric(temp$sacc_end_x) < as.numeric(temp$boundary)){
+          
+          begin <- which(grepl(after_cross$V1[1],trialF))
+          end <- which(grepl(after_cross$V2[1],trialF))
           TrialS <- trialF[begin[1]:end[1]]
           TrialS <- TrialS[!grepl("SBLINK", TrialS)]
           TrialS <- TrialS[!grepl("EBLINK", TrialS)]
@@ -408,55 +373,42 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
           TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
           blinkcheck <- which(as.numeric(TrialS$V4) == 0)
           boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-          
-          for(g in 1:nrow(TrialS)){
-            if((as.numeric(sacc_cross$V6[1]) > as.numeric(sacc_cross$V4[1])) && #sacc goes to right
-               (length(blinkcheck) == 0) && #doesnt contain blink
-               (!is.na(TrialS$V2[g+1])) && #stop at the end of saccade
-               (length(boundarycheck) != 0)){ #contains boundary
-              TrialS2 <- subset(TrialS, as.numeric(TrialS$V2) > as.numeric(temp$boundary)) #if there is boundary look j hook after the boundary crossed
-              if((as.numeric(TrialS2$V2[g]) > as.numeric(TrialS2$V2[g+1])) && (!is.na(TrialS2$V2[g+1]))){ #jhook
-                temp$jhook <- 'Yes'
-                break;
-              }
-            }
-          }
-        }else{
-          if(temp$boundarycond == 'fix'){ # if boundary cross between fix
-            sacc_before <- subset(sacc, as.numeric(sacc$V6) < as.numeric(temp$boundary)) #collect saccade finish before boundary
-            for(d in 1:nrow(sacc_before)){
-              returncheck <- which(as.numeric(sacc_before$V4[d]) > as.numeric(sacc_before$V6[d]))
-              if(length(returncheck) == 0){
-                begin <- which(grepl(sacc_before$V1[d],trialF))
-                end <- which(grepl(sacc_before$V2[d],trialF))
-                TrialS <- trialF[begin[1]:end[1]]
-                TrialS <- TrialS[!grepl("SBLINK", TrialS)]
-                TrialS <- TrialS[!grepl("EBLINK", TrialS)]
-                TrialS <- TrialS[!grepl("MSG", TrialS)]
-                TrialS <- TrialS[!grepl("SSAC", TrialS)]
-                TrialS <- TrialS[!grepl("ESAC", TrialS)]
-                TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
-                blinkcheck <- which(as.numeric(TrialS$V4) == 0)
-                boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-             
-              
-              for(h in 1:nrow(TrialS)){
-                if(length(boundarycheck) != 0 && #if there is boundary
-                   as.numeric(sacc_before$V6[d]) > as.numeric(sacc_before$V4[d]) && #if it goes to right
-                   (length(blinkcheck) == 0) && # no blink
-                   (!is.na(TrialS$V2[h+1]))){ #not end of sacc
-                  TrialS2 <- subset(TrialS, as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-                  temp$jhook <- 'Yes'
-                  break;
-                }
-              }
-            }
-          }
+          if(length(boundarycheck) != 0 &&
+             (length(blinkcheck) == 0)){
+            temp$jhook <- 'yes'
           }
         }
       }
 
-      
+# 
+#       if((temp$cond == 'ben') && (temp$boundarycond == 'sacc')){
+#         for(m in 1:nrow(sacc)){
+#           returncheck <- which(as.numeric(sacc$V4[m]) > as.numeric(sacc$V6[m]))
+#           if(length(returncheck) == 0){
+#             begin <- which(grepl(sacc$V1[m],trialF))
+#             end <- which(grepl(sacc$V2[m],trialF))
+#             TrialS <- trialF[begin[1]:end[1]]
+#             TrialS <- TrialS[!grepl("SBLINK", TrialS)]
+#             TrialS <- TrialS[!grepl("EBLINK", TrialS)]
+#             TrialS <- TrialS[!grepl("MSG", TrialS)]
+#             TrialS <- TrialS[!grepl("SSAC", TrialS)]
+#             TrialS <- TrialS[!grepl("ESAC", TrialS)]
+#             TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
+#             blinkcheck <- which(as.numeric(TrialS$V4) == 0)
+#             boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
+#             
+#             if(length(boundarycheck) != 0 &&
+#                (length(blinkcheck) == 0)
+#                ){
+#               EsaccPosCheck <- as.numeric(sacc$V6[m])
+#               if(EsaccPosCheck < as.numeric(temp$boundary)){
+#                 temp$jhook <- 'yes'
+#                 break;
+#               }
+#             }
+#           }
+#         }
+#       }
 
       
       
