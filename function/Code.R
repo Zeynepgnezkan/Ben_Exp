@@ -98,7 +98,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
     ntrials<- nrow(trial_db)
     cat(sprintf("Processing trial: "));
     for(j in 1:ntrials){
-      temp<- data.frame(sub=NA, item=NA, cond=NA, seq = NA, trial_start = NA, trial_end = NA,
+      temp<- data.frame(sub=NA, item=NA, cond=NA, seq = NA,trial_type = NA, trial_start = NA, trial_end = NA,
                         target_word_n = NA,target_word = NA, target_changed = NA,Dis_on_t = NA,
                         Dis_off_t = NA, boundary = NA, DC_start_t = NA, DC_end_t = NA,
                         boundary_t = NA, boundarycond = NA, Display_time = NA, Display_lat = NA,
@@ -136,6 +136,11 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       target_word_str <- trialF[which(grepl('var target ', trialF))]
       target_word_str <- as.data.frame(do.call( rbind, strsplit(target_word_str, ' ' )))
       temp$target_word <- target_word_str$V4
+      
+      #trial type
+      trial_ty <- trialF[which(grepl('var trial_type ', trialF))]
+      trial_ty <- as.data.frame(do.call( rbind, strsplit(trial_ty, ' ' )))
+      temp$trial_type <- trial_ty$V4
       
       #boundary
       DC_boundary <- trialF[which(grepl('var boundary ', trialF))]
@@ -281,7 +286,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       if(temp$question == 'Yes'){
         
         #correct answer
-        corrAns_q <- trialF[which(grepl('var response ', trialF))]
+        corrAns_q <- trialF[which(grepl('var correct_button ', trialF))]
         corrAns_q <- as.data.frame(do.call( rbind, strsplit(corrAns_q, ' ' )))
         temp$corrAns <- corrAns_q$V4
         
@@ -296,14 +301,14 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
         temp$RT_q <- round(as.numeric(RT_ques$V4),3)
         
         #accuracy
-        if(temp$corrAns == 'right'){
+        if(temp$corrAns == 'RIGHT'){
           if(temp$key_resp == 'right'){
             temp$accuracy <- 1
           }else{
             temp$accuracy <- 0
           }
         }else{
-          if(temp$corrAns == 'left'){
+          if(temp$corrAns == 'LEFT'){
             if(temp$key_resp == 'left'){
             temp$accuracy <- 1
           }else{
