@@ -4,7 +4,6 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
   options(scipen=999)
   
   #steal some fun from my Professor,
-  
   get_num<- function(string){as.numeric(unlist(gsub("[^0-9]", "", unlist(string)), ""))}
   
   # get a list of .asc files from a user-provided directory
@@ -22,8 +21,8 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
     all_files<- all_files[!grepl(".txt", all_files)]
     
     # sort files by number in string
-    get_num<- function(string){as.numeric(unlist(gsub("[^0-9]", "", unlist(string)), ""))}
-    num<- get_num(all_files)
+   get_num<- function(string){as.numeric(unlist(gsub("[^0-9]", "", unlist(string)), ""))}
+    num<- get_num(all_files) #change
     
     if(!is.na(num[1])){
       all_files<- all_files[order(num, all_files)]
@@ -54,7 +53,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
   
 
   data<- NULL
-  #fixations <- NULL
+
   ## PROCESS ##
   
   for(i in 1:length(dataASC)){ # for each subject..
@@ -63,8 +62,8 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
     dataF<- readLines(dataASC[i]) # load asc file;
     cat(". Done"); cat("\n")
     
+  
     library(stringr)
-    
     ### get trial names:
     ID<- which(grepl('TRIALID', dataF));
     trial_text<- dataF[ID]
@@ -116,14 +115,14 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       trialF<- dataF[db$trial_start_t:db$trial_end_t]
       trial_sacc <- dataF[db$start:db$end]
       trialInfo<- dataF[db$ID:db$start]
-      
+      library(stringr)
       # generic info about trial
       temp$sub<- db$subject
       temp$item<- trial_db$itemN[j]
       temp$cond<- trial_db$cond[j]
       temp$seq<- trial_db$seq[j]
-      temp$trial_start<- get_num(trialF[1])
-      temp$trial_end<- get_num(trialF[length(trialF)])
+      temp$trial_start<- as.numeric(str_match(trialF[1], pattern = '(\\t)([0-9]+)')[,3]) ## collect all numbers!!
+      temp$trial_end<- as.numeric(str_match(trialF[length(trialF)], pattern = '(\\t)([0-9]+)')[,3])
       
       temp$Dis_on_t <- get_num(trialF[which(grepl('DISPLAY ON', trialF))])
       temp$Dis_off_t <- get_num(trialF[which(grepl('DISPLAY OFF', trialF))])
@@ -197,7 +196,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       sacc$V1<- get_num(sacc$V1)
       
       
-      #get only the ones cross boundary # PROBLEM
+      #get before and after boundary cross time (display change time)
       
       before_cross <- subset(sacc, as.numeric(sacc$V2) < as.numeric(temp$DC_start_t))
       after_cross <- subset(sacc, as.numeric(sacc$V2) > as.numeric(temp$DC_start_t))
@@ -364,6 +363,8 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
 
       ## J Hook ##
       
+    
+      
       if((temp$cond == 'ben') && (temp$boundarycond == 'sacc')){
         if(as.numeric(temp$sacc_end_x) < as.numeric(temp$boundary)){
           
@@ -376,46 +377,15 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
           TrialS <- TrialS[!grepl("SSAC", TrialS)]
           TrialS <- TrialS[!grepl("ESAC", TrialS)]
           TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
-          blinkcheck <- which(as.numeric(TrialS$V4) == 0)
+          #blinkcheck <- which(as.numeric(TrialS$V4) == 0)
           boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-          if(length(boundarycheck) != 0 &&
-             (length(blinkcheck) == 0)){
+          if(length(boundarycheck) != 0 
+             ){
             temp$jhook <- 'yes'
           }
         }
       }
 
-# 
-#       if((temp$cond == 'ben') && (temp$boundarycond == 'sacc')){
-#         for(m in 1:nrow(sacc)){
-#           returncheck <- which(as.numeric(sacc$V4[m]) > as.numeric(sacc$V6[m]))
-#           if(length(returncheck) == 0){
-#             begin <- which(grepl(sacc$V1[m],trialF))
-#             end <- which(grepl(sacc$V2[m],trialF))
-#             TrialS <- trialF[begin[1]:end[1]]
-#             TrialS <- TrialS[!grepl("SBLINK", TrialS)]
-#             TrialS <- TrialS[!grepl("EBLINK", TrialS)]
-#             TrialS <- TrialS[!grepl("MSG", TrialS)]
-#             TrialS <- TrialS[!grepl("SSAC", TrialS)]
-#             TrialS <- TrialS[!grepl("ESAC", TrialS)]
-#             TrialS <-  as.data.frame(do.call( rbind, strsplit( TrialS, '\t' ) ))
-#             blinkcheck <- which(as.numeric(TrialS$V4) == 0)
-#             boundarycheck <- which(as.numeric(TrialS$V2) > as.numeric(temp$boundary))
-#             
-#             if(length(boundarycheck) != 0 &&
-#                (length(blinkcheck) == 0)
-#                ){
-#               EsaccPosCheck <- as.numeric(sacc$V6[m])
-#               if(EsaccPosCheck < as.numeric(temp$boundary)){
-#                 temp$jhook <- 'yes'
-#                 break;
-#               }
-#             }
-#           }
-#         }
-#       }
-
-      
       
       
       data<- rbind(data, temp)
