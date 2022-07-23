@@ -130,7 +130,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       #target word and number and displayed one
       target_word_number <- trialF[which(grepl('target_word_nr', trialF))]
       target_word_number <- as.data.frame(do.call( rbind, strsplit(target_word_number, ' ' )))
-      temp$target_word_n <- target_word_number$V4
+      temp$target_word_n <- as.numeric(target_word_number$V4) + 1 #python starts 0
       
       target_word_str <- trialF[which(grepl('var target ', trialF))]
       target_word_str <- as.data.frame(do.call( rbind, strsplit(target_word_str, ' ' )))
