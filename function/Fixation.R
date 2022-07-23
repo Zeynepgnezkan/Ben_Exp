@@ -178,10 +178,8 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
       }else{
         trialW <- dataF[S_W[j]:db$end]
         sentence_start_x <- 125
-        word_count <- sum(str_count(trialW, pattern = 'WORD'))
         words <- trialW[which(grepl('WORD', trialW))]
         words <- as.data.frame(do.call( rbind, strsplit(words, ' ' )))
-        words <- head(words,word_count)
         distance <-  as.numeric(words$V10) - as.numeric(temp$Xpos)
         
         words$V11 = NA
