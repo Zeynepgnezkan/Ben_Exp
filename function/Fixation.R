@@ -78,7 +78,8 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
     
     start<- which(grepl('DISPLAY ON', dataF))
     trial_start_t<- which(grepl('start_trial', dataF))
-    S_W <- which(grepl('TRIAL \\d+ ITEM \\d+ WORD 1\\s', dataF))
+    S_W <- which(grepl('TRIAL \\d+ ITEM \\d+ WORD 1\\s', dataF)) 
+    #problem in the last trial because there is no end flag
     
     end<- which(grepl('DISPLAY OFF', dataF))
     trial_end_t  <- which(grepl('stop_trial', dataF))
@@ -98,12 +99,12 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
     cat(sprintf("Processing trial: "));
     for(j in 1:ntrials){
       temp<- data.frame(sub=NA, item=NA, cond=NA,number = NA, SFIX_t = NA,EFIX_t = NA,
-                        fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA)
+                        fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA, boundaryN = NA)
       
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
       trialF<- dataF[db$trial_start_t:db$trial_end_t]
-      trialW <- dataF[S_W[j]:S_W[j+1]]
+      
       trialInfo<- dataF[db$ID:db$start]
       # generic info about trial:
       temp$sub<- db$subject
@@ -116,23 +117,35 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
       EFixFlags<- which(grepl('EFIX', trialF))
       EFixStrings<- trialF[EFixFlags]
       
+      temp$Dis_on_t <- get_num(trialF[which(grepl('DISPLAY ON', trialF))])
+      temp$Dis_off_t <- get_num(trialF[which(grepl('DISPLAY OFF', trialF))])
+      
       all_fix <-as.data.frame(do.call( rbind, strsplit( EFixStrings, '\t' ) ))
       all_fix$V1 <- get_num(all_fix$V1)
+      fixs <- subset(all_fix, as.numeric(all_fix$V2) > as.numeric(temp$Dis_on_t))
+      fixs <- subset(fixs, as.numeric(fixs$V1) < as.numeric(temp$Dis_off_t))
       temp$word = NA
       temp$wordN = NA
-      for(n in 1:nrow(all_fix)){
+      for(n in 1:nrow(fixs)){
       
       
       temp$number <- as.numeric(n)
-      temp$SFIX_t <- all_fix$V1[n]
-      temp$EFIX_t <- all_fix$V2[n]
-      temp$fix_dur <- all_fix$V3[n]
-      temp$Xpos <- all_fix$V4[n]
-      temp$Ypos <- all_fix$V5[n]
-      temp$pupil <- all_fix$V6[n]
-
-  
+      temp$SFIX_t <- fixs$V1[n]
+      temp$EFIX_t <- fixs$V2[n]
+      temp$fix_dur <- fixs$V3[n]
+      temp$Xpos <- fixs$V4[n]
+      temp$Ypos <- fixs$V5[n]
+      temp$pupil <- fixs$V6[n]
       
+      
+      boundaryN <- trialF[which(grepl('target_word_nr', trialF))]
+      boundaryN <- as.data.frame(do.call( rbind, strsplit(boundaryN, ' ' )))
+      temp$boundaryN <- as.numeric(boundaryN$V4)+1 #python starts with 0
+
+      
+     
+      if(!is.na(S_W[j + 1])){
+        trialW <- dataF[S_W[j]:S_W[j+1]]
       ##Boundaries
       library(stringr)
       sentence_start_x <- 125
@@ -154,12 +167,43 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
       if(length(distanceP) != 0){
         min(distanceP)
         wordsb <- as.numeric(temp$Xpos) + min(distanceP)
-        number <- which(grepl(wordsb, words$V10))
+        number <- which(grepl(wordsb, words$V10))[1]
         temp$word <- words$V8[number]
         temp$wordN <- number
+      }else{
+        temp$word <- NA
+        temp$wordN <- NA
       }
       
-
+      }else{
+        trialW <- dataF[S_W[j]:db$end]
+        sentence_start_x <- 125
+        word_count <- sum(str_count(trialW, pattern = 'WORD'))
+        words <- trialW[which(grepl('WORD', trialW))]
+        words <- as.data.frame(do.call( rbind, strsplit(words, ' ' )))
+        words <- head(words,word_count)
+        distance <-  as.numeric(words$V10) - as.numeric(temp$Xpos)
+        
+        words$V11 = NA
+        for(f in 2:nrow(words)){#1 manuel
+          
+          words$V11[f] <- as.numeric(words$V10[f])- as.numeric(words$V10[f-1])
+          words$V11[1] <- as.numeric(words$V10[1]) - sentence_start_x
+        }
+        
+        distanceP <- subset(distance, distance > 0)
+        
+        if(length(distanceP) != 0){
+          min(distanceP)
+          wordsb <- as.numeric(temp$Xpos) + min(distanceP)
+          number <- which(grepl(wordsb, words$V10))[1] ### remove this 1 after delete the spaces in file
+          temp$word <- words$V8[number]
+          temp$wordN <- number
+        }else{
+          temp$word <- NA
+          temp$wordN <- NA
+        }
+}
      
 
       data<- rbind(data, temp)
