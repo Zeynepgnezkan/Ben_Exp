@@ -164,11 +164,12 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       samples <- subset(samples, V2 > as.numeric(temp$boundary))
       
       temp$boundary_t <- as.numeric(samples$V1[1])
-      
       if(temp$cond == 'ben'){
-      target_word_chg <- trialF[which(grepl('var changed ', trialF))]
-      target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
-      temp$target_changed <- target_word_chg$V4
+        target_word_chg <- trialF[which(grepl('var changed ', trialF))]
+        target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
+        temp$target_changed <- target_word_chg$V4
+      }else{
+        temp$target_changed <- 'identical'
       }
       
       # Display change infos 
@@ -186,6 +187,13 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       
       temp$Display_lat <- temp$DC_start_t - temp$boundary_t
       
+      
+      #start fix or end of sacc to dc start bak 
+      
+      
+      
+      
+       #### target change ekle ###
    
       # Extract all saccade events from trial file:
       # all E flags:
@@ -273,7 +281,7 @@ preproc<- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_ex
       temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
 
       
-      #Questions ## CHECK AGAIN
+      #Questions 
       Question <- trialF[which(grepl('var question ', trialF))]
       Question <- as.data.frame(do.call( rbind, strsplit(Question, ' ' )))
       if(Question$V4 != 'NA'){

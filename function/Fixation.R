@@ -55,11 +55,12 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
   
   
   data<- NULL
+  #data2 <- NULL
   
   ## PROCESS ##
   
   for(i in 1:length(dataASC)){ # for each subject..
-    
+
     cat("\n"); cat(sprintf("Loading data file: %s", dataASC[i]))
     dataF<- readLines(dataASC[i]) # load asc file;
     cat(". Done"); cat("\n")
@@ -77,11 +78,14 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
     ### get start and end times ###
     
     start<- which(grepl('DISPLAY ON', dataF))
+    
     trial_start_t<- which(grepl('start_trial', dataF))
-    S_W <- which(grepl('TRIAL \\d+ ITEM \\d+ WORD 1\\s', dataF)) 
-    #problem in the last trial because there is no end flag
+    
+    S_W <- which(grepl('TRIAL \\d+ ITEM \\d+ WORD 1\\s', dataF)) #weird :D
+    
     
     end<- which(grepl('DISPLAY OFF', dataF))
+    
     trial_end_t  <- which(grepl('stop_trial', dataF))
     
     trial_db<- data.frame(cond, itemN, start, end, ID, trial_start_t,trial_end_t,S_W)
@@ -98,21 +102,29 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
     ntrials<- nrow(trial_db)
     cat(sprintf("Processing trial: "));
     for(j in 1:ntrials){
-      temp<- data.frame(sub=NA, item=NA, cond=NA,number = NA, SFIX_t = NA,EFIX_t = NA,
-                        fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA, boundaryN = NA)
+      temp<- data.frame(sub=NA, item=NA, cond=NA,trial_type = NA,number = NA,Dis_on_t = NA, Dis_off_t=NA, SFIX_t = NA,EFIX_t = NA,
+                        fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA, boundaryN = NA,word = NA,
+                        wordN = NA)
+                        #sequence = NA,cummax = NA)
       
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
       trialF<- dataF[db$trial_start_t:db$trial_end_t]
       
       trialInfo<- dataF[db$ID:db$start]
+      
       # generic info about trial:
       temp$sub<- db$subject
       temp$item<- trial_db$itemN[j]
       temp$cond<- trial_db$cond[j]
       
+      #trial type
+      trial_ty <- trialF[which(grepl('var trial_type ', trialF))]
+      trial_ty <- as.data.frame(do.call( rbind, strsplit(trial_ty, ' ' )))
+      temp$trial_type <- trial_ty$V4
+      
       #fixations 
-      # maybe we can narrow 
+    
       
       EFixFlags<- which(grepl('EFIX', trialF))
       EFixStrings<- trialF[EFixFlags]
@@ -124,8 +136,7 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
       all_fix$V1 <- get_num(all_fix$V1)
       fixs <- subset(all_fix, as.numeric(all_fix$V2) > as.numeric(temp$Dis_on_t))
       fixs <- subset(fixs, as.numeric(fixs$V1) < as.numeric(temp$Dis_off_t))
-      temp$word = NA
-      temp$wordN = NA
+
       for(n in 1:nrow(fixs)){
       
       
@@ -146,8 +157,11 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
      
       if(!is.na(S_W[j + 1])){
         trialW <- dataF[S_W[j]:S_W[j+1]]
+        
       ##Boundaries
+        
       library(stringr)
+        
       sentence_start_x <- 125
       word_count <- sum(str_count(trialW, pattern = 'WORD')) - 1
       words <- trialW[which(grepl('WORD', trialW))]
@@ -167,9 +181,10 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
       if(length(distanceP) != 0){
         min(distanceP)
         wordsb <- as.numeric(temp$Xpos) + min(distanceP)
-        number <- which(grepl(wordsb, words$V10))[1]
+        number <- which(grepl(wordsb, words$V10))
         temp$word <- words$V8[number]
         temp$wordN <- number
+
       }else{
         temp$word <- NA
         temp$wordN <- NA
@@ -194,19 +209,35 @@ fixations <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben
         if(length(distanceP) != 0){
           min(distanceP)
           wordsb <- as.numeric(temp$Xpos) + min(distanceP)
-          number <- which(grepl(wordsb, words$V10))[1] ### remove this 1 after delete the spaces in file
+          number <- which(grepl(wordsb, words$V10)) ### remove this 1 after delete the spaces in file
           temp$word <- words$V8[number]
           temp$wordN <- number
+
         }else{
           temp$word <- NA
           temp$wordN <- NA
         }
+      
 }
-     
+      
+      data <- rbind(data, temp)
+       
+      }# end fixs
+      
+      # seq1 <- data.frame(matrix(ncol = 1, nrow = nrow(data)))
+      # colnames(seq1) <- c('sequence')
+      # for(m in 1:nrow(data)){
+      # 
+      #   if(cummax(data$wordN[m]) == as.numeric(data$wordN[m]) && !is.na(data$wordN[m])){
+      #     seq1$sequence[m] <- 'first'
+      #   }else{
+      #     seq1$sequence[m] <- 'not first'
+      #   }
+      # }
+      # seq1 <- rbind(seq1,seq1)
+      }#end trial
 
-      data<- rbind(data, temp)
-      }
-    }
+    # data <- cbind(data,seq1)
 }
 
 return(data)
