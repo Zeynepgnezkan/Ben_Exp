@@ -1,12 +1,27 @@
-rm(list= ls())
+library(ggplot2)
+library(tidyquant)
+library(tidyverse)
+library(ggforce)
+library(ggdist)
+library(dplyr)
+library(MASS)
+library(lme4)
+library(reshape)
 
 source("function/Code.R")
-raw_data = preproc(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/test")
+raw_data = preproc(data_dir = "test")
 
 source("function/Fixation.R")
-raw_data2 = fixations(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/test")
-source("function/GazeDur.R")
-dat <- gazedur(raw_data2)
+raw_data2 = fixations(data_dir = "test")
+
+raw_data2 <- raw_data2 %>% filter(trial_type != "practice" & !is.na(wordN))
+
+source("function/first_pass_measures.R")
+first_pass <- first_pass_measures(raw_data2)
+
+gopast <- go_past(raw_data2)
+
+tvt <- tvt(raw_data2)
 
 save(raw_data, file= "data/raw_data.Rda")
 
@@ -19,15 +34,7 @@ write.csv(raw_data2, "data/raw_data2.csv")
 
 library("viridis") 
 
-library(ggplot2)
-library(tidyquant)
-library(tidyverse)
-library(ggforce)
-library(ggdist)
-library(dplyr)
-library(MASS)
-library(lme4)
-library(reshape)
+
 
 
 pallete1= c("#CA3542", "#27647B", "#849FA0", "#AECBC9", "#57575F")

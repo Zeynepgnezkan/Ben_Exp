@@ -4,7 +4,7 @@
 data = raw_data2
 gazedur <- function(data){
   
-  for(a in 1:data$sub){
+  for(a in unique(data$sub)){
     
     SubjDat <- subset(data,data$sub == a)
     
