@@ -25,3 +25,4 @@ tvt <- function(fixation_data){
     summarise(tvt = sum(as.numeric(fix_dur)))
   return(df)
 }
+
