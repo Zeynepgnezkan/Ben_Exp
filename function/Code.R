@@ -188,10 +188,6 @@ preproc<- function(data_dir = "test", maxtrial=1450, ResX=1920, DPP= 0.0247){
       temp$Display_lat <- temp$DC_start_t - temp$boundary_t
       
       
-      #start fix or end of sacc to dc start bak 
-      
-      
-      
       
        #### target change ekle ###
    
@@ -227,6 +223,8 @@ preproc<- function(data_dir = "test", maxtrial=1450, ResX=1920, DPP= 0.0247){
         }else{
           temp$boundarycond <- 'sacc'
         }
+      }else{
+        temp$boundarycond <- 'identical'
       }
       
       #Blink
@@ -394,7 +392,14 @@ preproc<- function(data_dir = "test", maxtrial=1450, ResX=1920, DPP= 0.0247){
         }
       }
 
-      
+      # fix and sacc start and dc latency
+      if(temp$boundarycond == 'fix'){
+        as.numeric(temp$fix_start_t) - as.numeric(temp$DC_start_t)
+      }else{
+        if(temp$boundarycond == 'sacc'){
+          as.numeric(temp$sacc_start_t) - as.numeric(temp$DC_start_t)
+        }
+      }
       
       data<- rbind(data, temp)
       
