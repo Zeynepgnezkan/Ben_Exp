@@ -16,8 +16,13 @@ raw_data2 = fixations(data_dir = "test")
 
 raw_data2 <- raw_data2 %>% filter(trial_type != "practice" & !is.na(wordN))
 
-source("function/first_pass_measures.R")
+source("function/fixation_time_measures.R")
 first_pass <- first_pass_measures(raw_data2)
+
+
+source("function/get_words.R")
+raw_words = get_words(data_dir = "test")
+raw_words <- raw_words %>% filter(trial_type != "practice")
 
 gopast <- go_past(raw_data2)
 
@@ -31,11 +36,11 @@ save(raw_data2, file= "data/raw_data2.Rda")
 
 write.csv(raw_data2, "data/raw_data2.csv")
 
+save(raw_words, file= "data/raw_words.Rda")
+
+write.csv(raw_words, "data/rraw_words.csv")
 
 library("viridis") 
-
-
-
 
 pallete1= c("#CA3542", "#27647B", "#849FA0", "#AECBC9", "#57575F")
 ggplot(raw_data, aes(x= cond, y=fix_dur))+
@@ -51,8 +56,7 @@ ggplot(dat, aes(x= cond, fix_dur, fill=cond)) +
   coord_flip()  
 
 
-#Analysis attemp :D
-
+#Analysis attemp 
 
 lmer(fix_dur ~ cond + (1|item), data = raw_data)
 
@@ -86,38 +90,8 @@ summary(m1)
 # Condition(ben/bir/identical)
 
 
+# word fix match
+words_fixs <-full_join(raw_words,first_pass, by=c("item", "sub","wordN"))
 
-#Gaze Duration and Go-Past time
 
-library(reshape)
 
-dat2 <- raw_data2
-
-Ndat <- aggregate(dat2$fix_dur, by = list(dat2$sub,dat2$item,dat2$wordN,dat2$trial_type) , 
-                function(x) c(go_past = mean(as.numeric(x), na.rm= T), 
-                              GD = sum(as.numeric(x), na.rm=T) ))
-
-na.omit(dat2) #WHY NOT WORKING!!!
-
-dat22 <- NULL
-dat22<- melt(dat2,id.vars = c("sub","fix_dur","item","trial_type"),
-                      measure.vars = "wordN")
-dat22 <- na.omit(dat22)
-dat23 <- cast(dat22, sub+item+trial_type+fix_dur ~ variable
-                       ,function(x) c(CM=cummax(x)))
-
-for(a in 1:dat2$sub){
-  for(b in 1:dat2$item[a]){
-    for(m in 1:dat2$wordN[b]){
-      # seq1 <- data.frame(matrix(ncol = 1, nrow = wordN))
-      # colnames(seq1) <- c('sequence')
-      if(cummax(dat2$wordN[m]) == as.numeric(dat2$wordN[m])){
-        dat2$sequence[m] <- 'first'
-        }else{
-          dat2$sequence[m] <- 'not first'
-
-            }
-          } 
-        }
-      }                               
- 
