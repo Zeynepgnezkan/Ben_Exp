@@ -15,16 +15,13 @@ S_data<-S_data[!(S_data$key_resp.rt < 0.200 | S_data$key_resp.rt > 1.5),]
 #Inhibition Score
 
 F_data <- F_data %>% group_by(participant,congruentcy) %>% 
-  mutate(avg = mean(key_resp.rt)) 
-  #mutate(avg = mean(scale(key_resp.rt)))
+  mutate(avg = mean(scale(key_resp.rt))) %>% 
+  group_by(participant) %>% mutate(inhibition = min(avg)-max(avg))
+
 
 S_data <- S_data %>% group_by(participant,congruentcy) %>%   
-  mutate( avg = mean(scale(key_resp.rt))) %>% group_by(participant) %>%
-  mutate(inhibition = diff.xts(avg))
+  mutate( avg = mean(scale(key_resp.rt))) %>%
+  group_by(participant) %>% mutate(inhibition = min(avg)-max(avg))
 
-S_data <- S_data %>% group_by(participant) %>%
-  mutate(inhibition = diff.xts(avg))
-          
-F_data1 <- F_data %>% group_by(participant,avg) %>% mutate(inhib = )
 
 
