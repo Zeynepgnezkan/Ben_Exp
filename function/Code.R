@@ -1,6 +1,6 @@
 
 
-preproc<- function(data_dir = "test", maxtrial=1450, ResX=1920, DPP= 0.0247){
+preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247){
   options(scipen=999)
   
   #steal some fun from my Professor,

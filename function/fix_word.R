@@ -1,7 +1,7 @@
 
 ### Fix For Each Word
 
-fix_word <- function(data_dir = "/Users/zeynepgunesozkan/Desktop/Dr. Angele/Ben_exp/Ben_Experiment/test"){
+fix_word <- function(data_dir = "Data/Ben"){
   options(scipen=999)
   
   #steal some fun from my Professor,

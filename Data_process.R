@@ -9,10 +9,10 @@ library(lme4)
 library(reshape)
 
 source("function/Code.R")
-raw_data = preproc(data_dir = "test")
+raw_data = preproc(data_dir = "Data/Ben")
 
 source("function/Fixation.R")
-raw_data2 = fixations(data_dir = "test")
+raw_data2 = fixations(data_dir = "Data/Ben")
 
 raw_data2 <- raw_data2 %>% filter(trial_type != "practice" & !is.na(wordN))
 
@@ -21,7 +21,7 @@ first_pass <- first_pass_measures(raw_data2)
 
 
 source("function/get_words.R")
-raw_words = get_words(data_dir = "test")
+raw_words = get_words(data_dir = "Data/Ben")
 raw_words <- raw_words %>% filter(trial_type != "practice")
 
 gopast <- go_past(raw_data2)
@@ -38,8 +38,21 @@ write.csv(raw_data2, "data/raw_data2.csv")
 
 save(raw_words, file= "data/raw_words.Rda")
 
-write.csv(raw_words, "data/rraw_words.csv")
+write.csv(raw_words, "data/raw_words.csv")
 
+
+# word fix match
+words_fixs <-full_join(raw_words,first_pass, by=c("item", "sub","wordN"))
+words_fixs$skipping <- NA
+for(i in 1:nrow(words_fixs)){
+  if(is.na(words_fixs$ffd[i])){
+    words_fixs$skipping[i] <- 'TRUE'
+  }else{
+    words_fixs$skipping[i] <- 'FALSE'
+  }
+}
+
+##############################
 library("viridis") 
 
 pallete1= c("#CA3542", "#27647B", "#849FA0", "#AECBC9", "#57575F")
@@ -74,24 +87,16 @@ mycontrast <- zapsmall(t(ginv(mycontrast)))
 colnames(mycontrast) = mycontrastNames
 contrasts(dat$target_changed) = mycontrast
 
-#Regression
-m1 = lm(formula = fix_dur ~ target_changed , data = dat)
-m2 = lmer(formula = fix_dur ~ target_changed  + (1|item) + (1|sub), data = dat)
-m3 = lmer(formula = fix_dur ~ target_changed  + (1|item) + (cond|sub), data = dat)
-m4 = lmer(formula = fix_dur ~ target_changed  + (1|item) + (1|sub) + (cond|sub), data = dat)
-anova(m2,m3,m4,m5)
-m5 = lmer(formula = log(fix_dur) ~ target_changed + (1|item) + (1|sub) + (cond|sub), data = dat) 
-summary(m1)
-
-
 # Fixed Effects
 
 # Fix dur, Gaze dur, Go-past time, Xpos, Fixation probability, Probability of making a regression
 # Condition(ben/bir/identical)
 
 
-# word fix match
-words_fixs <-full_join(raw_words,first_pass, by=c("item", "sub","wordN"))
 
-
+#add column true/false for skip DONE
+#add condition column DONE
+# script for flanker simon DONE
+# rt 200den küçük sil DONE
+#contered avg dif betw congruent and incongr trials hesapla ve ekle word_fixs e 
 

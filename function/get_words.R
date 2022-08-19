@@ -3,7 +3,7 @@
 # mutate you can have multiple output 
 # summarise'ı cast and melt yerine kullan
 
-get_words <- function(data_dir = "test"){
+get_words <- function(data_dir = "Data/Ben"){
   
   library(stringr)
   get_num<- function(string){as.numeric(unlist(gsub("[^0-9]", "", unlist(string)), ""))}
@@ -72,7 +72,7 @@ get_words <- function(data_dir = "test"){
     ntrials<- nrow(trial_db)
     
     for(j in 1:ntrials){
-      temp <- data.frame(sub= NA, item = NA, boundaryN = NA, wordN = NA, word= NA, trial_type = NA)
+      temp <- data.frame(sub= NA, item = NA,cond=NA, boundaryN = NA, wordN = NA, word= NA, trial_type = NA)
       
       curr_file<- unlist(strsplit(dataASC[i], '/'))
       curr_file<- curr_file[length(curr_file)]
@@ -96,7 +96,12 @@ get_words <- function(data_dir = "test"){
         trial_ty <- as.data.frame(do.call( rbind, strsplit(trial_ty, ' ' )))
         temp$trial_type <- trial_ty$V4
         
-    
+        #Condition
+         
+        cond <- trialW[which(grepl('ben_condition',trialW))]
+        cond <- as.data.frame(do.call( rbind, strsplit(cond, ' ' )))
+        temp$cond<- cond$V4
+        
         sentence_start_x <- 125
         word_count <- sum(str_count(trialW, pattern = 'WORD')) - 1
         words <- trialW[which(grepl('WORD', trialW))]
