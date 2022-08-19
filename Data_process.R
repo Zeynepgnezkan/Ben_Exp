@@ -92,11 +92,9 @@ contrasts(dat$target_changed) = mycontrast
 # Fix dur, Gaze dur, Go-past time, Xpos, Fixation probability, Probability of making a regression
 # Condition(ben/bir/identical)
 
-
-
 #add column true/false for skip DONE
 #add condition column DONE
 # script for flanker simon DONE
-# rt 200den küçük sil DONE
-#contered avg dif betw congruent and incongr trials hesapla ve ekle word_fixs e 
+# delete rt < 200ms DONE
+#centered avgerage differences between congruent and incongr trials DONE
 
