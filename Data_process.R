@@ -103,7 +103,7 @@ contrasts(dat$target_changed) = mycontrast
 inhibition <- read_csv("inhibition_scores_by_participant.csv")
 
 fixation_time_measures <- words_fixs %>%  left_join(inhibition, by = c("sub" = "participant")) %>%
-  mutate(ffd = as.numeric(ffd), sfd = as.numeric(sfd))
+  mutate(ffd = as.numeric(ffd), sfd = as.numeric(sfd), skipping = factor(skipping))
 
 fixation_time_measures$condition = factor(fixation_time_measures$cond, levels = c("identical", "ben"))
 
@@ -111,4 +111,6 @@ contrasts(fixation_time_measures$condition) <- contr.sum
 
 # analysis with inhibition score on the three-letter word
 
-lm_ffd <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN), ffd ~ cond + scale(inhibition_score) + (1|sub) + (1|item)) 
+lm_ffd <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN), ffd ~ condition * scale(inhibition_score) + (1|sub)) 
+
+lm_skip <- glmer(data = fixation_time_measures %>% filter(wordN == boundaryN), skipping ~ condition * scale(inhibition_score) + (1|sub), family = binomial(link = "logit")) 
