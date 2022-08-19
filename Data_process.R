@@ -1,12 +1,12 @@
 library(ggplot2)
-library(tidyquant)
+#library(tidyquant)
 library(tidyverse)
-library(ggforce)
-library(ggdist)
+#library(ggforce)
+#library(ggdist)
 library(dplyr)
 library(MASS)
 library(lme4)
-library(reshape)
+#library(reshape)
 
 source("function/Code.R")
 raw_data = preproc(data_dir = "Data/Ben")
@@ -28,17 +28,17 @@ gopast <- go_past(raw_data2)
 
 tvt <- tvt(raw_data2)
 
-save(raw_data, file= "data/raw_data.Rda")
+save(raw_data, file= "Data/raw_data.Rda")
 
-write.csv(raw_data, "data/raw_data.csv")
+write.csv(raw_data, "Data/raw_data.csv")
 
-save(raw_data2, file= "data/raw_data2.Rda")
+save(raw_data2, file= "Data/raw_data2.Rda")
 
-write.csv(raw_data2, "data/raw_data2.csv")
+write.csv(raw_data2, "Data/raw_data2.csv")
 
-save(raw_words, file= "data/raw_words.Rda")
+save(raw_words, file= "Data/raw_words.Rda")
 
-write.csv(raw_words, "data/raw_words.csv")
+write.csv(raw_words, "Data/raw_words.csv")
 
 
 # word fix match
@@ -98,3 +98,17 @@ contrasts(dat$target_changed) = mycontrast
 # delete rt < 200ms DONE
 #centered avgerage differences between congruent and incongr trials DONE
 
+# add inhibition score
+
+inhibition <- read_csv("inhibition_scores_by_participant.csv")
+
+fixation_time_measures <- words_fixs %>%  left_join(inhibition, by = c("sub" = "participant")) %>%
+  mutate(ffd = as.numeric(ffd), sfd = as.numeric(sfd))
+
+fixation_time_measures$condition = factor(fixation_time_measures$cond, levels = c("identical", "ben"))
+
+contrasts(fixation_time_measures$condition) <- contr.sum
+
+# analysis with inhibition score on the three-letter word
+
+lm_ffd <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN), ffd ~ cond + scale(inhibition_score) + (1|sub) + (1|item)) 
