@@ -98,9 +98,29 @@ get_words <- function(data_dir = "Data/Ben"){
         
         #Condition
          
-        cond <- trialW[which(grepl('ben_condition',trialW))]
-        cond <- as.data.frame(do.call( rbind, strsplit(cond, ' ' )))
-        temp$cond<- cond$V4
+        cond <- trialW[which(grepl('TRIALID',trialW))]
+        cond <- substr(cond, unlist(gregexpr(pattern =' ',cond[1]))[2]+1, nchar(cond))
+        cond <- gsub(" ", "", cond)
+        cond <- str_match(trials, pattern = '_(\\w{3,9})')[,2]
+        
+        temp$cond<- cond
+        
+        # if(temp$cond == 'ben'){
+        #   target_word_chg <- trialW[which(grepl('var changed ', trialW))]
+        #   target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
+        #   temp$cond <- target_word_chg$V4
+        # }else{
+        #   temp$cond <- 'identical'
+        # }
+        
+        # ID<- trialW[which(grepl('TRIALID', trialW))]
+        # 
+        # ID<- substr(ID, unlist(gregexpr(pattern =' ',ID[1]))[2]+1, nchar(ID))
+        # ID<- gsub(" ", "", ID)
+        # itemN <- as.numeric(str_match(ID, pattern = '\\d{1,3}'))
+        # cond <- str_match(trials, pattern = '_(\\w{3,9})')[,2]
+        # 
+        # temp$cond<- cond
         
         sentence_start_x <- 125
         word_count <- sum(str_count(trialW, pattern = 'WORD')) - 1

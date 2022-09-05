@@ -14,8 +14,8 @@ first_pass_measures <- function(fixation_data){
 
 go_past <- function(fixation_data){
   df <- fixation_data %>% group_by(sub, item) %>%
-    mutate(word_max = cummax(wordN)) %>%
-    group_by(sub, item, word_max) %>%
+    mutate(wordN = cummax(wordN)) %>%
+    group_by(sub, item, wordN) %>%
     summarise(gopast = sum(as.numeric(fix_dur)))
   return(df)
 }

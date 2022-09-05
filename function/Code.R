@@ -164,6 +164,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       samples <- subset(samples, V2 > as.numeric(temp$boundary))
       
       temp$boundary_t <- as.numeric(samples$V1[1])
+      
       if(temp$cond == 'ben'){
         target_word_chg <- trialF[which(grepl('var changed ', trialF))]
         target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
@@ -323,7 +324,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       }  
 
         
-      }#end of question if
+      } #end of question if
       
       ## Velocity 
       sacc_st<- which(grepl(temp$sacc_start_t, trialF))
