@@ -96,12 +96,13 @@ get_words <- function(data_dir = "Data/Ben"){
         trial_ty <- as.data.frame(do.call( rbind, strsplit(trial_ty, ' ' )))
         temp$trial_type <- trial_ty$V4
         
+        
         #Condition
          
         cond <- trialW[which(grepl('TRIALID',trialW))]
         cond <- substr(cond, unlist(gregexpr(pattern =' ',cond[1]))[2]+1, nchar(cond))
         cond <- gsub(" ", "", cond)
-        cond <- str_match(trials, pattern = '_(\\w{3,9})')[,2]
+        cond <- str_match(cond, pattern = '_(\\w{3,9})')[,2]
         
         temp$cond<- cond
         

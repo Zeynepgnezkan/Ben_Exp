@@ -29,19 +29,15 @@ raw_words <- raw_words %>% filter(trial_type != "practice")
 
 save(raw_data, file= "Data/raw_data.Rda")
 
-write.csv(raw_data, "Data/raw_data.csv")
-
 save(raw_data2, file= "Data/raw_data2.Rda")
-
-write.csv(raw_data2, "Data/raw_data2.csv")
 
 save(raw_words, file= "Data/raw_words.Rda")
 
-write.csv(raw_words, "Data/raw_words.csv")
+save(gopast, file= "Data/gopast.Rda")
 
-save(words_fixs, file= "Data/words_fixs.Rda")
+save(tvt, file= "Data/tvt.Rda")
 
-write.csv(words_fixs, "Data/words_fixs.csv")
+save(first_pass, file= "Data/first_pass.Rda")
 
 # Adding skipping
 
@@ -57,7 +53,6 @@ for(i in 1:nrow(words_fixs)){
 
 save(words_fixs, file= "Data/words_fixs.Rda")
 
-write.csv(words_fixs, "Data/words_fixs.csv")
 
 # Condition Added
 
@@ -167,7 +162,7 @@ pallete1= c("#CA3542", "#27647B", "#849FA0", "#AECBC9", "#57575F")
 ggplot(raw_data, aes(x= target_changed, fix_dur, fill=target_changed)) +
   ggdist::stat_halfeye(adjust = .5, width = .3, .width = 0, justification = -.4) + 
   geom_boxplot(width = .1, outlier.shape = NA) +
-  ggdist::stat_dots(side = "left", dotsize = .2, justification = 1.1, binwidth = 9,col="dark green")+
+  ggdist::stat_dots(side = "left", dotsize = .2, justification = 1.1, binwidth = 9,col="black")+
   theme_classic()+
   scale_fill_manual(values=pallete1[1:3])+
   coord_flip()
@@ -207,9 +202,10 @@ skipratem1 <- subset(ratem1,skipping == TRUE)
 skiprate1 <- subset(rate1,skipping == TRUE)
 
 ggplot(data = rate, aes(x=sub,y=rate,fill=skipping)) + 
-  geom_bar(position="dodge", stat="identity")+
+  geom_bar(position="dodge", stat="identity",width = 0.6)+
   theme_classic()+
   scale_fill_manual(values=pallete1[1:2])
+  
 
 plot(x=scale(inhibition$inhibition_score),y=skiprate$rate,
      main = "Skipping rate and Inhibiton scores",
