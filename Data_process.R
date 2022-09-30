@@ -19,7 +19,7 @@ raw_words = get_words(data_dir = "Data/Ben")
 gopast <- go_past(raw_data2)
 tvt <- tvt(raw_data2)
 
-## Remove Practice Trials
+ ## Remove Practice Trials
 
 raw_data <- raw_data %>% filter(trial_type != "practice")
 raw_data2 <- raw_data2 %>% filter(trial_type != "practice" & !is.na(wordN))
@@ -50,6 +50,7 @@ for(i in 1:nrow(words_fixs)){
     words_fixs$skipping[i] <- 'FALSE'
   }
 }
+
 
 save(words_fixs, file= "Data/words_fixs.Rda")
 
