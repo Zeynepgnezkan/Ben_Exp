@@ -160,10 +160,10 @@ pallete1= c("#CA3542", "#27647B", "#849FA0", "#AECBC9", "#57575F")
 
 # General Fix Dur/Condition
 
-ggplot(raw_data, aes(x= target_changed, fix_dur, fill=target_changed)) +
+ggplot(raw_data, aes(x= target_changed, log(fix_dur), fill=target_changed)) +
   ggdist::stat_halfeye(adjust = .5, width = .3, .width = 0, justification = -.4) + 
   geom_boxplot(width = .1, outlier.shape = NA) +
-  ggdist::stat_dots(side = "left", dotsize = .2, justification = 1.1, binwidth = 9,col="black")+
+  ggdist::stat_dots(side = "left", dotsize = .07, justification = 1.1, binwidth = 0.08,col="black")+
   theme_classic()+
   scale_fill_manual(values=pallete1[1:3])+
   coord_flip()
