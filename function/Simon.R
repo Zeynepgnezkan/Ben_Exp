@@ -55,6 +55,16 @@ simon <- function(data_dir = "Data/Simon"){
     #clean NAs
     data1 <- na.omit(data1)
     data1$expName <- 'Simon'
+    # Correcting participant 8's first block
+    if(i == 8){
+      for(m in 1:nrow(data1)){
+        data1$key_resp.corr[m] = 1
+        if(m == 49){
+          break
+        }
+      }
+    }
+    
     data<- rbind(data1, data)
     
   }#End Subj

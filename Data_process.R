@@ -1,10 +1,10 @@
 
 # Required libraries
-
+library(stringr)
 library(tidyverse)
 library(MASS)
 library(lme4)
-
+library(readr)
 # Functions
 
 source("function/Code.R")
