@@ -3,7 +3,7 @@
 # mutate you can have multiple output 
 # summarise'ı cast and melt yerine kullan
 
-get_words <- function(data_dir = "Data/Ben"){
+get_words <- function(data_dir = "Data/Ben",sentence_start_x = 125){
   
   library(stringr)
   get_num<- function(string){as.numeric(unlist(gsub("[^0-9]", "", unlist(string)), ""))}
@@ -72,7 +72,7 @@ get_words <- function(data_dir = "Data/Ben"){
     ntrials<- nrow(trial_db)
     
     for(j in 1:ntrials){
-      temp <- data.frame(sub= NA, item = NA,cond=NA, boundaryN = NA, wordN = NA, word= NA, trial_type = NA)
+      temp <- data.frame(sub= NA, item = NA,cond=NA, boundaryN = NA, wordN = NA, word= NA, trial_type = NA,word_start = NA,word_end = NA)
       
       curr_file<- unlist(strsplit(dataASC[i], '/'))
       curr_file<- curr_file[length(curr_file)]
@@ -106,23 +106,7 @@ get_words <- function(data_dir = "Data/Ben"){
         
         temp$cond<- cond
         
-        # if(temp$cond == 'ben'){
-        #   target_word_chg <- trialW[which(grepl('var changed ', trialW))]
-        #   target_word_chg <- as.data.frame(do.call( rbind, strsplit(target_word_chg, ' ' )))
-        #   temp$cond <- target_word_chg$V4
-        # }else{
-        #   temp$cond <- 'identical'
-        # }
-        
-        # ID<- trialW[which(grepl('TRIALID', trialW))]
-        # 
-        # ID<- substr(ID, unlist(gregexpr(pattern =' ',ID[1]))[2]+1, nchar(ID))
-        # ID<- gsub(" ", "", ID)
-        # itemN <- as.numeric(str_match(ID, pattern = '\\d{1,3}'))
-        # cond <- str_match(trials, pattern = '_(\\w{3,9})')[,2]
-        # 
-        # temp$cond<- cond
-        
+    
         sentence_start_x <- 125
         word_count <- sum(str_count(trialW, pattern = 'WORD')) - 1
         words <- trialW[which(grepl('WORD', trialW))]
@@ -133,7 +117,12 @@ get_words <- function(data_dir = "Data/Ben"){
         temp$item <- as.numeric(words$V5[m])
         temp$wordN <- as.numeric(words$V7[m])
         temp$word <- words$V8[m]
-        
+        temp$word_end <- words$V10[m]
+        if(m == 1){
+          temp$word_start <- 125
+        }else{
+          temp$word_start <- words$V10[m-1]
+        }
         data <- rbind(data, temp)
         }
       

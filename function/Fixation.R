@@ -104,7 +104,7 @@ fixations <- function(data_dir = "Data/Ben"){
     for(j in 1:ntrials){
       temp<- data.frame(sub=NA, item=NA, cond=NA,trial_type = NA,number = NA,Dis_on_t = NA, Dis_off_t=NA, SFIX_t = NA,EFIX_t = NA,
                         fix_dur=NA, Xpos = NA, Ypos=NA, pupil = NA, boundaryN = NA,word = NA,
-                        wordN = NA)
+                        wordN = NA, blink1 = NA,blink2 = NA,blink3 = NA)
                         #sequence = NA,cummax = NA)
       
       cat(toString(j)); cat(" ")
@@ -125,12 +125,15 @@ fixations <- function(data_dir = "Data/Ben"){
       
       #fixations 
     
-      
       EFixFlags<- which(grepl('EFIX', trialF))
       EFixStrings<- trialF[EFixFlags]
       
       temp$Dis_on_t <- get_num(trialF[which(grepl('DISPLAY ON', trialF))])
       temp$Dis_off_t <- get_num(trialF[which(grepl('DISPLAY OFF', trialF))])
+      
+      #blink check
+      
+      BlinkCheck <- get_num(trialF[which(grepl('SBLINK', trialF))])
       
       all_fix <-as.data.frame(do.call( rbind, strsplit( EFixStrings, '\t' ) ))
       all_fix$V1 <- get_num(all_fix$V1)
@@ -138,7 +141,6 @@ fixations <- function(data_dir = "Data/Ben"){
       fixs <- subset(fixs, as.numeric(fixs$V1) < as.numeric(temp$Dis_off_t))
 
       for(n in 1:nrow(fixs)){
-      
       
       temp$number <- as.numeric(n)
       temp$SFIX_t <- fixs$V1[n]
@@ -152,6 +154,24 @@ fixations <- function(data_dir = "Data/Ben"){
       boundaryN <- trialF[which(grepl('target_word_nr', trialF))]
       boundaryN <- as.data.frame(do.call( rbind, strsplit(boundaryN, ' ' )))
       temp$boundaryN <- as.numeric(boundaryN$V4)+1 #python starts with 0
+      
+      if(length(BlinkCheck) == 1){
+        temp$blink1 <- as.numeric(temp$SFIX_t) - as.numeric(BlinkCheck)
+      }else{
+        if(length(BlinkCheck) == 2){
+          temp$blink1 <- as.numeric(temp$SFIX_t) - as.numeric(BlinkCheck[1])
+          temp$blink2 <- as.numeric(temp$SFIX_t) - as.numeric(BlinkCheck[2])
+        }else{
+          if(length(BlinkCheck) == 3){
+            temp$blink1 <- as.numeric(temp$SFIX_t) - as.numeric(BlinkCheck[1])
+            temp$blink2 <- as.numeric(temp$SFIX_t) - as.numeric(BlinkCheck[2])
+            temp$blink3 <- as.numeric(temp$SFIX_t) - as.numeric(BlinkCheck[3])
+          }
+        }
+      }
+      
+        
+      
 
       
      

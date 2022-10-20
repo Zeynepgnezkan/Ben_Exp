@@ -11,26 +11,76 @@ source("function/Code.R")
 source("function/get_words.R")
 source("function/Fixation.R")
 source("function/fixation_time_measures.R")
+source("function/blinkTable.R")
 
 raw_data = preproc(data_dir = "Data/Ben")
 raw_data2 = fixations(data_dir = "Data/Ben")
 first_pass <- first_pass_measures(raw_data2)
-raw_words = get_words(data_dir = "Data/Ben")
+raw_words = get_words(data_dir = "Data/Ben",sentence_start_x = 125)
 gopast <- go_past(raw_data2)
 tvt <- tvt(raw_data2)
+blink_data <- blinkTable(data_dir = "Data/Ben")
 
- ## Remove Practice Trials
+## Remove Practice Trials
 
 raw_data <- raw_data %>% filter(trial_type != "practice")
 raw_data2 <- raw_data2 %>% filter(trial_type != "practice" & !is.na(wordN))
 raw_words <- raw_words %>% filter(trial_type != "practice")
+
+
+raw_data2 <- raw_data2 %>% group_by(sub,item) %>% mutate(min1 = min(blink1^2),
+                                                         min2 = min(blink2^2),
+                                                         min3 = min(blink3^2))
+raw_data2$blink = NA
+for(i in 1:nrow(raw_data2)){
+  
+  if(!is.na(raw_data2$blink1[i])){
+    if(as.numeric(raw_data2$blink1[i])^2 == as.numeric(raw_data2$min1[i])){
+      if(as.numeric(raw_data2$blink1[i]) > 0){
+        raw_data2$blink[i] = "before"
+      }else{
+        if(as.numeric(raw_data2$blink1[i]) < 0){
+          raw_data2$blink[i] = "after"
+        }
+      }
+    }
+  }
+  
+  
+  if(!is.na(raw_data2$blink2[i])){
+    if(as.numeric(raw_data2$blink2[i])^2 == as.numeric(raw_data2$min2[i])){
+      if(as.numeric(raw_data2$blink2[i]) > 0){
+        raw_data2$blink[i] = "before"
+      }else{
+        if(as.numeric(raw_data2$blink2[i]) < 0){
+          raw_data2$blink[i] = "after"
+        }
+      }
+    }
+  }
+  
+  
+  if(!is.na(raw_data2$blink3[i])){
+    if(as.numeric(raw_data2$blink3[i])^2 == as.numeric(raw_data2$min3[i])){
+      if(as.numeric(raw_data2$blink3[i]) > 0){
+        raw_data2$blink[i] = "before"
+      }else{
+        if(as.numeric(raw_data2$blink1[i]) < 0){
+          raw_data2$blink[i] = "after"
+        }
+      }
+    }
+  }
+  
+}#end
+raw_data2 <- raw_data2[ , -which(names(raw_data2) %in% c("blink1","blink2","blink3","min1","min2","min3"))]
 
 ## saving and writing raw datas
 
 save(raw_data, file= "Data/raw_data.Rda")
 
 save(raw_data2, file= "Data/raw_data2.Rda")
-
+load(file= "Data/raw_data2.Rda")
 save(raw_words, file= "Data/raw_words.Rda")
 
 save(gopast, file= "Data/gopast.Rda")
@@ -38,6 +88,9 @@ save(gopast, file= "Data/gopast.Rda")
 save(tvt, file= "Data/tvt.Rda")
 
 save(first_pass, file= "Data/first_pass.Rda")
+
+save(blink_data, file= "Data/blink_data.Rda")
+
 
 # Adding skipping
 
