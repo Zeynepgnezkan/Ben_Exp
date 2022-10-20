@@ -1,0 +1,1475 @@
+1.8090 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).
+16.6399 	WARNING 	User requested fullscreen with size [1440  900], but screen is actually [1920, 1080]. Using actual size
+18.1956 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, autoLog=True, backendConf=UNKNOWN, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([1, 1, 1]), colorSpace='rgb', depthBits=8, fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x00000249088429B0>, gamma=None, gammaErrorPolicy='raise', lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x0000024907C02080>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stencilBits=0, stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+18.1959 	EXP 	window1: mouseVisible = True
+18.1959 	EXP 	window1: recordFrameIntervals = False
+18.2368 	EXP 	window1: recordFrameIntervals = True
+18.2828 	EXP 	window1: recordFrameIntervals = False
+18.5952 	EXP 	window1: mouseVisible = False
+18.9134 	EXP 	Created Instruction = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.04, italic=False, languageStyle='LTR', name='Instruction', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text=str(...), units='height', win=Window(...), wrapWidth=1)
+18.9321 	EXP 	Created FixCross = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([-1, -1, -1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([-1, -1, -1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='FixCross', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([20., 20.]), units='pix', vertices=ndarray(...), win=Window(...), windingRule=None)
+18.9331 	EXP 	Created Box_p = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([1, 1, 1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='Box_p', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([0.05, 0.05]), units='height', vertices=ndarray(...), win=Window(...))
+18.9342 	EXP 	Created FB_msg = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1, 1, 1]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.06, italic=False, languageStyle='LTR', name='FB_msg', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+18.9354 	EXP 	Created text_3 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='text_3', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+18.9504 	EXP 	Created instr_text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='instr_text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text=str(...), units='height', win=Window(...), wrapWidth=1)
+18.9520 	EXP 	Created FixCross = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([-1, -1, -1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([-1, -1, -1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='FixCross', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([20., 20.]), units='pix', vertices=ndarray(...), win=Window(...), windingRule=None)
+18.9529 	EXP 	Created Box = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([1, 1, 1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='Box', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([0.05, 0.05]), units='height', vertices=ndarray(...), win=Window(...))
+18.9534 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+18.9549 	EXP 	Created FixCross = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([-1, -1, -1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([-1, -1, -1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='FixCross', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([20., 20.]), units='pix', vertices=ndarray(...), win=Window(...), windingRule=None)
+18.9558 	EXP 	Created Box = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([1, 1, 1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='Box', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([0.05, 0.05]), units='height', vertices=ndarray(...), win=Window(...))
+18.9563 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+18.9577 	EXP 	Created FixCross = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([-1, -1, -1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([-1, -1, -1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='FixCross', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([20., 20.]), units='pix', vertices=ndarray(...), win=Window(...), windingRule=None)
+18.9586 	EXP 	Created Box = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=0.0, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=UNKNOWN, interpolate=True, lineColor=array([1, 1, 1]), lineColorSpace='rgb', lineRGB=UNKNOWN, lineWidth=1.0, name='Box', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([0.05, 0.05]), units='height', vertices=ndarray(...), win=Window(...))
+18.9591 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+18.9753 	EXP 	Created text = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([-1, -1, -1]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='text', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text=str(...), units='height', win=Window(...), wrapWidth=1)
+19.0364 	EXP 	Instruction: autoDraw = True
+58.9154 	EXP 	Imported SimonTask.xlsx as conditions, 6 conditions, 6 params
+58.9159 	EXP 	Created sequence: fullRandom, trialTypes=6, nReps=4, seed=None
+58.9162 	EXP 	New trial (rep=0, index=0): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+58.9188 	DATA 	Keypress: space
+58.9211 	EXP 	Instruction: autoDraw = False
+58.9211 	EXP 	FixCross: autoDraw = True
+60.0352 	EXP 	FixCross: autoDraw = False
+60.0352 	EXP 	FixCross: autoDraw = False
+60.0352 	EXP 	Box_p: pos = array([0.6, 0. ])
+60.0352 	EXP 	Box_p: autoDraw = True
+61.7544 	DATA 	Keypress: k
+61.7578 	EXP 	Box_p: autoDraw = False
+61.7578 	EXP 	FB_msg: text = 'Doğru cevap'
+61.7578 	EXP 	FB_msg: autoDraw = True
+62.7509 	EXP 	New trial (rep=0, index=1): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+62.7592 	EXP 	FB_msg: autoDraw = False
+62.7592 	EXP 	FixCross: autoDraw = True
+63.9018 	EXP 	FixCross: autoDraw = False
+63.9018 	EXP 	FixCross: autoDraw = False
+63.9018 	EXP 	Box_p: pos = array([-0.6,  0. ])
+63.9018 	EXP 	Box_p: autoDraw = True
+64.4888 	DATA 	Keypress: k
+64.4941 	EXP 	Box_p: autoDraw = False
+64.4941 	EXP 	FB_msg: text = 'Doğru cevap'
+64.4941 	EXP 	FB_msg: autoDraw = True
+65.4915 	EXP 	New trial (rep=0, index=2): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+65.4993 	EXP 	FB_msg: autoDraw = False
+65.4993 	EXP 	FixCross: autoDraw = True
+66.6131 	EXP 	FixCross: autoDraw = False
+66.6131 	EXP 	FixCross: autoDraw = False
+66.6131 	EXP 	Box_p: pos = array([0.6, 0. ])
+66.6131 	EXP 	Box_p: autoDraw = True
+67.1224 	DATA 	Keypress: a
+67.1386 	EXP 	Box_p: autoDraw = False
+67.1386 	EXP 	FB_msg: text = 'Doğru cevap'
+67.1386 	EXP 	FB_msg: autoDraw = True
+68.1316 	EXP 	New trial (rep=0, index=3): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+68.1399 	EXP 	FB_msg: autoDraw = False
+68.1399 	EXP 	FixCross: autoDraw = True
+69.2492 	EXP 	FixCross: autoDraw = False
+69.2492 	EXP 	FixCross: autoDraw = False
+69.2492 	EXP 	Box_p: pos = array([0., 0.])
+69.2492 	EXP 	Box_p: autoDraw = True
+69.6669 	DATA 	Keypress: a
+69.6832 	EXP 	Box_p: autoDraw = False
+69.6832 	EXP 	FB_msg: text = 'Doğru cevap'
+69.6832 	EXP 	FB_msg: autoDraw = True
+70.6804 	EXP 	New trial (rep=0, index=4): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+70.6882 	EXP 	FB_msg: autoDraw = False
+70.6882 	EXP 	FixCross: autoDraw = True
+71.8811 	EXP 	FixCross: autoDraw = False
+71.8811 	EXP 	FixCross: autoDraw = False
+71.8811 	EXP 	Box_p: pos = array([0.6, 0. ])
+71.8811 	EXP 	Box_p: autoDraw = True
+72.7737 	DATA 	Keypress: k
+72.7907 	EXP 	Box_p: autoDraw = False
+72.7907 	EXP 	FB_msg: text = 'Doğru cevap'
+72.7907 	EXP 	FB_msg: autoDraw = True
+73.7878 	EXP 	New trial (rep=0, index=5): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+73.7959 	EXP 	FB_msg: autoDraw = False
+73.7959 	EXP 	FixCross: autoDraw = True
+74.9135 	EXP 	FixCross: autoDraw = False
+74.9135 	EXP 	FixCross: autoDraw = False
+74.9135 	EXP 	Box_p: pos = array([-0.6,  0. ])
+74.9135 	EXP 	Box_p: autoDraw = True
+76.2504 	DATA 	Keypress: k
+76.2568 	EXP 	Box_p: autoDraw = False
+76.2568 	EXP 	FB_msg: text = 'Doğru cevap'
+76.2568 	EXP 	FB_msg: autoDraw = True
+77.2495 	EXP 	New trial (rep=1, index=0): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+77.2580 	EXP 	FB_msg: autoDraw = False
+77.2580 	EXP 	FixCross: autoDraw = True
+78.2799 	EXP 	FixCross: autoDraw = False
+78.2799 	EXP 	FixCross: autoDraw = False
+78.2799 	EXP 	Box_p: pos = array([-0.6,  0. ])
+78.2799 	EXP 	Box_p: autoDraw = True
+78.8122 	DATA 	Keypress: a
+78.8176 	EXP 	Box_p: autoDraw = False
+78.8176 	EXP 	FB_msg: text = 'Doğru cevap'
+78.8176 	EXP 	FB_msg: autoDraw = True
+79.8106 	EXP 	New trial (rep=1, index=1): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+79.8187 	EXP 	FB_msg: autoDraw = False
+79.8187 	EXP 	FixCross: autoDraw = True
+81.0452 	EXP 	FixCross: autoDraw = False
+81.0452 	EXP 	FixCross: autoDraw = False
+81.0452 	EXP 	Box_p: pos = array([0., 0.])
+81.0452 	EXP 	Box_p: autoDraw = True
+81.8371 	DATA 	Keypress: k
+81.8544 	EXP 	Box_p: autoDraw = False
+81.8544 	EXP 	FB_msg: text = 'Doğru cevap'
+81.8544 	EXP 	FB_msg: autoDraw = True
+82.8475 	EXP 	New trial (rep=1, index=2): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+82.8556 	EXP 	FB_msg: autoDraw = False
+82.8556 	EXP 	FixCross: autoDraw = True
+84.0609 	EXP 	FixCross: autoDraw = False
+84.0609 	EXP 	FixCross: autoDraw = False
+84.0609 	EXP 	Box_p: pos = array([0., 0.])
+84.0609 	EXP 	Box_p: autoDraw = True
+84.6056 	DATA 	Keypress: k
+84.6113 	EXP 	Box_p: autoDraw = False
+84.6113 	EXP 	FB_msg: text = 'Doğru cevap'
+84.6113 	EXP 	FB_msg: autoDraw = True
+85.6044 	EXP 	New trial (rep=1, index=3): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+85.6127 	EXP 	FB_msg: autoDraw = False
+85.6127 	EXP 	FixCross: autoDraw = True
+86.7260 	EXP 	FixCross: autoDraw = False
+86.7260 	EXP 	FixCross: autoDraw = False
+86.7260 	EXP 	Box_p: pos = array([0., 0.])
+86.7260 	EXP 	Box_p: autoDraw = True
+87.2992 	DATA 	Keypress: a
+87.3061 	EXP 	Box_p: autoDraw = False
+87.3061 	EXP 	FB_msg: text = 'Doğru cevap'
+87.3061 	EXP 	FB_msg: autoDraw = True
+88.3032 	EXP 	New trial (rep=1, index=4): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+88.3113 	EXP 	FB_msg: autoDraw = False
+88.3113 	EXP 	FixCross: autoDraw = True
+89.4164 	EXP 	FixCross: autoDraw = False
+89.4164 	EXP 	FixCross: autoDraw = False
+89.4164 	EXP 	Box_p: pos = array([0., 0.])
+89.4164 	EXP 	Box_p: autoDraw = True
+89.9158 	DATA 	Keypress: a
+89.9211 	EXP 	Box_p: autoDraw = False
+89.9211 	EXP 	FB_msg: text = 'Doğru cevap'
+89.9211 	EXP 	FB_msg: autoDraw = True
+90.9185 	EXP 	New trial (rep=1, index=5): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+90.9263 	EXP 	FB_msg: autoDraw = False
+90.9263 	EXP 	FixCross: autoDraw = True
+92.1067 	EXP 	FixCross: autoDraw = False
+92.1067 	EXP 	FixCross: autoDraw = False
+92.1067 	EXP 	Box_p: pos = array([0., 0.])
+92.1067 	EXP 	Box_p: autoDraw = True
+92.8083 	DATA 	Keypress: k
+92.8244 	EXP 	Box_p: autoDraw = False
+92.8244 	EXP 	FB_msg: text = 'Doğru cevap'
+92.8244 	EXP 	FB_msg: autoDraw = True
+93.8171 	EXP 	New trial (rep=2, index=0): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+93.8255 	EXP 	FB_msg: autoDraw = False
+93.8255 	EXP 	FixCross: autoDraw = True
+94.9597 	EXP 	FixCross: autoDraw = False
+94.9597 	EXP 	FixCross: autoDraw = False
+94.9597 	EXP 	Box_p: pos = array([-0.6,  0. ])
+94.9597 	EXP 	Box_p: autoDraw = True
+95.5672 	DATA 	Keypress: k
+95.5729 	EXP 	Box_p: autoDraw = False
+95.5729 	EXP 	FB_msg: text = 'Doğru cevap'
+95.5729 	EXP 	FB_msg: autoDraw = True
+96.5701 	EXP 	New trial (rep=2, index=1): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+96.5784 	EXP 	FB_msg: autoDraw = False
+96.5784 	EXP 	FixCross: autoDraw = True
+97.7418 	EXP 	FixCross: autoDraw = False
+97.7418 	EXP 	FixCross: autoDraw = False
+97.7418 	EXP 	Box_p: pos = array([0., 0.])
+97.7418 	EXP 	Box_p: autoDraw = True
+98.2778 	DATA 	Keypress: a
+98.2843 	EXP 	Box_p: autoDraw = False
+98.2843 	EXP 	FB_msg: text = 'Doğru cevap'
+98.2843 	EXP 	FB_msg: autoDraw = True
+99.2773 	EXP 	New trial (rep=2, index=2): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+99.2855 	EXP 	FB_msg: autoDraw = False
+99.2855 	EXP 	FixCross: autoDraw = True
+100.4530 	EXP 	FixCross: autoDraw = False
+100.4530 	EXP 	FixCross: autoDraw = False
+100.4530 	EXP 	Box_p: pos = array([-0.6,  0. ])
+100.4530 	EXP 	Box_p: autoDraw = True
+101.4784 	DATA 	Keypress: a
+101.4833 	EXP 	Box_p: autoDraw = False
+101.4833 	EXP 	FB_msg: text = 'Doğru cevap'
+101.4833 	EXP 	FB_msg: autoDraw = True
+102.4808 	EXP 	New trial (rep=2, index=3): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+102.4886 	EXP 	FB_msg: autoDraw = False
+102.4886 	EXP 	FixCross: autoDraw = True
+103.5605 	EXP 	FixCross: autoDraw = False
+103.5605 	EXP 	FixCross: autoDraw = False
+103.5605 	EXP 	Box_p: pos = array([0.6, 0. ])
+103.5605 	EXP 	Box_p: autoDraw = True
+104.4471 	DATA 	Keypress: k
+104.4534 	EXP 	Box_p: autoDraw = False
+104.4534 	EXP 	FB_msg: text = 'Doğru cevap'
+104.4534 	EXP 	FB_msg: autoDraw = True
+105.4461 	EXP 	New trial (rep=2, index=4): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+105.4545 	EXP 	FB_msg: autoDraw = False
+105.4545 	EXP 	FixCross: autoDraw = True
+106.7017 	EXP 	FixCross: autoDraw = False
+106.7017 	EXP 	FixCross: autoDraw = False
+106.7017 	EXP 	Box_p: pos = array([0., 0.])
+106.7017 	EXP 	Box_p: autoDraw = True
+107.1287 	DATA 	Keypress: k
+107.1354 	EXP 	Box_p: autoDraw = False
+107.1354 	EXP 	FB_msg: text = 'Doğru cevap'
+107.1354 	EXP 	FB_msg: autoDraw = True
+108.1323 	EXP 	New trial (rep=2, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+108.1407 	EXP 	FB_msg: autoDraw = False
+108.1407 	EXP 	FixCross: autoDraw = True
+109.2457 	EXP 	FixCross: autoDraw = False
+109.2457 	EXP 	FixCross: autoDraw = False
+109.2457 	EXP 	Box_p: pos = array([0.6, 0. ])
+109.2457 	EXP 	Box_p: autoDraw = True
+109.7052 	DATA 	Keypress: a
+109.7212 	EXP 	Box_p: autoDraw = False
+109.7212 	EXP 	FB_msg: text = 'Doğru cevap'
+109.7212 	EXP 	FB_msg: autoDraw = True
+110.7186 	EXP 	New trial (rep=3, index=0): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+110.7264 	EXP 	FB_msg: autoDraw = False
+110.7264 	EXP 	FixCross: autoDraw = True
+111.7985 	EXP 	FixCross: autoDraw = False
+111.7985 	EXP 	FixCross: autoDraw = False
+111.7985 	EXP 	Box_p: pos = array([-0.6,  0. ])
+111.7985 	EXP 	Box_p: autoDraw = True
+112.2098 	DATA 	Keypress: a
+112.2160 	EXP 	Box_p: autoDraw = False
+112.2160 	EXP 	FB_msg: text = 'Doğru cevap'
+112.2160 	EXP 	FB_msg: autoDraw = True
+113.2130 	EXP 	New trial (rep=3, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+113.2208 	EXP 	FB_msg: autoDraw = False
+113.2208 	EXP 	FixCross: autoDraw = True
+114.3511 	EXP 	FixCross: autoDraw = False
+114.3511 	EXP 	FixCross: autoDraw = False
+114.3511 	EXP 	Box_p: pos = array([-0.6,  0. ])
+114.3511 	EXP 	Box_p: autoDraw = True
+114.7473 	DATA 	Keypress: a
+114.7644 	EXP 	Box_p: autoDraw = False
+114.7644 	EXP 	FB_msg: text = 'Doğru cevap'
+114.7644 	EXP 	FB_msg: autoDraw = True
+115.7573 	EXP 	New trial (rep=3, index=2): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+115.7654 	EXP 	FB_msg: autoDraw = False
+115.7654 	EXP 	FixCross: autoDraw = True
+116.8664 	EXP 	FixCross: autoDraw = False
+116.8664 	EXP 	FixCross: autoDraw = False
+116.8664 	EXP 	Box_p: pos = array([0.6, 0. ])
+116.8664 	EXP 	Box_p: autoDraw = True
+117.7863 	DATA 	Keypress: a
+117.7924 	EXP 	Box_p: autoDraw = False
+117.7924 	EXP 	FB_msg: text = 'Doğru cevap'
+117.7924 	EXP 	FB_msg: autoDraw = True
+118.7854 	EXP 	New trial (rep=3, index=3): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+118.7934 	EXP 	FB_msg: autoDraw = False
+118.7934 	EXP 	FixCross: autoDraw = True
+119.8237 	EXP 	FixCross: autoDraw = False
+119.8237 	EXP 	FixCross: autoDraw = False
+119.8237 	EXP 	Box_p: pos = array([0.6, 0. ])
+119.8237 	EXP 	Box_p: autoDraw = True
+120.5429 	DATA 	Keypress: k
+120.5495 	EXP 	Box_p: autoDraw = False
+120.5495 	EXP 	FB_msg: text = 'Doğru cevap'
+120.5495 	EXP 	FB_msg: autoDraw = True
+121.5467 	EXP 	New trial (rep=3, index=4): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+121.5547 	EXP 	FB_msg: autoDraw = False
+121.5547 	EXP 	FixCross: autoDraw = True
+122.6642 	EXP 	FixCross: autoDraw = False
+122.6642 	EXP 	FixCross: autoDraw = False
+122.6642 	EXP 	Box_p: pos = array([-0.6,  0. ])
+122.6642 	EXP 	Box_p: autoDraw = True
+123.2445 	DATA 	Keypress: k
+123.2607 	EXP 	Box_p: autoDraw = False
+123.2607 	EXP 	FB_msg: text = 'Doğru cevap'
+123.2607 	EXP 	FB_msg: autoDraw = True
+124.2537 	EXP 	New trial (rep=3, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+124.2616 	EXP 	FB_msg: autoDraw = False
+124.2616 	EXP 	FixCross: autoDraw = True
+125.2919 	EXP 	FixCross: autoDraw = False
+125.2919 	EXP 	FixCross: autoDraw = False
+125.2919 	EXP 	Box_p: pos = array([0.6, 0. ])
+125.2919 	EXP 	Box_p: autoDraw = True
+125.7631 	DATA 	Keypress: a
+125.7800 	EXP 	Box_p: autoDraw = False
+125.7800 	EXP 	FB_msg: text = 'Doğru cevap'
+125.7800 	EXP 	FB_msg: autoDraw = True
+126.3743 	DATA 	Keypress: space
+126.7936 	EXP 	FB_msg: autoDraw = False
+126.7936 	EXP 	text_3: text = '\n\n 24 adet doğru cevap verdiniz. \n Ortalama cevap süreniz 4.71e+02ms.'
+126.7936 	EXP 	text_3: autoDraw = True
+128.7874 	EXP 	text_3: autoDraw = False
+128.7874 	EXP 	instr_text_2: autoDraw = True
+131.5130 	EXP 	Imported SimonTask.xlsx as conditions, 6 conditions, 6 params
+131.5134 	EXP 	Created sequence: fullRandom, trialTypes=6, nReps=8, seed=None
+131.5137 	EXP 	New trial (rep=0, index=0): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+131.5158 	DATA 	Keypress: space
+131.5196 	EXP 	instr_text_2: autoDraw = False
+131.5196 	EXP 	FixCross: autoDraw = True
+132.6247 	EXP 	FixCross: autoDraw = False
+132.6247 	EXP 	FixCross: autoDraw = False
+132.6247 	EXP 	Box: pos = array([0.6, 0. ])
+132.6247 	EXP 	Box: autoDraw = True
+133.3053 	EXP 	New trial (rep=0, index=1): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+133.3080 	DATA 	Keypress: k
+133.3133 	EXP 	Box: autoDraw = False
+133.3133 	EXP 	FixCross: autoDraw = True
+134.4437 	EXP 	FixCross: autoDraw = False
+134.4437 	EXP 	FixCross: autoDraw = False
+134.4437 	EXP 	Box: pos = array([0.6, 0. ])
+134.4437 	EXP 	Box: autoDraw = True
+135.1274 	EXP 	New trial (rep=0, index=2): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+135.1296 	DATA 	Keypress: a
+135.1359 	EXP 	Box: autoDraw = False
+135.1359 	EXP 	FixCross: autoDraw = True
+136.2288 	EXP 	FixCross: autoDraw = False
+136.2288 	EXP 	FixCross: autoDraw = False
+136.2288 	EXP 	Box: pos = array([0.6, 0. ])
+136.2288 	EXP 	Box: autoDraw = True
+136.7789 	EXP 	New trial (rep=0, index=3): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+136.7810 	DATA 	Keypress: k
+136.7877 	EXP 	Box: autoDraw = False
+136.7877 	EXP 	FixCross: autoDraw = True
+137.8973 	EXP 	FixCross: autoDraw = False
+137.8973 	EXP 	FixCross: autoDraw = False
+137.8973 	EXP 	Box: pos = array([0.6, 0. ])
+137.8973 	EXP 	Box: autoDraw = True
+138.3183 	DATA 	Keypress: a
+138.3272 	EXP 	New trial (rep=0, index=4): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+138.3352 	EXP 	Box: autoDraw = False
+138.3352 	EXP 	FixCross: autoDraw = True
+139.3902 	EXP 	FixCross: autoDraw = False
+139.3902 	EXP 	FixCross: autoDraw = False
+139.3902 	EXP 	Box: pos = array([0., 0.])
+139.3902 	EXP 	Box: autoDraw = True
+139.8329 	EXP 	New trial (rep=0, index=5): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+139.8349 	DATA 	Keypress: a
+139.8410 	EXP 	Box: autoDraw = False
+139.8410 	EXP 	FixCross: autoDraw = True
+140.9878 	EXP 	FixCross: autoDraw = False
+140.9878 	EXP 	FixCross: autoDraw = False
+140.9878 	EXP 	Box: pos = array([0., 0.])
+140.9878 	EXP 	Box: autoDraw = True
+141.3302 	EXP 	New trial (rep=1, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+141.3323 	DATA 	Keypress: k
+141.3381 	EXP 	Box: autoDraw = False
+141.3381 	EXP 	FixCross: autoDraw = True
+142.4351 	EXP 	FixCross: autoDraw = False
+142.4351 	EXP 	FixCross: autoDraw = False
+142.4351 	EXP 	Box: pos = array([0., 0.])
+142.4351 	EXP 	Box: autoDraw = True
+142.8527 	DATA 	Keypress: k
+142.8606 	EXP 	New trial (rep=1, index=1): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+142.8689 	EXP 	Box: autoDraw = False
+142.8689 	EXP 	FixCross: autoDraw = True
+144.0039 	EXP 	FixCross: autoDraw = False
+144.0039 	EXP 	FixCross: autoDraw = False
+144.0039 	EXP 	Box: pos = array([0.6, 0. ])
+144.0039 	EXP 	Box: autoDraw = True
+144.4870 	DATA 	Keypress: a
+144.4961 	EXP 	New trial (rep=1, index=2): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+144.5039 	EXP 	Box: autoDraw = False
+144.5039 	EXP 	FixCross: autoDraw = True
+145.5801 	EXP 	FixCross: autoDraw = False
+145.5801 	EXP 	FixCross: autoDraw = False
+145.5801 	EXP 	Box: pos = array([0.6, 0. ])
+145.5801 	EXP 	Box: autoDraw = True
+146.1183 	DATA 	Keypress: a
+146.1263 	EXP 	New trial (rep=1, index=3): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+146.1308 	EXP 	Box: autoDraw = False
+146.1308 	EXP 	FixCross: autoDraw = True
+147.2068 	EXP 	FixCross: autoDraw = False
+147.2068 	EXP 	FixCross: autoDraw = False
+147.2068 	EXP 	Box: pos = array([-0.6,  0. ])
+147.2068 	EXP 	Box: autoDraw = True
+147.6120 	EXP 	New trial (rep=1, index=4): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+147.6140 	DATA 	Keypress: a
+147.6198 	EXP 	Box: autoDraw = False
+147.6198 	EXP 	FixCross: autoDraw = True
+148.6959 	EXP 	FixCross: autoDraw = False
+148.6959 	EXP 	FixCross: autoDraw = False
+148.6959 	EXP 	Box: pos = array([0., 0.])
+148.6959 	EXP 	Box: autoDraw = True
+149.0547 	DATA 	Keypress: k
+149.0633 	EXP 	New trial (rep=1, index=5): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+149.0714 	EXP 	Box: autoDraw = False
+149.0714 	EXP 	FixCross: autoDraw = True
+150.2559 	EXP 	FixCross: autoDraw = False
+150.2559 	EXP 	FixCross: autoDraw = False
+150.2559 	EXP 	Box: pos = array([-0.6,  0. ])
+150.2559 	EXP 	Box: autoDraw = True
+150.6227 	DATA 	Keypress: a
+150.6316 	EXP 	New trial (rep=2, index=0): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+150.6398 	EXP 	Box: autoDraw = False
+150.6398 	EXP 	FixCross: autoDraw = True
+151.7283 	EXP 	FixCross: autoDraw = False
+151.7283 	EXP 	FixCross: autoDraw = False
+151.7283 	EXP 	Box: pos = array([0., 0.])
+151.7283 	EXP 	Box: autoDraw = True
+152.2210 	EXP 	New trial (rep=2, index=1): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+152.2232 	DATA 	Keypress: a
+152.2288 	EXP 	Box: autoDraw = False
+152.2288 	EXP 	FixCross: autoDraw = True
+153.2674 	EXP 	FixCross: autoDraw = False
+153.2674 	EXP 	FixCross: autoDraw = False
+153.2674 	EXP 	Box: pos = array([0.6, 0. ])
+153.2674 	EXP 	Box: autoDraw = True
+154.1564 	EXP 	New trial (rep=2, index=2): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+154.1586 	DATA 	Keypress: k
+154.1642 	EXP 	Box: autoDraw = False
+154.1642 	EXP 	FixCross: autoDraw = True
+155.2487 	EXP 	FixCross: autoDraw = False
+155.2487 	EXP 	FixCross: autoDraw = False
+155.2487 	EXP 	Box: pos = array([0.6, 0. ])
+155.2487 	EXP 	Box: autoDraw = True
+155.9790 	EXP 	New trial (rep=2, index=3): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+155.9819 	DATA 	Keypress: a
+155.9870 	EXP 	Box: autoDraw = False
+155.9870 	EXP 	FixCross: autoDraw = True
+157.0131 	EXP 	FixCross: autoDraw = False
+157.0131 	EXP 	FixCross: autoDraw = False
+157.0131 	EXP 	Box: pos = array([-0.6,  0. ])
+157.0131 	EXP 	Box: autoDraw = True
+157.8393 	DATA 	Keypress: k
+157.8473 	EXP 	New trial (rep=2, index=4): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+157.8559 	EXP 	Box: autoDraw = False
+157.8559 	EXP 	FixCross: autoDraw = True
+158.9484 	EXP 	FixCross: autoDraw = False
+158.9484 	EXP 	FixCross: autoDraw = False
+158.9484 	EXP 	Box: pos = array([0., 0.])
+158.9484 	EXP 	Box: autoDraw = True
+159.4119 	EXP 	New trial (rep=2, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+159.4149 	DATA 	Keypress: a
+159.4201 	EXP 	Box: autoDraw = False
+159.4201 	EXP 	FixCross: autoDraw = True
+160.4292 	EXP 	FixCross: autoDraw = False
+160.4292 	EXP 	FixCross: autoDraw = False
+160.4292 	EXP 	Box: pos = array([0.6, 0. ])
+160.4292 	EXP 	Box: autoDraw = True
+161.1470 	EXP 	New trial (rep=3, index=0): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+161.1491 	DATA 	Keypress: a
+161.1551 	EXP 	Box: autoDraw = False
+161.1551 	EXP 	FixCross: autoDraw = True
+162.3479 	EXP 	FixCross: autoDraw = False
+162.3479 	EXP 	FixCross: autoDraw = False
+162.3479 	EXP 	Box: pos = array([-0.6,  0. ])
+162.3479 	EXP 	Box: autoDraw = True
+162.9074 	EXP 	New trial (rep=3, index=1): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+162.9095 	DATA 	Keypress: k
+162.9154 	EXP 	Box: autoDraw = False
+162.9154 	EXP 	FixCross: autoDraw = True
+164.0623 	EXP 	FixCross: autoDraw = False
+164.0623 	EXP 	FixCross: autoDraw = False
+164.0623 	EXP 	Box: pos = array([-0.6,  0. ])
+164.0623 	EXP 	Box: autoDraw = True
+164.7719 	EXP 	New trial (rep=3, index=2): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+164.7739 	DATA 	Keypress: k
+164.7799 	EXP 	Box: autoDraw = False
+164.7799 	EXP 	FixCross: autoDraw = True
+165.7974 	EXP 	FixCross: autoDraw = False
+165.7974 	EXP 	FixCross: autoDraw = False
+165.7974 	EXP 	Box: pos = array([-0.6,  0. ])
+165.7974 	EXP 	Box: autoDraw = True
+166.6153 	EXP 	New trial (rep=3, index=3): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+166.6173 	DATA 	Keypress: k
+166.6234 	EXP 	Box: autoDraw = False
+166.6234 	EXP 	FixCross: autoDraw = True
+167.6660 	EXP 	FixCross: autoDraw = False
+167.6660 	EXP 	FixCross: autoDraw = False
+167.6660 	EXP 	Box: pos = array([-0.6,  0. ])
+167.6660 	EXP 	Box: autoDraw = True
+168.5257 	EXP 	New trial (rep=3, index=4): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+168.5278 	DATA 	Keypress: a
+168.5337 	EXP 	Box: autoDraw = False
+168.5337 	EXP 	FixCross: autoDraw = True
+169.6394 	EXP 	FixCross: autoDraw = False
+169.6394 	EXP 	FixCross: autoDraw = False
+169.6394 	EXP 	Box: pos = array([0.6, 0. ])
+169.6394 	EXP 	Box: autoDraw = True
+170.2229 	EXP 	New trial (rep=3, index=5): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+170.2251 	DATA 	Keypress: k
+170.2314 	EXP 	Box: autoDraw = False
+170.2314 	EXP 	FixCross: autoDraw = True
+171.2531 	EXP 	FixCross: autoDraw = False
+171.2531 	EXP 	FixCross: autoDraw = False
+171.2531 	EXP 	Box: pos = array([0.6, 0. ])
+171.2531 	EXP 	Box: autoDraw = True
+171.7083 	EXP 	New trial (rep=4, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+171.7114 	DATA 	Keypress: k
+171.7161 	EXP 	Box: autoDraw = False
+171.7161 	EXP 	FixCross: autoDraw = True
+172.8841 	EXP 	FixCross: autoDraw = False
+172.8841 	EXP 	FixCross: autoDraw = False
+172.8841 	EXP 	Box: pos = array([0., 0.])
+172.8841 	EXP 	Box: autoDraw = True
+173.3846 	EXP 	New trial (rep=4, index=1): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+173.3866 	DATA 	Keypress: k
+173.3929 	EXP 	Box: autoDraw = False
+173.3929 	EXP 	FixCross: autoDraw = True
+174.4523 	EXP 	FixCross: autoDraw = False
+174.4523 	EXP 	FixCross: autoDraw = False
+174.4523 	EXP 	Box: pos = array([0.6, 0. ])
+174.4523 	EXP 	Box: autoDraw = True
+174.9029 	EXP 	New trial (rep=4, index=2): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+174.9051 	DATA 	Keypress: k
+174.9115 	EXP 	Box: autoDraw = False
+174.9115 	EXP 	FixCross: autoDraw = True
+176.0415 	EXP 	FixCross: autoDraw = False
+176.0415 	EXP 	FixCross: autoDraw = False
+176.0415 	EXP 	Box: pos = array([-0.6,  0. ])
+176.0415 	EXP 	Box: autoDraw = True
+176.4174 	DATA 	Keypress: a
+176.4253 	EXP 	New trial (rep=4, index=3): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+176.4340 	EXP 	Box: autoDraw = False
+176.4340 	EXP 	FixCross: autoDraw = True
+177.5184 	EXP 	FixCross: autoDraw = False
+177.5184 	EXP 	FixCross: autoDraw = False
+177.5184 	EXP 	Box: pos = array([0., 0.])
+177.5184 	EXP 	Box: autoDraw = True
+177.9266 	EXP 	New trial (rep=4, index=4): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+177.9288 	DATA 	Keypress: a
+177.9354 	EXP 	Box: autoDraw = False
+177.9354 	EXP 	FixCross: autoDraw = True
+179.0033 	EXP 	FixCross: autoDraw = False
+179.0033 	EXP 	FixCross: autoDraw = False
+179.0033 	EXP 	Box: pos = array([0.6, 0. ])
+179.0033 	EXP 	Box: autoDraw = True
+179.5199 	EXP 	New trial (rep=4, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+179.5220 	DATA 	Keypress: k
+179.5245 	EXP 	Box: autoDraw = False
+179.5245 	EXP 	FixCross: autoDraw = True
+180.7883 	EXP 	FixCross: autoDraw = False
+180.7883 	EXP 	FixCross: autoDraw = False
+180.7883 	EXP 	Box: pos = array([0.6, 0. ])
+180.7883 	EXP 	Box: autoDraw = True
+181.2604 	DATA 	Keypress: a
+181.2684 	EXP 	New trial (rep=5, index=0): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+181.2764 	EXP 	Box: autoDraw = False
+181.2764 	EXP 	FixCross: autoDraw = True
+182.3524 	EXP 	FixCross: autoDraw = False
+182.3524 	EXP 	FixCross: autoDraw = False
+182.3524 	EXP 	Box: pos = array([0.6, 0. ])
+182.3524 	EXP 	Box: autoDraw = True
+183.0752 	DATA 	Keypress: k
+183.0827 	EXP 	New trial (rep=5, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+183.0907 	EXP 	Box: autoDraw = False
+183.0907 	EXP 	FixCross: autoDraw = True
+184.1960 	EXP 	FixCross: autoDraw = False
+184.1960 	EXP 	FixCross: autoDraw = False
+184.1960 	EXP 	Box: pos = array([-0.6,  0. ])
+184.1960 	EXP 	Box: autoDraw = True
+184.6432 	DATA 	Keypress: a
+184.6511 	EXP 	New trial (rep=5, index=2): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+184.6591 	EXP 	Box: autoDraw = False
+184.6591 	EXP 	FixCross: autoDraw = True
+185.8606 	EXP 	FixCross: autoDraw = False
+185.8606 	EXP 	FixCross: autoDraw = False
+185.8606 	EXP 	Box: pos = array([0., 0.])
+185.8606 	EXP 	Box: autoDraw = True
+186.4565 	EXP 	New trial (rep=5, index=3): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+186.4586 	DATA 	Keypress: k
+186.4612 	EXP 	Box: autoDraw = False
+186.4612 	EXP 	FixCross: autoDraw = True
+187.6330 	EXP 	FixCross: autoDraw = False
+187.6330 	EXP 	FixCross: autoDraw = False
+187.6330 	EXP 	Box: pos = array([0., 0.])
+187.6330 	EXP 	Box: autoDraw = True
+188.8724 	EXP 	New trial (rep=5, index=4): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+188.8745 	DATA 	Keypress: k
+188.8805 	EXP 	Box: autoDraw = False
+188.8805 	EXP 	FixCross: autoDraw = True
+190.0397 	EXP 	FixCross: autoDraw = False
+190.0397 	EXP 	FixCross: autoDraw = False
+190.0397 	EXP 	Box: pos = array([-0.6,  0. ])
+190.0397 	EXP 	Box: autoDraw = True
+190.6618 	EXP 	New trial (rep=5, index=5): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+190.6639 	DATA 	Keypress: k
+190.6698 	EXP 	Box: autoDraw = False
+190.6698 	EXP 	FixCross: autoDraw = True
+191.8333 	EXP 	FixCross: autoDraw = False
+191.8333 	EXP 	FixCross: autoDraw = False
+191.8333 	EXP 	Box: pos = array([0., 0.])
+191.8333 	EXP 	Box: autoDraw = True
+192.6012 	EXP 	New trial (rep=6, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+192.6034 	DATA 	Keypress: a
+192.6093 	EXP 	Box: autoDraw = False
+192.6093 	EXP 	FixCross: autoDraw = True
+193.7061 	EXP 	FixCross: autoDraw = False
+193.7061 	EXP 	FixCross: autoDraw = False
+193.7061 	EXP 	Box: pos = array([0., 0.])
+193.7061 	EXP 	Box: autoDraw = True
+194.3076 	EXP 	New trial (rep=6, index=1): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+194.3096 	DATA 	Keypress: k
+194.3151 	EXP 	Box: autoDraw = False
+194.3151 	EXP 	FixCross: autoDraw = True
+195.3537 	EXP 	FixCross: autoDraw = False
+195.3537 	EXP 	FixCross: autoDraw = False
+195.3537 	EXP 	Box: pos = array([0., 0.])
+195.3537 	EXP 	Box: autoDraw = True
+195.8500 	EXP 	New trial (rep=6, index=2): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+195.8520 	DATA 	Keypress: a
+195.8586 	EXP 	Box: autoDraw = False
+195.8586 	EXP 	FixCross: autoDraw = True
+196.9887 	EXP 	FixCross: autoDraw = False
+196.9887 	EXP 	FixCross: autoDraw = False
+196.9887 	EXP 	Box: pos = array([-0.6,  0. ])
+196.9887 	EXP 	Box: autoDraw = True
+198.0654 	EXP 	New trial (rep=6, index=3): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+198.0675 	DATA 	Keypress: k
+198.0733 	EXP 	Box: autoDraw = False
+198.0733 	EXP 	FixCross: autoDraw = True
+199.2661 	EXP 	FixCross: autoDraw = False
+199.2661 	EXP 	FixCross: autoDraw = False
+199.2661 	EXP 	Box: pos = array([-0.6,  0. ])
+199.2661 	EXP 	Box: autoDraw = True
+199.6418 	EXP 	New trial (rep=6, index=4): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+199.6439 	DATA 	Keypress: a
+199.6499 	EXP 	Box: autoDraw = False
+199.6499 	EXP 	FixCross: autoDraw = True
+200.7802 	EXP 	FixCross: autoDraw = False
+200.7802 	EXP 	FixCross: autoDraw = False
+200.7802 	EXP 	Box: pos = array([-0.6,  0. ])
+200.7802 	EXP 	Box: autoDraw = True
+201.4686 	DATA 	Keypress: k
+201.4775 	EXP 	New trial (rep=6, index=5): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+201.4852 	EXP 	Box: autoDraw = False
+201.4852 	EXP 	FixCross: autoDraw = True
+202.5324 	EXP 	FixCross: autoDraw = False
+202.5324 	EXP 	FixCross: autoDraw = False
+202.5324 	EXP 	Box: pos = array([-0.6,  0. ])
+202.5324 	EXP 	Box: autoDraw = True
+202.9992 	DATA 	Keypress: a
+203.0081 	EXP 	New trial (rep=7, index=0): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+203.0163 	EXP 	Box: autoDraw = False
+203.0163 	EXP 	FixCross: autoDraw = True
+204.1840 	EXP 	FixCross: autoDraw = False
+204.1840 	EXP 	FixCross: autoDraw = False
+204.1840 	EXP 	Box: pos = array([0.6, 0. ])
+204.1840 	EXP 	Box: autoDraw = True
+204.6345 	EXP 	New trial (rep=7, index=1): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+204.6367 	DATA 	Keypress: a
+204.6427 	EXP 	Box: autoDraw = False
+204.6427 	EXP 	FixCross: autoDraw = True
+205.6772 	EXP 	FixCross: autoDraw = False
+205.6772 	EXP 	FixCross: autoDraw = False
+205.6772 	EXP 	Box: pos = array([0., 0.])
+205.6772 	EXP 	Box: autoDraw = True
+206.2706 	DATA 	Keypress: k
+206.2782 	EXP 	New trial (rep=7, index=2): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+206.2861 	EXP 	Box: autoDraw = False
+206.2861 	EXP 	FixCross: autoDraw = True
+207.3706 	EXP 	FixCross: autoDraw = False
+207.3706 	EXP 	FixCross: autoDraw = False
+207.3706 	EXP 	Box: pos = array([0., 0.])
+207.3706 	EXP 	Box: autoDraw = True
+207.8132 	EXP 	New trial (rep=7, index=3): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+207.8153 	DATA 	Keypress: a
+207.8214 	EXP 	Box: autoDraw = False
+207.8214 	EXP 	FixCross: autoDraw = True
+208.9598 	EXP 	FixCross: autoDraw = False
+208.9598 	EXP 	FixCross: autoDraw = False
+208.9598 	EXP 	Box: pos = array([-0.6,  0. ])
+208.9598 	EXP 	Box: autoDraw = True
+209.4857 	DATA 	Keypress: k
+209.4936 	EXP 	New trial (rep=7, index=4): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+209.5024 	EXP 	Box: autoDraw = False
+209.5024 	EXP 	FixCross: autoDraw = True
+210.6407 	EXP 	FixCross: autoDraw = False
+210.6407 	EXP 	FixCross: autoDraw = False
+210.6407 	EXP 	Box: pos = array([-0.6,  0. ])
+210.6407 	EXP 	Box: autoDraw = True
+211.1120 	DATA 	Keypress: a
+211.1210 	EXP 	New trial (rep=7, index=5): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+211.1291 	EXP 	Box: autoDraw = False
+211.1291 	EXP 	FixCross: autoDraw = True
+212.4135 	EXP 	FixCross: autoDraw = False
+212.4135 	EXP 	FixCross: autoDraw = False
+212.4135 	EXP 	Box: pos = array([0., 0.])
+212.4135 	EXP 	Box: autoDraw = True
+212.7844 	DATA 	Keypress: a
+212.8139 	EXP 	Box: autoDraw = False
+212.8139 	EXP 	text_2: text = 'Biraz mola verebilirsiniz. \n\n 48 adet doğru cevap verdiniz. \n Ortalama cevap süreniz 3.68e+02ms.\n\n Devam etmek için BOŞLUK tuşuna basınız.'
+212.8139 	EXP 	text_2: autoDraw = True
+227.9221 	DATA 	Keypress: space
+227.9373 	EXP 	Imported SimonTask.xlsx as conditions, 6 conditions, 6 params
+227.9377 	EXP 	Created sequence: fullRandom, trialTypes=6, nReps=8, seed=None
+227.9380 	EXP 	New trial (rep=0, index=0): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+227.9465 	EXP 	text_2: autoDraw = False
+227.9465 	EXP 	FixCross: autoDraw = True
+229.0769 	EXP 	FixCross: autoDraw = False
+229.0769 	EXP 	FixCross: autoDraw = False
+229.0769 	EXP 	Box: pos = array([-0.6,  0. ])
+229.0769 	EXP 	Box: autoDraw = True
+230.1206 	EXP 	New trial (rep=0, index=1): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+230.1233 	DATA 	Keypress: a
+230.1284 	EXP 	Box: autoDraw = False
+230.1284 	EXP 	FixCross: autoDraw = True
+231.1875 	EXP 	FixCross: autoDraw = False
+231.1875 	EXP 	FixCross: autoDraw = False
+231.1875 	EXP 	Box: pos = array([0., 0.])
+231.1875 	EXP 	Box: autoDraw = True
+231.6428 	DATA 	Keypress: k
+231.6509 	EXP 	New trial (rep=0, index=2): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+231.6592 	EXP 	Box: autoDraw = False
+231.6592 	EXP 	FixCross: autoDraw = True
+232.8810 	EXP 	FixCross: autoDraw = False
+232.8810 	EXP 	FixCross: autoDraw = False
+232.8810 	EXP 	Box: pos = array([0., 0.])
+232.8810 	EXP 	Box: autoDraw = True
+233.2200 	EXP 	New trial (rep=0, index=3): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+233.2221 	DATA 	Keypress: a
+233.2273 	EXP 	Box: autoDraw = False
+233.2273 	EXP 	FixCross: autoDraw = True
+234.2824 	EXP 	FixCross: autoDraw = False
+234.2824 	EXP 	FixCross: autoDraw = False
+234.2824 	EXP 	Box: pos = array([0.6, 0. ])
+234.2824 	EXP 	Box: autoDraw = True
+235.0374 	EXP 	New trial (rep=0, index=4): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+235.0405 	DATA 	Keypress: k
+235.0457 	EXP 	Box: autoDraw = False
+235.0457 	EXP 	FixCross: autoDraw = True
+236.1135 	EXP 	FixCross: autoDraw = False
+236.1135 	EXP 	FixCross: autoDraw = False
+236.1135 	EXP 	Box: pos = array([0., 0.])
+236.1135 	EXP 	Box: autoDraw = True
+236.3927 	EXP 	New trial (rep=0, index=5): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+236.3948 	DATA 	Keypress: a
+236.3972 	EXP 	Box: autoDraw = False
+236.3972 	EXP 	FixCross: autoDraw = True
+237.4983 	EXP 	FixCross: autoDraw = False
+237.4983 	EXP 	FixCross: autoDraw = False
+237.4983 	EXP 	Box: pos = array([0.6, 0. ])
+237.4983 	EXP 	Box: autoDraw = True
+238.2071 	EXP 	New trial (rep=1, index=0): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+238.2093 	DATA 	Keypress: k
+238.2161 	EXP 	Box: autoDraw = False
+238.2161 	EXP 	FixCross: autoDraw = True
+239.3169 	EXP 	FixCross: autoDraw = False
+239.3169 	EXP 	FixCross: autoDraw = False
+239.3169 	EXP 	Box: pos = array([0.6, 0. ])
+239.3169 	EXP 	Box: autoDraw = True
+239.8425 	DATA 	Keypress: k
+239.8505 	EXP 	New trial (rep=1, index=1): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+239.8552 	EXP 	Box: autoDraw = False
+239.8552 	EXP 	FixCross: autoDraw = True
+240.8853 	EXP 	FixCross: autoDraw = False
+240.8853 	EXP 	FixCross: autoDraw = False
+240.8853 	EXP 	Box: pos = array([-0.6,  0. ])
+240.8853 	EXP 	Box: autoDraw = True
+241.5949 	DATA 	Keypress: k
+241.6032 	EXP 	New trial (rep=1, index=2): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+241.6110 	EXP 	Box: autoDraw = False
+241.6110 	EXP 	FixCross: autoDraw = True
+242.7205 	EXP 	FixCross: autoDraw = False
+242.7205 	EXP 	FixCross: autoDraw = False
+242.7205 	EXP 	Box: pos = array([-0.6,  0. ])
+242.7205 	EXP 	Box: autoDraw = True
+243.1794 	DATA 	Keypress: a
+243.1882 	EXP 	New trial (rep=1, index=3): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+243.1963 	EXP 	Box: autoDraw = False
+243.1963 	EXP 	FixCross: autoDraw = True
+244.2889 	EXP 	FixCross: autoDraw = False
+244.2889 	EXP 	FixCross: autoDraw = False
+244.2889 	EXP 	Box: pos = array([-0.6,  0. ])
+244.2889 	EXP 	Box: autoDraw = True
+244.8646 	EXP 	New trial (rep=1, index=4): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+244.8667 	DATA 	Keypress: k
+244.8728 	EXP 	Box: autoDraw = False
+244.8728 	EXP 	FixCross: autoDraw = True
+245.9656 	EXP 	FixCross: autoDraw = False
+245.9656 	EXP 	FixCross: autoDraw = False
+245.9656 	EXP 	Box: pos = array([0.6, 0. ])
+245.9656 	EXP 	Box: autoDraw = True
+246.5120 	EXP 	New trial (rep=1, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+246.5141 	DATA 	Keypress: a
+246.5207 	EXP 	Box: autoDraw = False
+246.5207 	EXP 	FixCross: autoDraw = True
+247.6925 	EXP 	FixCross: autoDraw = False
+247.6925 	EXP 	FixCross: autoDraw = False
+247.6925 	EXP 	Box: pos = array([0.6, 0. ])
+247.6925 	EXP 	Box: autoDraw = True
+248.1343 	EXP 	New trial (rep=2, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+248.1364 	DATA 	Keypress: a
+248.1433 	EXP 	Box: autoDraw = False
+248.1433 	EXP 	FixCross: autoDraw = True
+249.3818 	EXP 	FixCross: autoDraw = False
+249.3818 	EXP 	FixCross: autoDraw = False
+249.3818 	EXP 	Box: pos = array([0., 0.])
+249.3818 	EXP 	Box: autoDraw = True
+249.9118 	EXP 	New trial (rep=2, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+249.9138 	DATA 	Keypress: k
+249.9199 	EXP 	Box: autoDraw = False
+249.9199 	EXP 	FixCross: autoDraw = True
+250.9460 	EXP 	FixCross: autoDraw = False
+250.9460 	EXP 	FixCross: autoDraw = False
+250.9460 	EXP 	Box: pos = array([-0.6,  0. ])
+250.9460 	EXP 	Box: autoDraw = True
+251.3681 	EXP 	New trial (rep=2, index=2): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+251.3701 	DATA 	Keypress: a
+251.3755 	EXP 	Box: autoDraw = False
+251.3755 	EXP 	FixCross: autoDraw = True
+252.4308 	EXP 	FixCross: autoDraw = False
+252.4308 	EXP 	FixCross: autoDraw = False
+252.4308 	EXP 	Box: pos = array([0.6, 0. ])
+252.4308 	EXP 	Box: autoDraw = True
+253.1406 	DATA 	Keypress: k
+253.1485 	EXP 	New trial (rep=2, index=3): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+253.1569 	EXP 	Box: autoDraw = False
+253.1569 	EXP 	FixCross: autoDraw = True
+254.2703 	EXP 	FixCross: autoDraw = False
+254.2703 	EXP 	FixCross: autoDraw = False
+254.2703 	EXP 	Box: pos = array([-0.6,  0. ])
+254.2703 	EXP 	Box: autoDraw = True
+254.6459 	DATA 	Keypress: a
+254.6539 	EXP 	New trial (rep=2, index=4): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+254.6626 	EXP 	Box: autoDraw = False
+254.6626 	EXP 	FixCross: autoDraw = True
+255.8761 	EXP 	FixCross: autoDraw = False
+255.8761 	EXP 	FixCross: autoDraw = False
+255.8761 	EXP 	Box: pos = array([0., 0.])
+255.8761 	EXP 	Box: autoDraw = True
+256.5484 	DATA 	Keypress: k
+256.5563 	EXP 	New trial (rep=2, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+256.5647 	EXP 	Box: autoDraw = False
+256.5647 	EXP 	FixCross: autoDraw = True
+257.6155 	EXP 	FixCross: autoDraw = False
+257.6155 	EXP 	FixCross: autoDraw = False
+257.6155 	EXP 	Box: pos = array([0.6, 0. ])
+257.6155 	EXP 	Box: autoDraw = True
+258.2116 	EXP 	New trial (rep=3, index=0): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+258.2137 	DATA 	Keypress: a
+258.2163 	EXP 	Box: autoDraw = False
+258.2163 	EXP 	FixCross: autoDraw = True
+259.2881 	EXP 	FixCross: autoDraw = False
+259.2881 	EXP 	FixCross: autoDraw = False
+259.2881 	EXP 	Box: pos = array([0., 0.])
+259.2881 	EXP 	Box: autoDraw = True
+259.7430 	DATA 	Keypress: a
+259.7520 	EXP 	New trial (rep=3, index=1): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+259.7595 	EXP 	Box: autoDraw = False
+259.7595 	EXP 	FixCross: autoDraw = True
+260.8732 	EXP 	FixCross: autoDraw = False
+260.8732 	EXP 	FixCross: autoDraw = False
+260.8732 	EXP 	Box: pos = array([-0.6,  0. ])
+260.8732 	EXP 	Box: autoDraw = True
+261.4244 	EXP 	New trial (rep=3, index=2): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+261.4264 	DATA 	Keypress: k
+261.4323 	EXP 	Box: autoDraw = False
+261.4323 	EXP 	FixCross: autoDraw = True
+262.4832 	EXP 	FixCross: autoDraw = False
+262.4832 	EXP 	FixCross: autoDraw = False
+262.4832 	EXP 	Box: pos = array([0., 0.])
+262.4832 	EXP 	Box: autoDraw = True
+263.1508 	DATA 	Keypress: k
+263.1588 	EXP 	New trial (rep=3, index=3): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+263.1675 	EXP 	Box: autoDraw = False
+263.1675 	EXP 	FixCross: autoDraw = True
+264.3146 	EXP 	FixCross: autoDraw = False
+264.3146 	EXP 	FixCross: autoDraw = False
+264.3146 	EXP 	Box: pos = array([0., 0.])
+264.3146 	EXP 	Box: autoDraw = True
+264.8648 	EXP 	New trial (rep=3, index=4): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+264.8669 	DATA 	Keypress: k
+264.8735 	EXP 	Box: autoDraw = False
+264.8735 	EXP 	FixCross: autoDraw = True
+266.1041 	EXP 	FixCross: autoDraw = False
+266.1041 	EXP 	FixCross: autoDraw = False
+266.1041 	EXP 	Box: pos = array([0.6, 0. ])
+266.1041 	EXP 	Box: autoDraw = True
+266.6042 	EXP 	New trial (rep=3, index=5): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+266.6063 	DATA 	Keypress: a
+266.6125 	EXP 	Box: autoDraw = False
+266.6125 	EXP 	FixCross: autoDraw = True
+267.7346 	EXP 	FixCross: autoDraw = False
+267.7346 	EXP 	FixCross: autoDraw = False
+267.7346 	EXP 	Box: pos = array([0.6, 0. ])
+267.7346 	EXP 	Box: autoDraw = True
+268.3149 	EXP 	New trial (rep=4, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+268.3169 	DATA 	Keypress: k
+268.3227 	EXP 	Box: autoDraw = False
+268.3227 	EXP 	FixCross: autoDraw = True
+269.4364 	EXP 	FixCross: autoDraw = False
+269.4364 	EXP 	FixCross: autoDraw = False
+269.4364 	EXP 	Box: pos = array([0., 0.])
+269.4364 	EXP 	Box: autoDraw = True
+270.3463 	EXP 	New trial (rep=4, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+270.3484 	DATA 	Keypress: k
+270.3543 	EXP 	Box: autoDraw = False
+270.3543 	EXP 	FixCross: autoDraw = True
+271.4971 	EXP 	FixCross: autoDraw = False
+271.4971 	EXP 	FixCross: autoDraw = False
+271.4971 	EXP 	Box: pos = array([-0.6,  0. ])
+271.4971 	EXP 	Box: autoDraw = True
+271.9647 	EXP 	New trial (rep=4, index=2): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+271.9669 	DATA 	Keypress: a
+271.9724 	EXP 	Box: autoDraw = False
+271.9724 	EXP 	FixCross: autoDraw = True
+273.0402 	EXP 	FixCross: autoDraw = False
+273.0402 	EXP 	FixCross: autoDraw = False
+273.0402 	EXP 	Box: pos = array([0.6, 0. ])
+273.0402 	EXP 	Box: autoDraw = True
+273.6991 	EXP 	New trial (rep=4, index=3): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+273.7011 	DATA 	Keypress: a
+273.7077 	EXP 	Box: autoDraw = False
+273.7077 	EXP 	FixCross: autoDraw = True
+274.7754 	EXP 	FixCross: autoDraw = False
+274.7754 	EXP 	FixCross: autoDraw = False
+274.7754 	EXP 	Box: pos = array([-0.6,  0. ])
+274.7754 	EXP 	Box: autoDraw = True
+275.3475 	EXP 	New trial (rep=4, index=4): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+275.3495 	DATA 	Keypress: k
+275.3554 	EXP 	Box: autoDraw = False
+275.3554 	EXP 	FixCross: autoDraw = True
+276.4438 	EXP 	FixCross: autoDraw = False
+276.4438 	EXP 	FixCross: autoDraw = False
+276.4438 	EXP 	Box: pos = array([0.6, 0. ])
+276.4438 	EXP 	Box: autoDraw = True
+276.9488 	EXP 	New trial (rep=4, index=5): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+276.9510 	DATA 	Keypress: a
+276.9572 	EXP 	Box: autoDraw = False
+276.9572 	EXP 	FixCross: autoDraw = True
+278.0622 	EXP 	FixCross: autoDraw = False
+278.0622 	EXP 	FixCross: autoDraw = False
+278.0622 	EXP 	Box: pos = array([-0.6,  0. ])
+278.0622 	EXP 	Box: autoDraw = True
+278.6502 	EXP 	New trial (rep=5, index=0): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+278.6524 	DATA 	Keypress: k
+278.6588 	EXP 	Box: autoDraw = False
+278.6588 	EXP 	FixCross: autoDraw = True
+279.8517 	EXP 	FixCross: autoDraw = False
+279.8517 	EXP 	FixCross: autoDraw = False
+279.8517 	EXP 	Box: pos = array([0., 0.])
+279.8517 	EXP 	Box: autoDraw = True
+280.3986 	EXP 	New trial (rep=5, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+280.4008 	DATA 	Keypress: a
+280.4063 	EXP 	Box: autoDraw = False
+280.4063 	EXP 	FixCross: autoDraw = True
+281.5367 	EXP 	FixCross: autoDraw = False
+281.5367 	EXP 	FixCross: autoDraw = False
+281.5367 	EXP 	Box: pos = array([-0.6,  0. ])
+281.5367 	EXP 	Box: autoDraw = True
+281.9579 	EXP 	New trial (rep=5, index=2): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+281.9600 	DATA 	Keypress: a
+281.9665 	EXP 	Box: autoDraw = False
+281.9665 	EXP 	FixCross: autoDraw = True
+283.1092 	EXP 	FixCross: autoDraw = False
+283.1092 	EXP 	FixCross: autoDraw = False
+283.1092 	EXP 	Box: pos = array([0., 0.])
+283.1092 	EXP 	Box: autoDraw = True
+283.7814 	EXP 	New trial (rep=5, index=3): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+283.7835 	DATA 	Keypress: k
+283.7894 	EXP 	Box: autoDraw = False
+283.7894 	EXP 	FixCross: autoDraw = True
+284.9698 	EXP 	FixCross: autoDraw = False
+284.9698 	EXP 	FixCross: autoDraw = False
+284.9698 	EXP 	Box: pos = array([0.6, 0. ])
+284.9698 	EXP 	Box: autoDraw = True
+285.4498 	DATA 	Keypress: a
+285.4579 	EXP 	New trial (rep=5, index=4): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+285.4659 	EXP 	Box: autoDraw = False
+285.4659 	EXP 	FixCross: autoDraw = True
+286.5712 	EXP 	FixCross: autoDraw = False
+286.5712 	EXP 	FixCross: autoDraw = False
+286.5712 	EXP 	Box: pos = array([-0.6,  0. ])
+286.5712 	EXP 	Box: autoDraw = True
+287.1181 	EXP 	New trial (rep=5, index=5): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+287.1203 	DATA 	Keypress: k
+287.1260 	EXP 	Box: autoDraw = False
+287.1260 	EXP 	FixCross: autoDraw = True
+288.1609 	EXP 	FixCross: autoDraw = False
+288.1609 	EXP 	FixCross: autoDraw = False
+288.1609 	EXP 	Box: pos = array([0., 0.])
+288.1609 	EXP 	Box: autoDraw = True
+288.6775 	EXP 	New trial (rep=6, index=0): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+288.6796 	DATA 	Keypress: a
+288.6861 	EXP 	Box: autoDraw = False
+288.6861 	EXP 	FixCross: autoDraw = True
+289.7748 	EXP 	FixCross: autoDraw = False
+289.7748 	EXP 	FixCross: autoDraw = False
+289.7748 	EXP 	Box: pos = array([-0.6,  0. ])
+289.7748 	EXP 	Box: autoDraw = True
+290.2379 	EXP 	New trial (rep=6, index=1): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+290.2410 	DATA 	Keypress: a
+290.2459 	EXP 	Box: autoDraw = False
+290.2459 	EXP 	FixCross: autoDraw = True
+291.3930 	EXP 	FixCross: autoDraw = False
+291.3930 	EXP 	FixCross: autoDraw = False
+291.3930 	EXP 	Box: pos = array([0., 0.])
+291.3930 	EXP 	Box: autoDraw = True
+292.0142 	EXP 	New trial (rep=6, index=2): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+292.0163 	DATA 	Keypress: k
+292.0188 	EXP 	Box: autoDraw = False
+292.0188 	EXP 	FixCross: autoDraw = True
+293.0784 	EXP 	FixCross: autoDraw = False
+293.0784 	EXP 	FixCross: autoDraw = False
+293.0784 	EXP 	Box: pos = array([0., 0.])
+293.0784 	EXP 	Box: autoDraw = True
+293.5626 	DATA 	Keypress: k
+293.5706 	EXP 	New trial (rep=6, index=3): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+293.5788 	EXP 	Box: autoDraw = False
+293.5788 	EXP 	FixCross: autoDraw = True
+294.6464 	EXP 	FixCross: autoDraw = False
+294.6464 	EXP 	FixCross: autoDraw = False
+294.6464 	EXP 	Box: pos = array([-0.6,  0. ])
+294.6464 	EXP 	Box: autoDraw = True
+295.3391 	DATA 	Keypress: k
+295.3480 	EXP 	New trial (rep=6, index=4): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+295.3558 	EXP 	Box: autoDraw = False
+295.3558 	EXP 	FixCross: autoDraw = True
+296.4779 	EXP 	FixCross: autoDraw = False
+296.4779 	EXP 	FixCross: autoDraw = False
+296.4779 	EXP 	Box: pos = array([0.6, 0. ])
+296.4779 	EXP 	Box: autoDraw = True
+297.3870 	DATA 	Keypress: k
+297.3959 	EXP 	New trial (rep=6, index=5): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+297.4038 	EXP 	Box: autoDraw = False
+297.4038 	EXP 	FixCross: autoDraw = True
+298.4504 	EXP 	FixCross: autoDraw = False
+298.4504 	EXP 	FixCross: autoDraw = False
+298.4504 	EXP 	Box: pos = array([-0.6,  0. ])
+298.4504 	EXP 	Box: autoDraw = True
+298.9093 	EXP 	New trial (rep=7, index=0): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+298.9114 	DATA 	Keypress: a
+298.9178 	EXP 	Box: autoDraw = False
+298.9178 	EXP 	FixCross: autoDraw = True
+300.0274 	EXP 	FixCross: autoDraw = False
+300.0274 	EXP 	FixCross: autoDraw = False
+300.0274 	EXP 	Box: pos = array([0., 0.])
+300.0274 	EXP 	Box: autoDraw = True
+300.8860 	EXP 	New trial (rep=7, index=1): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+300.8881 	DATA 	Keypress: a
+300.8905 	EXP 	Box: autoDraw = False
+300.8905 	EXP 	FixCross: autoDraw = True
+302.0710 	EXP 	FixCross: autoDraw = False
+302.0710 	EXP 	FixCross: autoDraw = False
+302.0710 	EXP 	Box: pos = array([0.6, 0. ])
+302.0710 	EXP 	Box: autoDraw = True
+302.5635 	DATA 	Keypress: a
+302.5714 	EXP 	New trial (rep=7, index=2): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+302.5758 	EXP 	Box: autoDraw = False
+302.5758 	EXP 	FixCross: autoDraw = True
+303.7853 	EXP 	FixCross: autoDraw = False
+303.7853 	EXP 	FixCross: autoDraw = False
+303.7853 	EXP 	Box: pos = array([-0.6,  0. ])
+303.7853 	EXP 	Box: autoDraw = True
+304.2938 	EXP 	New trial (rep=7, index=3): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+304.2959 	DATA 	Keypress: k
+304.3028 	EXP 	Box: autoDraw = False
+304.3028 	EXP 	FixCross: autoDraw = True
+305.3452 	EXP 	FixCross: autoDraw = False
+305.3452 	EXP 	FixCross: autoDraw = False
+305.3452 	EXP 	Box: pos = array([0.6, 0. ])
+305.3452 	EXP 	Box: autoDraw = True
+306.4303 	EXP 	New trial (rep=7, index=4): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+306.4325 	DATA 	Keypress: k
+306.4381 	EXP 	Box: autoDraw = False
+306.4381 	EXP 	FixCross: autoDraw = True
+307.5184 	EXP 	FixCross: autoDraw = False
+307.5184 	EXP 	FixCross: autoDraw = False
+307.5184 	EXP 	Box: pos = array([0., 0.])
+307.5184 	EXP 	Box: autoDraw = True
+307.8109 	EXP 	New trial (rep=7, index=5): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+307.8137 	DATA 	Keypress: a
+307.8187 	EXP 	Box: autoDraw = False
+307.8187 	EXP 	FixCross: autoDraw = True
+308.8657 	EXP 	FixCross: autoDraw = False
+308.8657 	EXP 	FixCross: autoDraw = False
+308.8657 	EXP 	Box: pos = array([0.6, 0. ])
+308.8657 	EXP 	Box: autoDraw = True
+310.1634 	DATA 	Keypress: k
+310.1922 	EXP 	Box: autoDraw = False
+310.1922 	EXP 	text_2: text = 'Biraz mola verebilirsiniz. \n\n 45 adet doğru cevap verdiniz. \n Ortalama cevap süreniz 1.3e+03ms.\n\n Devam etmek için BOŞLUK tuşuna basınız.'
+310.1922 	EXP 	text_2: autoDraw = True
+316.1325 	DATA 	Keypress: space
+316.1474 	EXP 	Imported SimonTask.xlsx as conditions, 6 conditions, 6 params
+316.1477 	EXP 	Created sequence: fullRandom, trialTypes=6, nReps=8, seed=None
+316.1480 	EXP 	New trial (rep=0, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+316.1570 	EXP 	text_2: autoDraw = False
+316.1570 	EXP 	FixCross: autoDraw = True
+317.2623 	EXP 	FixCross: autoDraw = False
+317.2623 	EXP 	FixCross: autoDraw = False
+317.2623 	EXP 	Box: pos = array([0., 0.])
+317.2623 	EXP 	Box: autoDraw = True
+318.0127 	DATA 	Keypress: k
+318.0219 	EXP 	New trial (rep=0, index=1): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+318.0295 	EXP 	Box: autoDraw = False
+318.0295 	EXP 	FixCross: autoDraw = True
+319.1349 	EXP 	FixCross: autoDraw = False
+319.1349 	EXP 	FixCross: autoDraw = False
+319.1349 	EXP 	Box: pos = array([0., 0.])
+319.1349 	EXP 	Box: autoDraw = True
+319.5479 	EXP 	New trial (rep=0, index=2): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+319.5500 	DATA 	Keypress: a
+319.5564 	EXP 	Box: autoDraw = False
+319.5564 	EXP 	FixCross: autoDraw = True
+320.6659 	EXP 	FixCross: autoDraw = False
+320.6659 	EXP 	FixCross: autoDraw = False
+320.6659 	EXP 	Box: pos = array([0.6, 0. ])
+320.6659 	EXP 	Box: autoDraw = True
+321.3575 	DATA 	Keypress: k
+321.3664 	EXP 	New trial (rep=0, index=3): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+321.3751 	EXP 	Box: autoDraw = False
+321.3751 	EXP 	FixCross: autoDraw = True
+322.4095 	EXP 	FixCross: autoDraw = False
+322.4095 	EXP 	FixCross: autoDraw = False
+322.4095 	EXP 	Box: pos = array([0., 0.])
+322.4095 	EXP 	Box: autoDraw = True
+322.7597 	EXP 	New trial (rep=0, index=4): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+322.7617 	DATA 	Keypress: a
+322.7682 	EXP 	Box: autoDraw = False
+322.7682 	EXP 	FixCross: autoDraw = True
+323.8276 	EXP 	FixCross: autoDraw = False
+323.8276 	EXP 	FixCross: autoDraw = False
+323.8276 	EXP 	Box: pos = array([0.6, 0. ])
+323.8276 	EXP 	Box: autoDraw = True
+324.4621 	DATA 	Keypress: a
+324.4700 	EXP 	New trial (rep=0, index=5): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+324.4783 	EXP 	Box: autoDraw = False
+324.4783 	EXP 	FixCross: autoDraw = True
+325.5878 	EXP 	FixCross: autoDraw = False
+325.5878 	EXP 	FixCross: autoDraw = False
+325.5878 	EXP 	Box: pos = array([0., 0.])
+325.5878 	EXP 	Box: autoDraw = True
+326.1465 	EXP 	New trial (rep=1, index=0): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+326.1485 	DATA 	Keypress: k
+326.1548 	EXP 	Box: autoDraw = False
+326.1548 	EXP 	FixCross: autoDraw = True
+327.2143 	EXP 	FixCross: autoDraw = False
+327.2143 	EXP 	FixCross: autoDraw = False
+327.2143 	EXP 	Box: pos = array([0.6, 0. ])
+327.2143 	EXP 	Box: autoDraw = True
+327.9821 	EXP 	New trial (rep=1, index=1): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+327.9843 	DATA 	Keypress: k
+327.9904 	EXP 	Box: autoDraw = False
+327.9904 	EXP 	FixCross: autoDraw = True
+329.1374 	EXP 	FixCross: autoDraw = False
+329.1374 	EXP 	FixCross: autoDraw = False
+329.1374 	EXP 	Box: pos = array([0., 0.])
+329.1374 	EXP 	Box: autoDraw = True
+329.6966 	DATA 	Keypress: k
+330.5057 	EXP 	New trial (rep=1, index=2): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+330.5078 	DATA 	Keypress: k
+330.5139 	EXP 	Box: autoDraw = False
+330.5139 	EXP 	FixCross: autoDraw = True
+331.6273 	EXP 	FixCross: autoDraw = False
+331.6273 	EXP 	FixCross: autoDraw = False
+331.6273 	EXP 	Box: pos = array([0., 0.])
+331.6273 	EXP 	Box: autoDraw = True
+331.9943 	EXP 	New trial (rep=1, index=3): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+331.9965 	DATA 	Keypress: a
+332.0029 	EXP 	Box: autoDraw = False
+332.0029 	EXP 	FixCross: autoDraw = True
+333.1372 	EXP 	FixCross: autoDraw = False
+333.1372 	EXP 	FixCross: autoDraw = False
+333.1372 	EXP 	Box: pos = array([0.6, 0. ])
+333.1372 	EXP 	Box: autoDraw = True
+333.8218 	EXP 	New trial (rep=1, index=4): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+333.8238 	DATA 	Keypress: a
+333.8300 	EXP 	Box: autoDraw = False
+333.8300 	EXP 	FixCross: autoDraw = True
+334.8515 	EXP 	FixCross: autoDraw = False
+334.8515 	EXP 	FixCross: autoDraw = False
+334.8515 	EXP 	Box: pos = array([-0.6,  0. ])
+334.8515 	EXP 	Box: autoDraw = True
+335.2441 	EXP 	New trial (rep=1, index=5): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+335.2461 	DATA 	Keypress: a
+335.2519 	EXP 	Box: autoDraw = False
+335.2519 	EXP 	FixCross: autoDraw = True
+336.3239 	EXP 	FixCross: autoDraw = False
+336.3239 	EXP 	FixCross: autoDraw = False
+336.3239 	EXP 	Box: pos = array([-0.6,  0. ])
+336.3239 	EXP 	Box: autoDraw = True
+336.7074 	EXP 	New trial (rep=2, index=0): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+336.7096 	DATA 	Keypress: a
+336.7163 	EXP 	Box: autoDraw = False
+336.7163 	EXP 	FixCross: autoDraw = True
+337.8005 	EXP 	FixCross: autoDraw = False
+337.8005 	EXP 	FixCross: autoDraw = False
+337.8005 	EXP 	Box: pos = array([0., 0.])
+337.8005 	EXP 	Box: autoDraw = True
+338.2218 	EXP 	New trial (rep=2, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+338.2238 	DATA 	Keypress: k
+338.2303 	EXP 	Box: autoDraw = False
+338.2303 	EXP 	FixCross: autoDraw = True
+339.4735 	EXP 	FixCross: autoDraw = False
+339.4735 	EXP 	FixCross: autoDraw = False
+339.4735 	EXP 	Box: pos = array([-0.6,  0. ])
+339.4735 	EXP 	Box: autoDraw = True
+340.1402 	EXP 	New trial (rep=2, index=2): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+340.1423 	DATA 	Keypress: a
+340.1489 	EXP 	Box: autoDraw = False
+340.1489 	EXP 	FixCross: autoDraw = True
+341.2000 	EXP 	FixCross: autoDraw = False
+341.2000 	EXP 	FixCross: autoDraw = False
+341.2000 	EXP 	Box: pos = array([-0.6,  0. ])
+341.2000 	EXP 	Box: autoDraw = True
+341.7926 	DATA 	Keypress: k
+341.8006 	EXP 	New trial (rep=2, index=3): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+341.8089 	EXP 	Box: autoDraw = False
+341.8089 	EXP 	FixCross: autoDraw = True
+342.8809 	EXP 	FixCross: autoDraw = False
+342.8809 	EXP 	FixCross: autoDraw = False
+342.8809 	EXP 	Box: pos = array([0.6, 0. ])
+342.8809 	EXP 	Box: autoDraw = True
+343.3519 	DATA 	Keypress: a
+343.3610 	EXP 	New trial (rep=2, index=4): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+343.3689 	EXP 	Box: autoDraw = False
+343.3689 	EXP 	FixCross: autoDraw = True
+344.4826 	EXP 	FixCross: autoDraw = False
+344.4826 	EXP 	FixCross: autoDraw = False
+344.4826 	EXP 	Box: pos = array([0.6, 0. ])
+344.4826 	EXP 	Box: autoDraw = True
+345.2504 	DATA 	Keypress: k
+345.2593 	EXP 	New trial (rep=2, index=5): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+345.2670 	EXP 	Box: autoDraw = False
+345.2670 	EXP 	FixCross: autoDraw = True
+346.3766 	EXP 	FixCross: autoDraw = False
+346.3766 	EXP 	FixCross: autoDraw = False
+346.3766 	EXP 	Box: pos = array([0.6, 0. ])
+346.3766 	EXP 	Box: autoDraw = True
+346.9517 	EXP 	New trial (rep=3, index=0): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+346.9538 	DATA 	Keypress: k
+346.9605 	EXP 	Box: autoDraw = False
+346.9605 	EXP 	FixCross: autoDraw = True
+348.0447 	EXP 	FixCross: autoDraw = False
+348.0447 	EXP 	FixCross: autoDraw = False
+348.0447 	EXP 	Box: pos = array([0.6, 0. ])
+348.0447 	EXP 	Box: autoDraw = True
+348.5123 	EXP 	New trial (rep=3, index=1): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+348.5152 	DATA 	Keypress: a
+348.5206 	EXP 	Box: autoDraw = False
+348.5206 	EXP 	FixCross: autoDraw = True
+349.5547 	EXP 	FixCross: autoDraw = False
+349.5547 	EXP 	FixCross: autoDraw = False
+349.5547 	EXP 	Box: pos = array([0.6, 0. ])
+349.5547 	EXP 	Box: autoDraw = True
+350.4976 	DATA 	Keypress: k
+350.5055 	EXP 	New trial (rep=3, index=2): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+350.5142 	EXP 	Box: autoDraw = False
+350.5142 	EXP 	FixCross: autoDraw = True
+351.6153 	EXP 	FixCross: autoDraw = False
+351.6153 	EXP 	FixCross: autoDraw = False
+351.6153 	EXP 	Box: pos = array([-0.6,  0. ])
+351.6153 	EXP 	Box: autoDraw = True
+352.4580 	DATA 	Keypress: k
+352.4660 	EXP 	New trial (rep=3, index=3): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+352.4703 	EXP 	Box: autoDraw = False
+352.4703 	EXP 	FixCross: autoDraw = True
+353.5506 	EXP 	FixCross: autoDraw = False
+353.5506 	EXP 	FixCross: autoDraw = False
+353.5506 	EXP 	Box: pos = array([0.6, 0. ])
+353.5506 	EXP 	Box: autoDraw = True
+354.0184 	DATA 	Keypress: k
+354.0265 	EXP 	New trial (rep=3, index=4): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+354.0343 	EXP 	Box: autoDraw = False
+354.0343 	EXP 	FixCross: autoDraw = True
+355.1275 	EXP 	FixCross: autoDraw = False
+355.1275 	EXP 	FixCross: autoDraw = False
+355.1275 	EXP 	Box: pos = array([0.6, 0. ])
+355.1275 	EXP 	Box: autoDraw = True
+355.8287 	EXP 	New trial (rep=3, index=5): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+355.8308 	DATA 	Keypress: k
+355.8365 	EXP 	Box: autoDraw = False
+355.8365 	EXP 	FixCross: autoDraw = True
+356.9502 	EXP 	FixCross: autoDraw = False
+356.9502 	EXP 	FixCross: autoDraw = False
+356.9502 	EXP 	Box: pos = array([-0.6,  0. ])
+356.9502 	EXP 	Box: autoDraw = True
+357.5091 	EXP 	New trial (rep=4, index=0): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+357.5112 	DATA 	Keypress: k
+357.5175 	EXP 	Box: autoDraw = False
+357.5175 	EXP 	FixCross: autoDraw = True
+358.5770 	EXP 	FixCross: autoDraw = False
+358.5770 	EXP 	FixCross: autoDraw = False
+358.5770 	EXP 	Box: pos = array([-0.6,  0. ])
+358.5770 	EXP 	Box: autoDraw = True
+359.1445 	EXP 	New trial (rep=4, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+359.1465 	DATA 	Keypress: a
+359.1524 	EXP 	Box: autoDraw = False
+359.1524 	EXP 	FixCross: autoDraw = True
+360.3619 	EXP 	FixCross: autoDraw = False
+360.3619 	EXP 	FixCross: autoDraw = False
+360.3619 	EXP 	Box: pos = array([-0.6,  0. ])
+360.3619 	EXP 	Box: autoDraw = True
+360.7830 	EXP 	New trial (rep=4, index=2): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+360.7852 	DATA 	Keypress: a
+360.7916 	EXP 	Box: autoDraw = False
+360.7916 	EXP 	FixCross: autoDraw = True
+361.9303 	EXP 	FixCross: autoDraw = False
+361.9303 	EXP 	FixCross: autoDraw = False
+361.9303 	EXP 	Box: pos = array([-0.6,  0. ])
+361.9303 	EXP 	Box: autoDraw = True
+362.3354 	EXP 	New trial (rep=4, index=3): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+362.3375 	DATA 	Keypress: a
+362.3435 	EXP 	Box: autoDraw = False
+362.3435 	EXP 	FixCross: autoDraw = True
+363.4402 	EXP 	FixCross: autoDraw = False
+363.4402 	EXP 	FixCross: autoDraw = False
+363.4402 	EXP 	Box: pos = array([-0.6,  0. ])
+363.4402 	EXP 	Box: autoDraw = True
+364.3669 	EXP 	New trial (rep=4, index=4): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+364.3689 	DATA 	Keypress: k
+364.3748 	EXP 	Box: autoDraw = False
+364.3748 	EXP 	FixCross: autoDraw = True
+365.5090 	EXP 	FixCross: autoDraw = False
+365.5090 	EXP 	FixCross: autoDraw = False
+365.5090 	EXP 	Box: pos = array([0.6, 0. ])
+365.5090 	EXP 	Box: autoDraw = True
+366.2393 	EXP 	New trial (rep=4, index=5): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+366.2414 	DATA 	Keypress: a
+366.2475 	EXP 	Box: autoDraw = False
+366.2475 	EXP 	FixCross: autoDraw = True
+367.5112 	EXP 	FixCross: autoDraw = False
+367.5112 	EXP 	FixCross: autoDraw = False
+367.5112 	EXP 	Box: pos = array([-0.6,  0. ])
+367.5112 	EXP 	Box: autoDraw = True
+368.1618 	EXP 	New trial (rep=5, index=0): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+368.1639 	DATA 	Keypress: k
+368.1704 	EXP 	Box: autoDraw = False
+368.1704 	EXP 	FixCross: autoDraw = True
+369.2338 	EXP 	FixCross: autoDraw = False
+369.2338 	EXP 	FixCross: autoDraw = False
+369.2338 	EXP 	Box: pos = array([0., 0.])
+369.2338 	EXP 	Box: autoDraw = True
+369.9511 	EXP 	New trial (rep=5, index=1): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+369.9532 	DATA 	Keypress: a
+369.9597 	EXP 	Box: autoDraw = False
+369.9597 	EXP 	FixCross: autoDraw = True
+371.0190 	EXP 	FixCross: autoDraw = False
+371.0190 	EXP 	FixCross: autoDraw = False
+371.0190 	EXP 	Box: pos = array([0., 0.])
+371.0190 	EXP 	Box: autoDraw = True
+371.4525 	DATA 	Keypress: a
+371.4616 	EXP 	New trial (rep=5, index=2): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+371.4695 	EXP 	Box: autoDraw = False
+371.4695 	EXP 	FixCross: autoDraw = True
+372.5290 	EXP 	FixCross: autoDraw = False
+372.5290 	EXP 	FixCross: autoDraw = False
+372.5290 	EXP 	Box: pos = array([0., 0.])
+372.5290 	EXP 	Box: autoDraw = True
+373.1218 	EXP 	New trial (rep=5, index=3): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+373.1240 	DATA 	Keypress: k
+373.1298 	EXP 	Box: autoDraw = False
+373.1298 	EXP 	FixCross: autoDraw = True
+374.2683 	EXP 	FixCross: autoDraw = False
+374.2683 	EXP 	FixCross: autoDraw = False
+374.2683 	EXP 	Box: pos = array([0., 0.])
+374.2683 	EXP 	Box: autoDraw = True
+374.9575 	DATA 	Keypress: k
+374.9653 	EXP 	New trial (rep=5, index=4): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+374.9735 	EXP 	Box: autoDraw = False
+374.9735 	EXP 	FixCross: autoDraw = True
+376.1497 	EXP 	FixCross: autoDraw = False
+376.1497 	EXP 	FixCross: autoDraw = False
+376.1497 	EXP 	Box: pos = array([0., 0.])
+376.1497 	EXP 	Box: autoDraw = True
+376.6796 	EXP 	New trial (rep=5, index=5): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+376.6817 	DATA 	Keypress: a
+376.6877 	EXP 	Box: autoDraw = False
+376.6877 	EXP 	FixCross: autoDraw = True
+377.8182 	EXP 	FixCross: autoDraw = False
+377.8182 	EXP 	FixCross: autoDraw = False
+377.8182 	EXP 	Box: pos = array([0.6, 0. ])
+377.8182 	EXP 	Box: autoDraw = True
+378.4270 	EXP 	New trial (rep=6, index=0): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+378.4291 	DATA 	Keypress: a
+378.4354 	EXP 	Box: autoDraw = False
+378.4354 	EXP 	FixCross: autoDraw = True
+379.5575 	EXP 	FixCross: autoDraw = False
+379.5575 	EXP 	FixCross: autoDraw = False
+379.5575 	EXP 	Box: pos = array([-0.6,  0. ])
+379.5575 	EXP 	Box: autoDraw = True
+380.1374 	EXP 	New trial (rep=6, index=1): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+380.1395 	DATA 	Keypress: k
+380.1455 	EXP 	Box: autoDraw = False
+380.1455 	EXP 	FixCross: autoDraw = True
+381.2468 	EXP 	FixCross: autoDraw = False
+381.2468 	EXP 	FixCross: autoDraw = False
+381.2468 	EXP 	Box: pos = array([-0.6,  0. ])
+381.2468 	EXP 	Box: autoDraw = True
+381.7350 	DATA 	Keypress: a
+381.7428 	EXP 	New trial (rep=6, index=2): {'images': 'red_congruent', 'congruentcy': 1, 'corrAns': 'k', 'box_pos': 'right', 'box_color': 'red', 'box_x': 0.6}
+381.7473 	EXP 	Box: autoDraw = False
+381.7473 	EXP 	FixCross: autoDraw = True
+382.8274 	EXP 	FixCross: autoDraw = False
+382.8274 	EXP 	FixCross: autoDraw = False
+382.8274 	EXP 	Box: pos = array([0.6, 0. ])
+382.8274 	EXP 	Box: autoDraw = True
+383.5122 	EXP 	New trial (rep=6, index=3): {'images': 'blue_congruent', 'congruentcy': 1, 'corrAns': 'a', 'box_pos': 'left', 'box_color': 'blue', 'box_x': -0.6}
+383.5142 	DATA 	Keypress: k
+383.5200 	EXP 	Box: autoDraw = False
+383.5200 	EXP 	FixCross: autoDraw = True
+384.6210 	EXP 	FixCross: autoDraw = False
+384.6210 	EXP 	FixCross: autoDraw = False
+384.6210 	EXP 	Box: pos = array([-0.6,  0. ])
+384.6210 	EXP 	Box: autoDraw = True
+385.0467 	DATA 	Keypress: a
+385.0555 	EXP 	New trial (rep=6, index=4): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+385.0632 	EXP 	Box: autoDraw = False
+385.0632 	EXP 	FixCross: autoDraw = True
+386.1186 	EXP 	FixCross: autoDraw = False
+386.1186 	EXP 	FixCross: autoDraw = False
+386.1186 	EXP 	Box: pos = array([0.6, 0. ])
+386.1186 	EXP 	Box: autoDraw = True
+386.7859 	EXP 	New trial (rep=6, index=5): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+386.7880 	DATA 	Keypress: a
+386.7942 	EXP 	Box: autoDraw = False
+386.7942 	EXP 	FixCross: autoDraw = True
+387.8912 	EXP 	FixCross: autoDraw = False
+387.8912 	EXP 	FixCross: autoDraw = False
+387.8912 	EXP 	Box: pos = array([0., 0.])
+387.8912 	EXP 	Box: autoDraw = True
+388.3587 	DATA 	Keypress: k
+388.3668 	EXP 	New trial (rep=7, index=0): {'images': 'blue_incongruent', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'right', 'box_color': 'blue', 'box_x': 0.6}
+388.3749 	EXP 	Box: autoDraw = False
+388.3749 	EXP 	FixCross: autoDraw = True
+389.4678 	EXP 	FixCross: autoDraw = False
+389.4678 	EXP 	FixCross: autoDraw = False
+389.4678 	EXP 	Box: pos = array([0.6, 0. ])
+389.4678 	EXP 	Box: autoDraw = True
+389.9731 	EXP 	New trial (rep=7, index=1): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+389.9752 	DATA 	Keypress: a
+389.9810 	EXP 	Box: autoDraw = False
+389.9810 	EXP 	FixCross: autoDraw = True
+391.2196 	EXP 	FixCross: autoDraw = False
+391.2196 	EXP 	FixCross: autoDraw = False
+391.2196 	EXP 	Box: pos = array([-0.6,  0. ])
+391.2196 	EXP 	Box: autoDraw = True
+391.8125 	EXP 	New trial (rep=7, index=2): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+391.8145 	DATA 	Keypress: k
+391.8204 	EXP 	Box: autoDraw = False
+391.8204 	EXP 	FixCross: autoDraw = True
+392.9176 	EXP 	FixCross: autoDraw = False
+392.9176 	EXP 	FixCross: autoDraw = False
+392.9176 	EXP 	Box: pos = array([0., 0.])
+392.9176 	EXP 	Box: autoDraw = True
+393.4261 	EXP 	New trial (rep=7, index=3): {'images': 'blue_neutral', 'congruentcy': 0, 'corrAns': 'a', 'box_pos': 'middle', 'box_color': 'blue', 'box_x': 0}
+393.4282 	DATA 	Keypress: a
+393.4347 	EXP 	Box: autoDraw = False
+393.4347 	EXP 	FixCross: autoDraw = True
+394.6149 	EXP 	FixCross: autoDraw = False
+394.6149 	EXP 	FixCross: autoDraw = False
+394.6149 	EXP 	Box: pos = array([0., 0.])
+394.6149 	EXP 	Box: autoDraw = True
+395.3996 	EXP 	New trial (rep=7, index=4): {'images': 'red_incongruent', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'left', 'box_color': 'red', 'box_x': -0.6}
+395.4017 	DATA 	Keypress: a
+395.4074 	EXP 	Box: autoDraw = False
+395.4074 	EXP 	FixCross: autoDraw = True
+396.5753 	EXP 	FixCross: autoDraw = False
+396.5753 	EXP 	FixCross: autoDraw = False
+396.5753 	EXP 	Box: pos = array([-0.6,  0. ])
+396.5753 	EXP 	Box: autoDraw = True
+397.2260 	EXP 	New trial (rep=7, index=5): {'images': 'red_neutral', 'congruentcy': 0, 'corrAns': 'k', 'box_pos': 'middle', 'box_color': 'red', 'box_x': 0}
+397.2280 	DATA 	Keypress: k
+397.2345 	EXP 	Box: autoDraw = False
+397.2345 	EXP 	FixCross: autoDraw = True
+398.2773 	EXP 	FixCross: autoDraw = False
+398.2773 	EXP 	FixCross: autoDraw = False
+398.2773 	EXP 	Box: pos = array([0., 0.])
+398.2773 	EXP 	Box: autoDraw = True
+399.4496 	DATA 	Keypress: k
+399.4743 	EXP 	Box: autoDraw = False
+399.4743 	EXP 	text_2: text = 'Biraz mola verebilirsiniz. \n\n 48 adet doğru cevap verdiniz. \n Ortalama cevap süreniz 1.17e+03ms.\n\n Devam etmek için BOŞLUK tuşuna basınız.'
+399.4743 	EXP 	text_2: autoDraw = True
+404.0818 	DATA 	Keypress: space
+404.0874 	EXP 	text_2: autoDraw = False
+404.0874 	EXP 	text: autoDraw = True
+410.5693 	DATA 	Keypress: space
+410.5818 	EXP 	text: autoDraw = False
+410.6371 	EXP 	window1: mouseVisible = True
