@@ -284,16 +284,16 @@ legend("topright",
        col = alpha(c(pallete1[1],pallete1[3],pallete1[5]),0.6),
        cex=0.7
 )
-words_fixs$wordCode <- NA
-for(i in 1:nrow(words_fixs)){
-  if((words_fixs$wordN[i] - words_fixs$boundaryN[i]) == -1 ){
-    words_fixs$wordCode[i] <- "n-1"
+fixation_time_measures$wordCode <- NA
+for(i in 1:nrow(fixation_time_measures)){
+  if((fixation_time_measures$wordN[i] - fixation_time_measures$boundaryN[i]) == -1 ){
+    fixation_time_measures$wordCode[i] <- "n-1"
   }else{
-    if((words_fixs$wordN[i] - words_fixs$boundaryN[i]) == 1 ){
-      words_fixs$wordCode[i] <- "n + 1"
+    if((fixation_time_measures$wordN[i] - fixation_time_measures$boundaryN[i]) == 1 ){
+      fixation_time_measures$wordCode[i] <- "n + 1"
     }else{
-      if((words_fixs$wordN[i] - words_fixs$boundaryN[i]) == 0){
-        words_fixs$wordCode[i] <- "n"
+      if((fixation_time_measures$wordN[i] - fixation_time_measures$boundaryN[i]) == 0){
+        fixation_time_measures$wordCode[i] <- "n"
       }
     }
   }
@@ -301,16 +301,21 @@ for(i in 1:nrow(words_fixs)){
 
 
 
-x <- words_fixs %>% group_by(target_changed,wordCode) %>% summarise(meanffd = mean(ffd,na.rm = TRUE),
+x <- fixation_time_measures %>% group_by(target_changed,wordCode) %>% summarise(meanffd = mean(ffd,na.rm = TRUE),
                                                                     meangd = mean(gd,na.rm = TRUE),
-                                                                    meansfd = mean(sfd,na.rm = TRUE))
-words_fixs$gd <- as.numeric(words_fixs$gd)
-words_fixs$sfd <- as.numeric(words_fixs$sfd)
-words_fixs$ffd <- as.numeric(words_fixs$ffd)
+                                                                    meansfd = mean(sfd,na.rm = TRUE),
+                                                                    meantvt = mean(tvt,na.rm = TRUE),
+                                                                    meangpt = mean(gopast,na.rm = TRUE))
+                                                                    
+fixation_time_measures$gd <- as.numeric(fixation_time_measures$gd)
+fixation_time_measures$sfd <- as.numeric(fixation_time_measures$sfd)
+fixation_time_measures$ffd <- as.numeric(fixation_time_measures$ffd)
+fixation_time_measures$tvt <- as.numeric(fixation_time_measures$tvt)
+fixation_time_measures$gopast <- as.numeric(fixation_time_measures$gopast)
 
 x <- na.omit(x)
 
-ffdplot <- ggplot(data = x, aes(x = wordCode, y = meanffd, fill = target_changed))+
+ffdplot <- ggplot(data = x, aes(x = target_changed, y = meanffd, fill = wordCode))+
   geom_bar(position="dodge", stat="identity",width = 0.6) + 
   ggtitle("First fixation duration")+
   theme(text=element_text(size=12,
@@ -321,11 +326,11 @@ ffdplot <- ggplot(data = x, aes(x = wordCode, y = meanffd, fill = target_changed
         panel.background = element_rect(colour = "black", size=1.3, fill=NA),
         legend.position  = "none") +
   coord_cartesian(ylim = range(200:250))+
-  scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+  #scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
   xlab("Target Position") +
   ylab("Mean fixation time") + 
-  scale_fill_manual(values = c("#333333","#666666" ,"#999999")) +
-  facet_grid( target_changed ~ .)
+  scale_fill_manual(values = pallete1[2:5]) +
+  facet_grid( wordCode ~ .)
 
 # sfdplot <- ggplot(data = x, aes(x = wordCode, y = meansfd, fill = target_changed))+
 #   geom_bar(position="dodge", stat="identity",width = 0.6) + 
@@ -344,7 +349,7 @@ ffdplot <- ggplot(data = x, aes(x = wordCode, y = meanffd, fill = target_changed
 #   scale_fill_manual(values = c("#333333","#666666" ,"#999999")) +
 #   facet_grid( target_changed ~ .)
 
-gdplot <- ggplot(data = x, aes(x = wordCode, y = meangd, fill = target_changed))+
+gdplot <- ggplot(data = x, aes(x = target_changed, y = meangd, fill = wordCode))+
   geom_bar(position="dodge", stat="identity",width = 0.6) + 
   ggtitle("Gaze duration")+
   theme(text=element_text(size=12,
@@ -354,13 +359,47 @@ gdplot <- ggplot(data = x, aes(x = wordCode, y = meangd, fill = target_changed))
         axis.title = element_text(size = 10),
         panel.background = element_rect(colour = "black", size=1.3, fill=NA)) +
   coord_cartesian(ylim = range(200:330))+
-  scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+  #scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
   xlab("Target Position") +
   ylab("Mean fixation time") + 
-  scale_fill_manual(name="Display Condition", values = c("#333333","#666666" ,"#999999"),
+  scale_fill_manual(name="Display Condition", values = pallete1[2:5],
                     labels = c("ben", "bir", "identical"))+
-  facet_grid( target_changed ~ .)
+  facet_grid( wordCode ~ .)
 
-ggarrange(ffdplot, gdplot + rremove("x.text"), 
-          labels = c("A", "B"),
-          ncol = 2, nrow = 1, legend= "none")
+tvtplot <- ggplot(data = x, aes(x = target_changed, y = meantvt, fill = wordCode))+
+  geom_bar(position="dodge", stat="identity",width = 0.6) + 
+  ggtitle("Total view time")+
+  theme(text=element_text(size=12,
+                          family="Arial"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title = element_text(size = 10),
+        panel.background = element_rect(colour = "black", size=1.3, fill=NA)) +
+  coord_cartesian(ylim = range(200:400))+
+  #scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+  xlab("Target Position") +
+  ylab("Mean fixation time") + 
+  scale_fill_manual(name="Display Condition", values = pallete1[2:5],
+                    labels = c("ben", "bir", "identical"))+
+  facet_grid( wordCode ~ .)
+
+gptplot <- ggplot(data = x, aes(x = target_changed, y = meangpt, fill = wordCode))+
+  geom_bar(position="dodge", stat="identity",width = 0.6) + 
+  ggtitle("Go-Past time")+
+  theme(text=element_text(size=12,
+                          family="Arial"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title = element_text(size = 10),
+        panel.background = element_rect(colour = "black", size=1.3, fill=NA)) +
+  coord_cartesian(ylim = range(200:400))+
+  #scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+  xlab("Target Position") +
+  ylab("Mean fixation time") + 
+  scale_fill_manual(name="Display Condition", values = pallete1[2:5],
+                    labels = c("ben", "bir", "identical"))+
+  facet_grid( wordCode ~ .)
+
+awesome_figure <- ggarrange(ffdplot, gdplot,gptplot,tvtplot + rremove("x.text"), 
+                            labels = c("A", "B","C","D"),
+                            ncol = 4, nrow = 1, legend= "none")
