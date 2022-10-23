@@ -5,6 +5,7 @@ library(tidyverse)
 library(MASS)
 library(lme4)
 library(readr)
+library(ggpubr)
 # Functions
 
 source("function/Code.R")
@@ -80,7 +81,7 @@ raw_data2 <- raw_data2[ , -which(names(raw_data2) %in% c("blink1","blink2","blin
 save(raw_data, file= "Data/raw_data.Rda")
 
 save(raw_data2, file= "Data/raw_data2.Rda")
-load(file= "Data/raw_data2.Rda")
+
 save(raw_words, file= "Data/raw_words.Rda")
 
 save(gopast, file= "Data/gopast.Rda")
@@ -283,8 +284,83 @@ legend("topright",
        col = alpha(c(pallete1[1],pallete1[3],pallete1[5]),0.6),
        cex=0.7
 )
+words_fixs$wordCode <- NA
+for(i in 1:nrow(words_fixs)){
+  if((words_fixs$wordN[i] - words_fixs$boundaryN[i]) == -1 ){
+    words_fixs$wordCode[i] <- "n-1"
+  }else{
+    if((words_fixs$wordN[i] - words_fixs$boundaryN[i]) == 1 ){
+      words_fixs$wordCode[i] <- "n + 1"
+    }else{
+      if((words_fixs$wordN[i] - words_fixs$boundaryN[i]) == 0){
+        words_fixs$wordCode[i] <- "n"
+      }
+    }
+  }
+}
 
 
 
+x <- words_fixs %>% group_by(target_changed,wordCode) %>% summarise(meanffd = mean(ffd,na.rm = TRUE),
+                                                                    meangd = mean(gd,na.rm = TRUE),
+                                                                    meansfd = mean(sfd,na.rm = TRUE))
+words_fixs$gd <- as.numeric(words_fixs$gd)
+words_fixs$sfd <- as.numeric(words_fixs$sfd)
+words_fixs$ffd <- as.numeric(words_fixs$ffd)
 
+x <- na.omit(x)
 
+ffdplot <- ggplot(data = x, aes(x = wordCode, y = meanffd, fill = target_changed))+
+  geom_bar(position="dodge", stat="identity",width = 0.6) + 
+  ggtitle("First fixation duration")+
+  theme(text=element_text(size=12,
+                          family="Arial"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title = element_text(size = 10),
+        panel.background = element_rect(colour = "black", size=1.3, fill=NA),
+        legend.position  = "none") +
+  coord_cartesian(ylim = range(200:250))+
+  scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+  xlab("Target Position") +
+  ylab("Mean fixation time") + 
+  scale_fill_manual(values = c("#333333","#666666" ,"#999999")) +
+  facet_grid( target_changed ~ .)
+
+# sfdplot <- ggplot(data = x, aes(x = wordCode, y = meansfd, fill = target_changed))+
+#   geom_bar(position="dodge", stat="identity",width = 0.6) + 
+#   ggtitle("Second fixation duration")+
+#   theme(text=element_text(size=12,
+#                           family="Arial"),
+#         panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank(),
+#         axis.title = element_text(size = 10),
+#         panel.background = element_rect(colour = "black", size=1.3, fill=NA),
+#         legend.position  = "none")+
+#   coord_cartesian(ylim = range(200:250))+
+#   scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+#   xlab("Target Position") +
+#   ylab("Mean fixation time") + 
+#   scale_fill_manual(values = c("#333333","#666666" ,"#999999")) +
+#   facet_grid( target_changed ~ .)
+
+gdplot <- ggplot(data = x, aes(x = wordCode, y = meangd, fill = target_changed))+
+  geom_bar(position="dodge", stat="identity",width = 0.6) + 
+  ggtitle("Gaze duration")+
+  theme(text=element_text(size=12,
+                          family="Arial"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title = element_text(size = 10),
+        panel.background = element_rect(colour = "black", size=1.3, fill=NA)) +
+  coord_cartesian(ylim = range(200:330))+
+  scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
+  xlab("Target Position") +
+  ylab("Mean fixation time") + 
+  scale_fill_manual(name="Display Condition", values = c("#333333","#666666" ,"#999999"),
+                    labels = c("ben", "bir", "identical"))+
+  facet_grid( target_changed ~ .)
+
+ggarrange(ffdplot, gdplot + rremove("x.text"), 
+          labels = c("A", "B"),
+          ncol = 2, nrow = 1, legend= "none")
