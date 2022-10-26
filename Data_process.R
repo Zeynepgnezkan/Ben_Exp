@@ -76,22 +76,24 @@ for(i in 1:nrow(raw_data2)){
 }#end
 raw_data2 <- raw_data2[ , -which(names(raw_data2) %in% c("blink1","blink2","blink3","min1","min2","min3"))]
 
-## saving and writing raw datas
-
-save(raw_data, file= "Data/raw_data.Rda")
-
-save(raw_data2, file= "Data/raw_data2.Rda")
-
-save(raw_words, file= "Data/raw_words.Rda")
-
-save(gopast, file= "Data/gopast.Rda")
-
-save(tvt, file= "Data/tvt.Rda")
-
-save(first_pass, file= "Data/first_pass.Rda")
-
-save(blink_data, file= "Data/blink_data.Rda")
-
+raw_data2$delete <- NA
+for(i in 1:nrow(raw_data2)){
+  if(raw_data2$boundaryN[i] == raw_data2$wordN[i] && !is.na(raw_data2$blink[i])){
+    raw_data2$delete[i] <- 1
+  }else{
+    if(raw_data2$boundaryN[i]+1 == raw_data2$wordN[i] && !is.na(raw_data2$blink[i])){
+      if(raw_data2$blink[i] == "before"){
+      raw_data2$delete[i] <- 1
+      }
+    }else{
+      if(raw_data2$boundaryN[i]-1 == raw_data2$wordN[i] && !is.na(raw_data2$blink[i])){
+        if(raw_data2$blink[i] == "after"){
+          raw_data2$delete[i] <- 1
+        }
+      }
+    }
+  }
+}
 
 # Adding skipping
 
@@ -104,10 +106,6 @@ for(i in 1:nrow(words_fixs)){
     words_fixs$skipping[i] <- 'FALSE'
   }
 }
-
-
-save(words_fixs, file= "Data/words_fixs.Rda")
-
 
 # Condition Added
 
@@ -141,9 +139,65 @@ mycontrast <- zapsmall(t(ginv(mycontrast)))
 colnames(mycontrast) = mycontrastNames
 contrasts(fixation_time_measures$target_changed) = mycontrast
 
+
+
+## saving and writing raw datas
+
+save(raw_data, file= "Data/raw_data.Rda")
+
+save(raw_data2, file= "Data/raw_data2.Rda")
+
+save(raw_words, file= "Data/raw_words.Rda")
+
+save(gopast, file= "Data/gopast.Rda")
+
+save(tvt, file= "Data/tvt.Rda")
+
+save(first_pass, file= "Data/first_pass.Rda")
+
+save(blink_data, file= "Data/blink_data.Rda")
+
 save(fixation_time_measures, file= "Data/fixation_time_measures.Rda")
 
 write.csv(fixation_time_measures, "Data/fixation_time_measures.csv")
+
+save(words_fixs, file= "Data/words_fixs.Rda")
+
+# Extract display latency and blinks 
+
+### these deletion criteria are purely my attempts. You can delete and change
+
+y <- merge(x = fixation_time_measures, y = raw_data, by = c("sub","item"), all.x=TRUE)
+rateaccuracy <- y %>% group_by(sub)%>% summarise(accuracy = mean(accuracy,na.rm=TRUE))
+
+DCLate <- subset(raw_data, raw_data$Display_lat < -100)
+DCLate <- subset(DCLate, DCLate$target_changed != "identical")
+DCLate <- DCLate %>% group_by(sub,item) %>% summarise()
+
+DCLate1 <- subset(raw_data, raw_data$Display_lat > 5)
+DCLate1 <- subset(DCLate1, DCLate1$target_changed != "identical")
+DCLate1 <- DCLate %>% group_by(sub,item) %>% summarise()
+
+DCLate2 <- subset(raw_data, raw_data$Display_time > 10)
+DCLate2 <- subset(DCLate2, DCLate2$target_changed != "identical")
+DCLate2 <- DCLate2 %>% group_by(sub,item) %>% summarise()
+
+blink <- subset(raw_data2,raw_data2$delete == 1)
+blink <- blink %>% group_by(sub,item) %>% summarise()
+
+sentencesskips <- fixation_time_measures %>% group_by(sub,item) %>% mutate(skip = as.numeric(skipping)-1) %>% summarise(rate = mean(skip,na.rm=TRUE))
+sentencesskips <- subset(sentencesskips, rate > 0.7)
+deleted <- rbind(DCLate,DCLate1,DCLate2,blink,sentencesskips)
+deleted$delete <- 1
+
+
+fixation_time_measures_withdelete <- left_join(fixation_time_measures,deleted, by=c("sub","item"))
+fixation_time_measures_withdelete <- subset(fixation_time_measures_withdelete, is.na(fixation_time_measures_withdelete$delete))
+save(fixation_time_measures_withdelete, file= "Data/fixation_time_measures_withdelete.Rda")
+
+# Skipping rates
+
+rateskip <- fixation_time_measures %>% filter(wordN == boundaryN) %>% group_by(target_changed)%>% mutate(skip = as.numeric(skipping)-1) %>% summarise(rate = mean(skip,na.rm=TRUE))
 
 #### ANALYSIS ####
 
@@ -207,6 +261,8 @@ summary(lm_tvt1)
 lm_gd1m <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN - 1), log(gd) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gd1m)
 
+lm_skip1m <- glmer(data = fixation_time_measures %>% filter(wordN == boundaryN - 1), skipping ~ target_changed * scale(inhibition_score) + (1|sub), family = binomial(link = "logit")) 
+summary(lm_skip1m)
 
 ##### Data Visualization ######
 
@@ -246,44 +302,9 @@ ggplot(data = fixation_time_measures %>% filter(wordN == boundaryN), aes(x= log(
   scale_fill_manual(values=pallete1[2:4])+
   geom_boxplot(width = .1, outlier.shape = NA)
 
-# Skipping 
 
-rate <- fixation_time_measures %>% filter(wordN == boundaryN) %>% group_by(sub)%>% count(skipping) %>% mutate(rate = (n/245)*100)
-ratem1 <- fixation_time_measures %>% filter(wordN == boundaryN-1) %>% group_by(sub)%>% count(skipping) %>% mutate(rate = (n/245)*100)
-rate1 <- fixation_time_measures %>% filter(wordN == boundaryN+1) %>% group_by(sub)%>% count(skipping) %>% mutate(rate = (n/245)*100)
+# Fixation plots
 
-skiprate <- subset(rate,skipping == TRUE)
-skipratem1 <- subset(ratem1,skipping == TRUE)
-skiprate1 <- subset(rate1,skipping == TRUE)
-
-ggplot(data = rate, aes(x=sub,y=rate,fill=skipping)) + 
-  geom_bar(position="dodge", stat="identity",width = 0.6)+
-  theme_classic()+
-  scale_fill_manual(values=pallete1[1:2])
-  
-
-plot(x=scale(inhibition$inhibition_score),y=skiprate$rate,
-     main = "Skipping rate and Inhibiton scores",
-     xlab = "Scaled Inhibition scores",
-     ylab = "Skipping rate",
-     ylim = range(0,100),
-     col = alpha(pallete1[1],0.6),
-     pch = 16,
-     cex=1.2)
-points(x=scale(inhibition$inhibition_score),y=skipratem1$rate,
-     col = alpha(pallete1[3],0.6),
-     pch = 16,
-     cex=1.2)
-points(x=scale(inhibition$inhibition_score),y=skiprate1$rate,
-       col = alpha(pallete1[5],0.6),
-       pch = 16,
-       cex=1.2)
-legend("topright", 
-       pch = 16, 
-       c("N", "N-1","N+1"), 
-       col = alpha(c(pallete1[1],pallete1[3],pallete1[5]),0.6),
-       cex=0.7
-)
 fixation_time_measures$wordCode <- NA
 for(i in 1:nrow(fixation_time_measures)){
   if((fixation_time_measures$wordN[i] - fixation_time_measures$boundaryN[i]) == -1 ){
@@ -299,6 +320,12 @@ for(i in 1:nrow(fixation_time_measures)){
   }
 }
 
+fixation_time_measures$gd <- as.numeric(fixation_time_measures$gd)
+fixation_time_measures$sfd <- as.numeric(fixation_time_measures$sfd)
+fixation_time_measures$ffd <- as.numeric(fixation_time_measures$ffd)
+fixation_time_measures$tvt <- as.numeric(fixation_time_measures$tvt)
+fixation_time_measures$gopast <- as.numeric(fixation_time_measures$gopast)
+x <- na.omit(x)
 
 
 x <- fixation_time_measures %>% group_by(target_changed,wordCode) %>% summarise(meanffd = mean(ffd,na.rm = TRUE),
@@ -307,13 +334,6 @@ x <- fixation_time_measures %>% group_by(target_changed,wordCode) %>% summarise(
                                                                     meantvt = mean(tvt,na.rm = TRUE),
                                                                     meangpt = mean(gopast,na.rm = TRUE))
                                                                     
-fixation_time_measures$gd <- as.numeric(fixation_time_measures$gd)
-fixation_time_measures$sfd <- as.numeric(fixation_time_measures$sfd)
-fixation_time_measures$ffd <- as.numeric(fixation_time_measures$ffd)
-fixation_time_measures$tvt <- as.numeric(fixation_time_measures$tvt)
-fixation_time_measures$gopast <- as.numeric(fixation_time_measures$gopast)
-
-x <- na.omit(x)
 
 ffdplot <- ggplot(data = x, aes(x = target_changed, y = meanffd, fill = wordCode))+
   geom_bar(position="dodge", stat="identity",width = 0.6) + 
@@ -331,23 +351,6 @@ ffdplot <- ggplot(data = x, aes(x = target_changed, y = meanffd, fill = wordCode
   ylab("Mean fixation time") + 
   scale_fill_manual(values = pallete1[2:5]) +
   facet_grid( wordCode ~ .)
-
-# sfdplot <- ggplot(data = x, aes(x = wordCode, y = meansfd, fill = target_changed))+
-#   geom_bar(position="dodge", stat="identity",width = 0.6) + 
-#   ggtitle("Second fixation duration")+
-#   theme(text=element_text(size=12,
-#                           family="Arial"),
-#         panel.grid.major = element_blank(),
-#         panel.grid.minor = element_blank(),
-#         axis.title = element_text(size = 10),
-#         panel.background = element_rect(colour = "black", size=1.3, fill=NA),
-#         legend.position  = "none")+
-#   coord_cartesian(ylim = range(200:250))+
-#   scale_x_discrete(limits = c("n-1", "n", "n + 1"))+
-#   xlab("Target Position") +
-#   ylab("Mean fixation time") + 
-#   scale_fill_manual(values = c("#333333","#666666" ,"#999999")) +
-#   facet_grid( target_changed ~ .)
 
 gdplot <- ggplot(data = x, aes(x = target_changed, y = meangd, fill = wordCode))+
   geom_bar(position="dodge", stat="identity",width = 0.6) + 
@@ -403,3 +406,16 @@ gptplot <- ggplot(data = x, aes(x = target_changed, y = meangpt, fill = wordCode
 awesome_figure <- ggarrange(ffdplot, gdplot,gptplot,tvtplot + rremove("x.text"), 
                             labels = c("A", "B","C","D"),
                             ncol = 4, nrow = 1, legend= "none")
+
+
+
+
+
+
+
+
+
+
+
+
+

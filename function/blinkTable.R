@@ -95,7 +95,7 @@ blinkTable <- function(data_dir = "Data/Ben"){
     cat(sprintf("Processing trial: "));
     for(j in 1:ntrials){
       temp<- data.frame(sub=NA, item=NA, cond=NA, blink_number = NA,
-                        blink_start = NA, blink_end = NA, blink_end_pos = NA, blink_dur=NA)
+                        blink_start = NA, blink_end = NA, blink_s_pos = NA, blink_dur=NA)
       
       cat(toString(j)); cat(" ")
       db<- trial_db[j,]
@@ -119,19 +119,41 @@ blinkTable <- function(data_dir = "Data/Ben"){
       blinkstamp <- as.data.frame(do.call( rbind, strsplit(blinkflag, '\t' )))
       blinkstamp$V1 <- get_num(blinkstamp$V1)
       if(length(blinkflag) != 0){
+        if(length(sblinkflag) == length(eblinkflag)){
       for(k in 1:length(blinkflag)){
         temp$blink_number <- k
         temp$blink_start <- blinkstamp$V1[k]
         temp$blink_end <- blinkstamp$V2[k]
         temp$blink_dur <- blinkstamp$V3[k]
         
-        poscap <- trialDis[as.numeric(eblinkflag[k])+1]
+        poscap <- trialDis[as.numeric(sblinkflag[k])-1]
         poscap <- as.data.frame(do.call( rbind, strsplit(poscap, '\t ' )))
-        temp$blink_end_pos <- as.numeric(poscap$V2)
-        
+        isdisplay <- which(grepl('DISPLAY',poscap))
+        if(length(isdisplay) == 0){
+          temp$blink_s_pos <- as.numeric(poscap$V2)
+        }else{
+          temp$blink_s_pos <- "display begining"
+        }
         data <- rbind(data, temp)
         }
-      }# end blinks
+        }else{
+        if(length(eblinkflag) > length(sblinkflag) && length(sblinkflag) != 0){
+          eblinkflag <- eblinkflag[-1]
+          for(k in 1:length(eblinkflag)){
+            temp$blink_number <- k
+            temp$blink_start <- blinkstamp$V1[k]
+            temp$blink_end <- blinkstamp$V2[k]
+            temp$blink_dur <- blinkstamp$V3[k]
+            
+            poscap <- trialDis[as.numeric(sblinkflag[k])-1]
+            poscap <- as.data.frame(do.call( rbind, strsplit(poscap, '\t ' )))
+            temp$blink_s_pos <- as.numeric(poscap$V2)
+            
+            data <- rbind(data, temp)
+          }
+        }
+      }
+     }# end blinks
     }# end of trial
   }# end of subj
   return(data)
