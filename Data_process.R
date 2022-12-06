@@ -167,14 +167,14 @@ save(words_fixs, file= "Data/words_fixs.Rda")
 
 ### these deletion criteria are purely my attempts. You can delete and change
 
-y <- merge(x = fixation_time_measures, y = raw_data, by = c("sub","item"), all.x=TRUE)
-rateaccuracy <- y %>% group_by(sub)%>% summarise(accuracy = mean(accuracy,na.rm=TRUE))
+rateaccuracy <- fixation_time_measures %>% left_join(raw_data, by = c("sub", "item")) %>% 
+  group_by(sub)%>% summarise(accuracy = mean(accuracy,na.rm=TRUE))
 
-DCLate <- subset(raw_data, raw_data$Display_lat < -100)
+DCLate <- subset(raw_data, raw_data$Display_lat < 0)
 DCLate <- subset(DCLate, DCLate$target_changed != "identical")
 DCLate <- DCLate %>% group_by(sub,item) %>% summarise()
 
-DCLate1 <- subset(raw_data, raw_data$Display_lat > 5)
+DCLate1 <- subset(raw_data, raw_data$Display_lat > 4)
 DCLate1 <- subset(DCLate1, DCLate1$target_changed != "identical")
 DCLate1 <- DCLate %>% group_by(sub,item) %>% summarise()
 
@@ -204,7 +204,7 @@ rateskip <- fixation_time_measures %>% filter(wordN == boundaryN) %>% group_by(t
 ### N ###
 # First fixation duration
 
-lm_ffd <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN), log(ffd) ~ target_changed * scale(inhibition_score) + (1|sub)) #standart preview effect 
+lm_ffd <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN), log(ffd) ~ target_changed * scale(inhibition_score) + (1|sub)) #standart preview effect 
 summary(lm_ffd)
 
 # Skipping
