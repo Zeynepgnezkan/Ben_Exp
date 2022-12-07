@@ -211,36 +211,66 @@ summary(lm_ffd)
 
 # BRMS: Set priors
 
+blmm_ben <- function(data, dv, warmup = 1000, iter = 5000, chains = 4, cores = 4, adapt_delta = 0.8, prior = priors){
+  blm <- brm(
+    data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN),
+    formula = bf(
+      paste(dv, "~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item)"),  
+      beta ~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item)
+    ),
+    warmup = warmup,
+    iter = iter,
+    chains = chains,
+    prior = priors,
+    sample_prior = "yes",
+    family = exgaussian(),
+    init = "0",
+    control = list(adapt_delta = adapt_delta),
+    cores = cores,
+    backend = "cmdstanr",
+    threads = threading(4),
+    seed = "6122022"
+  )
+  return(blm)
+}
+
+blmm_ben_skip <- function(data, dv, warmup = 1000, iter = 5000, chains = 4, cores = 4, adapt_delta = 0.8, prior = priors){
+  blm <- brm(
+    data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN),
+    formula = bf(
+      skipping ~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item)
+    ),
+    warmup = warmup,
+    iter = iter,
+    chains = chains,
+    prior = priors,
+    sample_prior = "yes",
+    family = bernoulli(),
+    init = "0",
+    control = list(adapt_delta = adapt_delta),
+    cores = cores,
+    backend = "cmdstanr",
+    threads = threading(4),
+    seed = "6122022"
+  )
+  return(blm)
+}
+
+
 iter <- 5000
 warmup <- 1000
 chains <- 4
 
 priors <- set_prior("normal(0,100)", class = "b")
 
-blm_ffd <- brm(
-  data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN),
-  formula = bf(
-    ffd ~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item),  
-    beta ~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item)
-  ),
-  warmup = warmup,
-  iter = iter,
-  chains = chains,
-  prior = priors,
-  sample_prior = "yes",
-  family = exgaussian(),
-  init = "0",
-  control = list(adapt_delta = 0.8),
-  cores = 4,
-  backend = "cmdstanr",
-  threads = threading(4),
-  seed = "6122022"
-)
-
+blm_ffd_n <- blmm_ben(data = fixation_time_measures %>% filter(wordN == boundaryN), dv = "ffd", warmup = 1000, iter = 5000)
+save(blmm_ffd, "blmm_ffd_n.RData")
 summary(blm_ffd)
 # Skipping
 
 lm_skip <- glmer(data = fixation_time_measures %>% filter(wordN == boundaryN ), skipping ~ target_changed * scale(inhibition_score) + (1|sub), family = binomial(link = "logit")) 
+blmm_ben_skip(data = fixation_time_measures %>% filter(wordN == boundaryN, warmup = 10, iter = 50))
+
 summary(lm_skip)
 
 # Gaze Duration
@@ -248,6 +278,8 @@ summary(lm_skip)
 lm_gd <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN), log(gd) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gd)
 
+blm_gd_n <- blmm_ben(data = fixation_time_measures %>% filter(wordN == boundaryN), dv = "gd", warmup = 1000, iter = 5000)
+save(blmm_gd, "blmm_gd_n.RData")
 # Go-past Time
 
 lm_gp <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN), log(gopast) ~ target_changed * scale(inhibition_score) + (1|sub)) 
@@ -264,6 +296,10 @@ summary(lm_tvt)
 
 lm_ffd1 <- lmer(data = fixation_time_measures %>% filter(wordN == boundaryN +1), log(ffd) ~ target_changed * scale(inhibition_score) + (1|sub)) #standart preview effect 
 summary(lm_ffd1)
+
+blm_ffd_n1 <- blmm_ben(data = fixation_time_measures %>% filter(wordN == boundaryN + 1), dv = "ffd", warmup = 1000, iter = 5000)
+save(blmm_ffd_1, "blmm_ffd_n1.RData")
+summary(blm_ffd_n1)
 
 # Skipping
 
