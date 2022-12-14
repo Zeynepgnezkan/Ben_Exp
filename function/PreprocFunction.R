@@ -54,7 +54,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
 
   data<- NULL
 
-  ## PROCESS ##
+  #### PROCESS ####
   
   for(i in 1:length(dataASC)){ # for each subject..
     
@@ -72,7 +72,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
     itemN <- as.numeric(str_match(trials, pattern = '\\d{1,3}'))
     cond <- str_match(trials, pattern = '_(\\w{3,9})')[,2]
     
-### get start and end times ###
+#### get start and end times ####
     
     start<- which(grepl('DISPLAY ON', dataF))
     trial_start_t<- which(grepl('start_trial', dataF))
@@ -116,7 +116,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       trial_sacc <- dataF[db$start:db$end]
       trialInfo<- dataF[db$ID:db$start]
       library(stringr)
-      # generic info about trial
+      #### generic info about trial ####
       temp$sub<- db$subject
       temp$item<- trial_db$itemN[j]
       temp$cond<- trial_db$cond[j]
@@ -127,7 +127,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       temp$Dis_on_t <- get_num(trialF[which(grepl('DISPLAY ON', trialF))])
       temp$Dis_off_t <- get_num(trialF[which(grepl('DISPLAY OFF', trialF))])
       
-      #target word and number and displayed one
+      #### target word, number and displayed one ####
       target_word_number <- trialF[which(grepl('target_word_nr', trialF))]
       target_word_number <- as.data.frame(do.call( rbind, strsplit(target_word_number, ' ' )))
       temp$target_word_n <- as.numeric(target_word_number$V4) + 1 #python starts 0
@@ -136,17 +136,17 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       target_word_str <- as.data.frame(do.call( rbind, strsplit(target_word_str, ' ' )))
       temp$target_word <- target_word_str$V4
       
-      #trial type
+      #### trial type ####
       trial_ty <- trialF[which(grepl('var trial_type ', trialF))]
       trial_ty <- as.data.frame(do.call( rbind, strsplit(trial_ty, ' ' )))
       temp$trial_type <- trial_ty$V4
       
-      #boundary
+      #### boundary ####
       DC_boundary <- trialF[which(grepl('var boundary ', trialF))]
       DC_boundary <- as.data.frame(do.call( rbind, strsplit(DC_boundary, ' ' )))
       temp$boundary <- DC_boundary$V4
       
-      #boundary time
+      #### boundary time ####
       x <- which(grepl(temp$Dis_on_t,trialF))
       y <- which(grepl(temp$Dis_off_t,trialF))
       
@@ -173,7 +173,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
         temp$target_changed <- 'identical'
       }
       
-      # Display change infos 
+      #### display change infos ####
           
       temp$DC_start_t <- get_num(trialF[which(grepl('DC started', trialF))])
       
@@ -182,15 +182,10 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       temp$Display_time <- round(as.numeric(DC_end_t$V5),3)
       temp$DC_end_t <- get_num(DC_end_t$V1)
       
-      # Display latency
-      
-      
-      
+      #### display latency ####
+
       temp$Display_lat <- temp$DC_start_t - temp$boundary_t
-      
-      
-      
-       #### target change ekle ###
+ 
    
       # Extract all saccade events from trial file:
       # all E flags:
@@ -206,7 +201,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       before_cross <- subset(sacc, as.numeric(sacc$V2) < as.numeric(temp$DC_start_t))
       after_cross <- subset(sacc, as.numeric(sacc$V2) > as.numeric(temp$DC_start_t))
       
-      #boundary cross saccade infos
+      #### boundary cross saccade infos ####
       
       temp$sacc_start_t <- as.numeric(after_cross$V1[1])
       temp$sacc_end_t <- as.numeric(after_cross$V2[1])
@@ -216,7 +211,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       temp$sacc_ampl<- abs(temp$sacc_end_x - temp$sacc_start_x)*DPP
       
       
-      ### Between fix or sacc
+      #### Between fix or sacc ####
       
       if(temp$cond == 'ben'){
         if(temp$sacc_start_t > temp$DC_end_t){
@@ -228,7 +223,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
         temp$boundarycond <- 'identical'
       }
       
-      #Blink
+      #### Blink ####
       
       # Between start of trial and end of the first saccade crosses the boundary 
       
@@ -254,7 +249,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
         temp$blink <- 'YES'
       }
       
-      #blink duration
+      #### blink duration ####
       if(temp$blink == 'YES'){
         blinkEFlag <- which(grepl('EBLINK',trialShort))
         blinkEString <- as.data.frame(do.call( rbind, strsplit( trialShort[blinkEFlag], '\t' ) ))
@@ -263,7 +258,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
         
       }
       
-      #fixations
+      #### fixations ####
       EFixFlags<- which(grepl('EFIX', trialF))
       EFixStrings<- trialF[EFixFlags]
       
@@ -280,7 +275,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       temp$fix_dur <- temp$fix_end_t - temp$fix_start_t
 
       
-      #Questions 
+      #### Questions ####
       Question <- trialF[which(grepl('var question ', trialF))]
       Question <- as.data.frame(do.call( rbind, strsplit(Question, ' ' )))
       if(Question$V4 != 'NA'){
@@ -326,7 +321,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
         
       } #end of question if
       
-      ## Velocity 
+      #### Velocity ####
       sacc_st<- which(grepl(temp$sacc_start_t, trialF))
       sacc_st<- sacc_st[1] 
       sacc_end<- which(grepl(temp$sacc_end_t, trialF))[1]
@@ -345,7 +340,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
       temp$peak_vel<- max(abs(vel))
       temp$avg_vel<- mean(abs(vel))
       
-      #Corrective Sacc 
+      #### Corrective Sacc ####
       begin <- which(grepl(temp$sacc_end_t,trialF))
       end <- which(grepl(temp$Dis_off_t,trialF))
       TrialS <- trialF[begin[1]:end[1]]
@@ -368,7 +363,7 @@ preproc<- function(data_dir = "/Data/Ben", maxtrial=1450, ResX=1920, DPP= 0.0247
         }
       }
 
-      ## J Hook ##
+      #### J Hook ####
       
     
       

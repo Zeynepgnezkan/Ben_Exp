@@ -109,10 +109,7 @@ blinkTable <- function(data_dir = "Data/Ben"){
       temp$cond<- trial_db$cond[j]
       
       # blink check
-      
-      # V1 = start
-      # V2 = end
-      # V3 = duration
+
       sblinkflag <- which(grepl('SBLINK',trialDis))
       eblinkflag <- which(grepl('EBLINK',trialDis))
       blinkflag <- trialDis[eblinkflag]

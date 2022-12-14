@@ -14,7 +14,7 @@ for(i in 1:length(packages)){
   }
 }
 
-# Functions
+##### Functions #####
 
 source("function/PreprocFunction.R")
 source("function/get_words.R")
@@ -22,7 +22,7 @@ source("function/Fixation.R")
 source("function/fixation_time_measures.R")
 source("function/blinkTable.R")
 
-# Process Raw Data
+##### Process Raw Data #####
 raw_data = preproc(data_dir = "Data/Ben")
 raw_data_fix = fixations(data_dir = "Data/Ben")
 first_pass <- first_pass_measures(raw_data_fix)
@@ -32,13 +32,13 @@ tvt <- tvt(raw_data_fix)
 blink_data <- blinkTable(data_dir = "Data/Ben")
 
 
-## Remove Practice Trials
+###### Remove Practice Trials ######
 
 raw_data <- raw_data %>% filter(trial_type != "practice")
 raw_data_fix <- raw_data_fix %>% filter(trial_type != "practice" & !is.na(wordN))
 raw_words <- raw_words %>% filter(trial_type != "practice")
 
-# Add Blinks
+###### Add Blinks ######
 raw_data_fix <- raw_data_fix %>% group_by(sub,item) %>% mutate(min1 = min(blink1^2),
                                                                min2 = min(blink2^2),
                                                                min3 = min(blink3^2))
@@ -105,7 +105,7 @@ for(i in 1:nrow(raw_data_fix)){
   }
 }
 
-# Adding skipping
+###### Adding skipping ######
 
 words_fixs <-full_join(raw_words,first_pass, by=c("item", "sub","wordN"))
 words_fixs$skipping <- NA
@@ -117,27 +117,25 @@ for(i in 1:nrow(words_fixs)){
   }
 }
 
-# Condition Added
+###### Condition Added ######
 
 words_fixs <- words_fixs %>% left_join(raw_data %>% dplyr::select(sub,item,target_changed))
 words_fixs <- words_fixs[ , -which(names(words_fixs) %in% c("cond"))]
 
 
-# Adding inhibition score
+###### Adding inhibition score ######
 
 inhibition <- read_csv("inhibition_scores_by_participant.csv")
 
 fixation_time_measures <- words_fixs %>%  left_join(inhibition, by = c("sub" = "participant")) %>%
   mutate(ffd = as.numeric(ffd), sfd = as.numeric(sfd), skipping = factor(skipping))
 
-# Adding GP and TVT
+###### Adding GP and TVT ######
 
 fixation_time_measures <- fixation_time_measures %>% left_join(gopast,by=c("item","sub","wordN"))
 fixation_time_measures <- fixation_time_measures %>% left_join(tvt,by=c("item","sub","wordN"))
 
-# Extract display latency and blinks 
-
-### these deletion criteria are purely my attempts. You can delete and change
+##### Extract display latency and blinks #####
 
 rateaccuracy <- fixation_time_measures %>% left_join(raw_data, by = c("sub", "item")) %>% 
   group_by(sub)%>% summarise(accuracy = mean(accuracy,na.rm=TRUE))
@@ -167,7 +165,7 @@ fixation_time_measures_withdelete <- left_join(fixation_time_measures,deleted, b
 fixation_time_measures_withdelete <- subset(fixation_time_measures_withdelete, is.na(fixation_time_measures_withdelete$delete))
 
 
-## saving and writing raw datas
+##### saving and writing raw datas #####
 
 save(raw_data, file= "Data/raw_data.Rda")
 

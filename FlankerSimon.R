@@ -1,3 +1,5 @@
+# Dr Bernhard Angele & Zeynep G Ozkan, 2022
+
 library(tidyverse)
 
 
@@ -7,12 +9,12 @@ F_data = flanker(data_dir = "Data/Flanker")
 source("function/Simon.R")
 S_data = simon(data_dir = "Data/Simon")
 
-# Delete RT <200 ms
+#### Delete RT <200 ms ####
 
 F_data<-F_data %>% filter(!(key_resp.rt < 0.200 | key_resp.rt > 1.5)) %>% separate(images, into = c("congruency","side"), sep = "[ -]") 
 S_data<-S_data %>% filter(!(key_resp.rt < 0.200 | key_resp.rt > 1.5)) %>% separate(images, into = c("colour","congruency"), sep = "_") 
 
-#Inhibition Score
+#### Inhibition Score ####
 
 F_data <- F_data %>% group_by(participant,congruency) %>% 
   summarise(avg = mean(key_resp.rt)) %>%

@@ -1,6 +1,6 @@
 # Dr Bernhard Angele & Zeynep G Ozkan, 2022
 
-# Required libraries
+#### Required libraries ####
 packages= c("tidyverse", "ggpubr", "lme4", "readr","stringr","performance", "MASS") 
 
 for(i in 1:length(packages)){
@@ -13,7 +13,7 @@ for(i in 1:length(packages)){
   }
 }
 
-# Load Data
+#### Load Data ####
 load("Data/raw_data.Rda")
 load("raw_data_fix.Rda")
 load("Data/raw_words.Rda")
@@ -25,9 +25,7 @@ load("Data/fixation_time_measures.Rda")
 load("Data/words_fixs.Rda")
 load("Data/fixation_time_measures_withdelete.Rda")
 
-## Contrast ##
-
-#fixation_time_measures$condition = factor(fixation_time_measures$target_changed, levels = c("identical", "ben","bir"))
+#### Contrast ####
 
 #contrasts(fixation_time_measures$condition) <- contr.sum
 
@@ -46,70 +44,72 @@ rateskip <-  fixation_time_measures_withdelete %>% filter(wordN == boundaryN) %>
 
 #### ANALYSIS ####
 
-### N ###
-# First fixation duration
+##### N #####
+###### First fixation duration #####
 
 lm_ffd <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN), log(ffd) ~ target_changed * scale(inhibition_score) + (1|sub)) #standart preview effect 
 summary(lm_ffd)
 
-# Skipping
+###### Skipping ###### 
 
 lm_skip <- glmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN ), skipping ~ target_changed * scale(inhibition_score) + (1|sub), family = binomial(link = "logit")) 
 summary(lm_skip)
 
-# Gaze Duration
+###### Gaze Duration ###### 
 
 lm_gd <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN), log(gd) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gd)
 
-# Go-past Time
+###### Go-past Time ######
 
 lm_gp <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN), log(gopast) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gp)
 
-# Total View Time
+###### Total View Time ######
 
 lm_tvt <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN), log(tvt) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_tvt)
 
-### N+1 ###
+##### N+1 #####
 
-# First fixation duration
+###### First fixation duration ######
 
 lm_ffd1 <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN +1), log(ffd) ~ target_changed * scale(inhibition_score) + (1|sub)) #standart preview effect 
 summary(lm_ffd1)
 
-# Skipping
+###### Skipping ######
 
 lm_skip1 <- glmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN + 1), skipping ~ target_changed * scale(inhibition_score) + (1|sub), family = binomial(link = "logit")) 
 summary(lm_skip1)
 
-# Gaze duration
+###### Gaze duration ######
 
 lm_gd1 <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN + 1), log(gd) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gd1)
 
-# Go-past Time
+###### Go-past Time ######
 
 lm_gp1 <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN + 1), log(gopast) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gp1)
 
-## TVT 
+###### TVT ######
 
 lm_tvt1 <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN + 1), log(tvt) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_tvt1)
 
-### N-1 ###
+##### N-1 #####
 
-# Gaze Duration
+###### Gaze Duration ######
 
 lm_gd1m <- lmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN - 1), log(gd) ~ target_changed * scale(inhibition_score) + (1|sub)) 
 summary(lm_gd1m)
 
+###### Skipping ######
+
 lm_skip1m <- glmer(data = fixation_time_measures_withdelete %>% filter(wordN == boundaryN - 1), skipping ~ target_changed * scale(inhibition_score) + (1|sub), family = binomial(link = "logit")) 
 summary(lm_skip1m)
 
-##### Data Visualization ######
+#### Data Visualization #####
 
 pallete1= c("#CA3542", "#27647B", "#849FA0", "#AECBC9", "#57575F")
 
