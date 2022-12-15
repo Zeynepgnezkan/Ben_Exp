@@ -15,11 +15,18 @@ library(cmdstanr)
 
 load("Data/fixation_time_measures_withdelete.Rda")
 
-# BRMS: Set priors
+# BRMS: Set priors 
+priors <- set_prior("normal(0,100)", class = "b")
 
-blmm_ben <- function(data, word, dv, warmup = 1000, iter = 5000, chains = 4, cores = 4, adapt_delta = 0.8, prior = priors){
+# BRMS: functions
+
+### ??? I tried to add bourndary and data as a argument inside of the function so we dont have to add
+### ??? data = fixation_time_measures %>% filter(wordN == boundaryN + 1) everytime but I couldn't do it. 
+### ??? how can we do it like that ???
+
+blmm_ben <- function(dataA, word, dv, warmup = 1000, iter = 5000, chains = 4, cores = 4, adapt_delta = 0.8, prior = priors){
   blm <- brm(
-    data = data %>% filter(wordN == word),
+    data = paste(dataA, "%>% filter(wordN == " ,word, ")"),
     formula = bf(
       paste(dv, "~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item)"),  
       beta ~ target_changed * scale(inhibition_score) + (target_changed|sub) + (target_changed * scale(inhibition_score)|item)
@@ -62,12 +69,11 @@ blmm_ben_skip <- function(data, word,dv, warmup = 1000, iter = 5000, chains = 4,
   return(blm)
 }
 
-priors <- set_prior("normal(0,100)", class = "b")
 
 
 # First Fixation Duration / Word N
 
-blm_ffd_n <- blmm_ben(data = fixation_time_measures_withdelete ,word = boundaryN, dv = "ffd", warmup = 10, iter = 50)
+blm_ffd_n <- blmm_ben(dataA = fixation_time_measures_withdelete ,word = boundaryN, dv = "ffd", warmup = 10, iter = 50)
 save(blmm_ffd_n, "blmm_ffd_n.RData")
 summary(blm_ffd_n)
 
