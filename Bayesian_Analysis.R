@@ -148,13 +148,13 @@ summary(blm_gd_n1)
 
 # Go-past Time / Word N + 1
 
-blm_gp_n1 <- blmm_ben(data = fixation_time_measures_withdelete, word = (boundaryN + 1), dv = "gp", warmup = 1000, iter = 5000)
+blm_gp_n1 <- blmm_ben(data = fixation_time_measures_withdelete, word_n = 1, dv = "gopast", warmup = 1000, iter = 5000)
 save(blm_gp_n1, file = "blm_gp_n1.RData")
 summary(blm_gp_n1)
 
 # TVT / Word N + 1
 
-blm_tvt_n1 <- blmm_ben(data = fixation_time_measures_withdelete, word = (boundaryN + 1), dv = "tvt", warmup = 1000, iter = 5000)
+blm_tvt_n1 <- blmm_ben(data = fixation_time_measures_withdelete, word_n = 1, dv = "tvt", warmup = 1000, iter = 5000)
 save(blm_tvt_n1, file = "blm_tvt_n1.RData")
 summary(blm_tvt_n1)
 
