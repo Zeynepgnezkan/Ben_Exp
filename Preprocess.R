@@ -42,6 +42,10 @@ raw_words <- raw_words %>% filter(trial_type != "practice")
 raw_data_fix <- raw_data_fix %>% group_by(sub,item) %>% mutate(min1 = min(blink1^2),
                                                                min2 = min(blink2^2),
                                                                min3 = min(blink3^2))
+raw_data_fix$fix_dur <- as.numeric(raw_data_fix$fix_dur)
+
+raw_data_fix <- raw_data_fix %>% mutate( exclude = ifelse(fix_dur > 800 | fix_dur < 80, 1,0))
+
 raw_data_fix$blink = NA
 for(i in 1:nrow(raw_data_fix)){
   
@@ -155,9 +159,12 @@ DCLate2 <- DCLate2 %>% group_by(sub,item) %>% summarise()
 blink <- subset(raw_data_fix,raw_data_fix$delete == 1)
 blink <- blink %>% group_by(sub,item) %>% summarise()
 
+fixdur_ex <- subset(raw_data_fix, raw_data_fix$exclude == 1)
+fixdur_ex <- fixdur_ex %>% group_by(sub,item) %>% summarise()
+
 sentencesskips <- fixation_time_measures %>% group_by(sub,item) %>% mutate(skip = as.numeric(skipping)-1) %>% summarise(rate = mean(skip,na.rm=TRUE))
 sentencesskips <- subset(sentencesskips, rate > 0.7)
-deleted <- rbind(DCLate,DCLate1,DCLate2,blink,sentencesskips)
+deleted <- rbind(DCLate,DCLate1,DCLate2,blink,sentencesskips,fixdur_ex)
 deleted$delete <- 1
 
 
