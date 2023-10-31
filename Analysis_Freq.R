@@ -253,9 +253,16 @@ awesome_figure <- ggarrange(ffdplot, gdplot,gptplot,tvtplot + rremove("x.text"),
                             ncol = 4, nrow = 1, legend= "none")
 
 
+## Descriptives
+
+x <- fixation_time_measures_withdelete %>% filter(boundaryN +1 == wordN) %>% group_by(target_changed) %>% summarise(sdffd = sd(ffd,na.rm = TRUE),
+                                                                                           sdgd = sd(gd,na.rm = TRUE),
+                                                                                           sdsfd = sd(sfd,na.rm = TRUE),
+                                                                                           
+                                                                                           sdgpt = sd(gopast,na.rm = TRUE))
 
 
-
+rateskip <-  fixation_time_measures_withdelete %>% filter(wordN == boundaryN +1) %>% group_by(target_changed)%>% mutate(skip = as.numeric(skipping)-1) %>% summarise(rate = sd(skip,na.rm=TRUE))
 
 
 
