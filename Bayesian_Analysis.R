@@ -17,6 +17,7 @@ load("Data/fixation_time_measures_withdelete.Rda")
 
 # set contrasts for preview manipulation
 
+
 fixation_time_measures_withdelete$target_changed = as.factor(fixation_time_measures_withdelete$target_changed)
 #levels(fixation_time_measures_withdelete$target_changed) 
 mycontrast <- cbind(identical_vs_diff = c(.5,.5,-1), ben_vs_bir = c(-1,1,0))
@@ -25,15 +26,10 @@ mycontrast <- zapsmall(t(ginv(mycontrast)))
 colnames(mycontrast) = mycontrastNames
 contrasts(fixation_time_measures_withdelete$target_changed) = mycontrast
 
-
 # BRMS: Set priors 
 priors <- set_prior("normal(0,100)", class = "b")
 
 # BRMS: functions
-
-### ??? I tried to add boundary and data as a argument inside of the function so we dont have to add
-### ??? data = fixation_time_measures %>% filter(wordN == boundaryN + 1) everytime but I couldn't do it. 
-### ??? how can we do it like that ???
 
 # you can't just paste a command into a string, you'd have to evaluate it
 # on the other hand, bf() converts strings into formulas (if they are in the . ~ . format), so using paste here is fine
